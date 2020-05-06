@@ -24,7 +24,7 @@ img {
 .main-container {
   position: relative;
   min-width: 20rem;
-  height: 100vh;
+  height: 110vh;
   padding: 2rem;
   display: inline-flex;
   flex-wrap: nowrap;
@@ -55,20 +55,42 @@ img {
   padding: 1rem;
   text-align: center;
   font-size: 1.5rem;
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
 }
 
-.button:hover {
-  cursor: pointer;
+.active {
+  position: relative;
+  width: 100%;
+  display: block;
   color: black;
-  background: rgba(255, 255, 255, 1);
+  background: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border-radius: 50px 0 0 50px;
 }
-.button:hover {
-  cursor: pointer;
-  color: black;
-  background: rgba(255, 255, 255, 1);
+.active:before {
+  content: "";
+  position: absolute;
+  top: -58.7px;
+  left: 16.95rem;
+  height: 100%;
+  width: 50px;
+  box-shadow: 0 20px 0 0 white;
+  border-bottom-right-radius: 50%;
 }
 
-.button.selected {
-  color: black;
+.active:after {
+  content: "";
+  position: absolute;
+  top: 59.1px;
+  left: 17.5rem;
+  height: 100%;
+  width: 40px;
+  box-shadow: 20px 0 0 0 white;
+  border-top-right-radius: 50%;
+}
+
+.button:hover:not(.active) {
+  cursor: pointer;
+  color: #82ca97;
 }
