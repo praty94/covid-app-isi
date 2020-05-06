@@ -1,50 +1,50 @@
 {
-    "data": [
+  "data": [
+    {
+      "stateName": "Andhra Pradesh",
+      "weeklyData": [
         {
-            "stateName": "Andhra Pradesh",
-            "weeklyData": [
-                {
-                    "startDate": "28-04-2020",
-                    "endDate": "04-05-2020",
-                    "value": 473,
-                    "rank": 10
-                },
-                {
-                    "startDate": "21-04-2020",
-                    "endDate": "28-04-2020",
-                    "value": 455,
-                    "rank": 7 
-                },
-                {
-                    "startDate": "14-04-2020",
-                    "endDate": "20-04-2020",
-                    "value": 290,
-                    "rank": 9
-                }
-            ]
+          "startDate": "28-04-2020",
+          "endDate": "04-05-2020",
+          "value": 473,
+          "rank": 10
         },
         {
-            "stateName": "Delhi",
-            "weeklyData": [
-                {
-                    "startDate": "28-04-2020",
-                    "endDate": "04-05-2020",
-                    "value": 1790,
-                    "rank": 3
-                },
-                {
-                    "startDate": "21-04-2020",
-                    "endDate": "28-04-2020",
-                    "value": 967,
-                    "rank": 3 
-                },
-                {
-                    "startDate": "14-04-2020",
-                    "endDate": "20-04-2020",
-                    "value": 849,
-                    "rank": 4
-                }
-            ]
+          "startDate": "21-04-2020",
+          "endDate": "28-04-2020",
+          "value": 455,
+          "rank": 7
+        },
+        {
+          "startDate": "14-04-2020",
+          "endDate": "20-04-2020",
+          "value": 290,
+          "rank": 9
         }
-    ]
+      ]
+    },
+    {
+      "stateName": "Delhi",
+      "weeklyData": [
+        {
+          "startDate": "28-04-2020",
+          "endDate": "04-05-2020",
+          "value": 1790,
+          "rank": 3
+        },
+        {
+          "startDate": "21-04-2020",
+          "endDate": "28-04-2020",
+          "value": 967,
+          "rank": 3
+        },
+        {
+          "startDate": "14-04-2020",
+          "endDate": "20-04-2020",
+          "value": 849,
+          "rank": 4
+        }
+      ]
+    }
+  ]
 }
