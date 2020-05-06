@@ -6,7 +6,7 @@
 
 body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  background-color: #cadfde;
+  background-color: rgba(255, 255, 255, 1);
   display: flex;
   justify-content: flex-start;
   width: 20vw;
@@ -23,7 +23,7 @@ img {
 
 .main-container {
   position: relative;
-  width: 20vw;
+  min-width: 20rem;
   height: 100vh;
   padding: 2rem;
   display: inline-flex;
@@ -61,7 +61,12 @@ img {
 .button:hover {
   cursor: pointer;
   color: black;
-  background: #cadfde;
+  background: rgba(255, 255, 255, 1);
+}
+.button:hover {
+  cursor: pointer;
+  color: black;
+  background: rgba(255, 255, 255, 1);
 }
 
 .button.selected {
