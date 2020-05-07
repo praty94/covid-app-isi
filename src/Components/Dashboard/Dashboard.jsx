@@ -1,34 +1,39 @@
 import React from "react";
-import { pages } from "../../Data/AppElements";
-import Sidebar from "../Sidebar/Sidebar";
-import styles from "./Dashboard.module.css";
-import { rightarrow } from "../../Assets";
+import { sidebarOptions } from "../../Data/AppElements";
+import { ThemeProvider } from '@material-ui/core/styles';
+import ResponsiveAppDrawer from '../AppDrawer/AppDrawer';
+import ThemeHelper from '../Theme/ThemeHelper';
+
+let light = "light", dark = "dark";
 class Dashboard extends React.Component {
   state = {
-    currentPage: pages[0]
+    theme: localStorage.getItem('theme')||light,
+    currentPage: sidebarOptions[0].id
   };
   render() {
     return (
-      <div>
-        <button className={styles.closebutton}>
-          <img
-            src={rightarrow}
-            alt="rightarrow"
-            className={styles.crossbutton}
-          />
-        </button>
-        <Sidebar
-          options={pages}
-          selectedPage={this.state.currentPage}
-          optionSelectedHandler={page => this.setCurrentpage(page)}
-        ></Sidebar>
-      </div>
+      <ThemeProvider theme={ThemeHelper(this.state.theme)}>
+        <ResponsiveAppDrawer options={sidebarOptions} curTheme={this.state.theme} currentPage={this.state.currentPage}
+        themeToggleHandler={() => this.toggleTheme()} optionSelectedHandler={(val)=>this.setCurrentpage(val)}></ResponsiveAppDrawer>        
+      </ThemeProvider>
     );
   }
-  setCurrentpage = page => {
+  setCurrentpage = pageid => {
     //updating state only if selected page is different
-    if (page !== this.state.currentPage) this.setState({ currentPage: page });
+    if (pageid !== this.state.currentPage) 
+      this.setState({ currentPage: pageid });
   };
+
+  toggleTheme = () => {
+    if(this.state.theme === light){
+      this.setState({ theme: dark });
+      localStorage.setItem('theme',dark);
+    } else {
+      this.setState({ theme: light });
+      localStorage.setItem('theme',light);
+    }
+    
+  }
 }
 
 export default Dashboard;
