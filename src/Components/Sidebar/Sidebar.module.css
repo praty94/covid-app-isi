@@ -1,0 +1,86 @@
+.img1 {
+    width: 300px;
+    height: 200px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .img2 {
+    width: 100px;
+    height: 100px;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .mainContainer {
+    position: relative;
+    min-width: 20rem;
+    min-height: 100vh;
+    padding: 2rem;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0 20px 20px 0;
+    align-content: center;
+    background: #4c56c0;
+  }
+  .buttonContainer1 {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  
+    padding: 0.8rem 0;
+    display: block;
+  
+    text-align: center;
+  }
+  
+  .button {
+    position: relative;
+    width: 100%;
+    display: block;
+    color: white;
+  
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  
+  .active {
+    position: relative;
+    width: 100%;
+    display: block;
+    color: black;
+    background: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    border-radius: 50px 0 0 50px;
+  }
+  .active:before {
+    content: "";
+    position: absolute;
+    top: -58.7px;
+    left: 16.95rem;
+    height: 100%;
+    width: 50px;
+    box-shadow: 0 20px 0 0 white;
+    border-bottom-right-radius: 50%;
+  }
+  
+  .active:after {
+    content: "";
+    position: absolute;
+    top: 59.1px;
+    left: 17.5rem;
+    height: 100%;
+    width: 40px;
+    box-shadow: 20px 0 0 0 white;
+    border-top-right-radius: 50%;
+  }
+  
+  .button:hover:not(.active) {
+    cursor: pointer;
+    color: #82ca97;
+  }
