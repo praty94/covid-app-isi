@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Sidebar.module.css";
 import cx from "classnames"; //helper for using multiple css classes
-import { mainIcon, secondaryIcon } from "../../Assets";
+import { mainIcon, secondaryIcon, leftarrow } from "../../Assets";
 import useWindowDimensions from "../../Helpers/WindowDimensionHelper";
 
 const Sidebar = props => {
@@ -22,7 +22,11 @@ const Sidebar = props => {
       >
         <div className={styles.buttonContainer1}>
           <button onClick={() => toggleDrawer()} className={styles.closebutton}>
-            {openState.isOpen ? "Close" : "Open"}
+            <img
+              src={leftarrow}
+              alt="crossbutton"
+              className={styles.crossbutton}
+            />
           </button>
           <img src={mainIcon} alt="uppericon" className={styles.img1} />
           {props.options.map((item, index) => {

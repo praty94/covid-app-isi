@@ -2,6 +2,7 @@ import React from "react";
 import { pages } from "../../Data/AppElements";
 import Sidebar from "../Sidebar/Sidebar";
 import styles from "./Dashboard.module.css";
+import { rightarrow } from "../../Assets";
 class Dashboard extends React.Component {
   state = {
     currentPage: pages[0]
@@ -9,7 +10,13 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <button className={styles.openbutton}>Open</button>
+        <button className={styles.closebutton}>
+          <img
+            src={rightarrow}
+            alt="rightarrow"
+            className={styles.crossbutton}
+          />
+        </button>
         <Sidebar
           options={pages}
           selectedPage={this.state.currentPage}

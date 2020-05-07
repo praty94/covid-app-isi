@@ -40,12 +40,19 @@
 }
 
 .closebutton {
-  margin: 1em 0;
-  padding: 0.4em 0.7em;
-  background-color: #82ca97;
+  margin-bottom: 0.5em;
+  margin-top: 1.5em;
+  padding: 0.4em 0.6em;
+  background-color: rgba(130, 202, 151, 1);
   outline: none;
-  border-radius: 50px;
-  width: 6rem;
+  border-radius: 50%;
+  border: 0;
+}
+
+.crossbutton {
+  width: 30px;
+  height: 30px;
+  padding: 0.2em;
 }
 
 .button {
