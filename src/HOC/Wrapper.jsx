@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: drawerWidth,
         marginTop:appBarHeight
       },
+      [theme.breakpoints.up('xs')]:{
+        marginTop:56
+      },
     background:theme.palette.primary.main
   },  
   content: {
