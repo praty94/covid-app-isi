@@ -1,49 +1,56 @@
-import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import WeeklyData from '../../Data/WeeklyRateOfIncrease.json';
+import React from "react";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import WeeklyData from "../../Data/WeeklyRateOfIncrease.json";
 
-const StyledTableCell = withStyles((theme) => ({
+const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   body: {
-    fontSize: 14,
-  },
+    fontSize: 14
+  }
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({
+const StyledTableRow = withStyles(theme => ({
   root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover
+    }
+  }
 }))(TableRow);
-
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
+    minWidth: 700
   },
+  scrolltable: {
+    overflow: "scroll",
+    height: 800
+  }
 });
 
 export default function WeeklyIncreaseDataTable() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.scrolltable}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
             {WeeklyData.data.headers.map((item, index) => {
-              return <StyledTableCell align="center" key={index}>{item}</StyledTableCell>
+              return (
+                <StyledTableCell align="center" key={index}>
+                  {item}
+                </StyledTableCell>
+              );
             })}
           </TableRow>
         </TableHead>
@@ -54,12 +61,17 @@ export default function WeeklyIncreaseDataTable() {
                 {item.stateName}
               </StyledTableCell>
               {item.weeklyData.map((weeklyItem, index) => {
-                return <React.Fragment>
-                  <StyledTableCell align="center">{weeklyItem.value}</StyledTableCell>
-                  <StyledTableCell align="center">{weeklyItem.rank}</StyledTableCell>
-                </React.Fragment>
+                return (
+                  <React.Fragment>
+                    <StyledTableCell align="center">
+                      {weeklyItem.value}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {weeklyItem.rank}
+                    </StyledTableCell>
+                  </React.Fragment>
+                );
               })}
-
             </StyledTableRow>
           ))}
         </TableBody>
