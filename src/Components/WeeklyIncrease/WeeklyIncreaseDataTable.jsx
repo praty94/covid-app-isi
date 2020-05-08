@@ -13,9 +13,6 @@ const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white
-  },
-  body: {
-    fontSize: 14
   }
 }))(TableCell);
 
@@ -30,10 +27,6 @@ const StyledTableRow = withStyles(theme => ({
 const useStyles = makeStyles({
   table: {
     minWidth: 700
-  },
-  scrolltable: {
-    overflow: "scroll",
-    height: 800
   }
 });
 
@@ -41,15 +34,21 @@ export default function WeeklyIncreaseDataTable() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper} className={classes.scrolltable}>
+    <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
+          <StyledTableCell></StyledTableCell>
+          {WeeklyData.data.stateWiseData[0].weeklyData.map((item,index)=>(
+              <StyledTableCell align="center" colSpan={2} key={index}>{item.startDate} <br/>to<br/> {item.endDate}</StyledTableCell>
+          ))}         
+          </TableRow>
+          <TableRow>           
             {WeeklyData.data.headers.map((item, index) => {
-              return (
+              return (                
                 <StyledTableCell align="center" key={index}>
                   {item}
-                </StyledTableCell>
+                </StyledTableCell>                
               );
             })}
           </TableRow>
