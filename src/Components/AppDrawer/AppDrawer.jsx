@@ -7,7 +7,7 @@ import Light from '@material-ui/icons/Brightness7';
 import Dark from '@material-ui/icons/Brightness4';
 import Content from './AppDrawerContent';
 
-const drawerWidth = 240;
+const drawerWidth = 242;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)'
   },
   content: {
     flexGrow: 1,
@@ -50,7 +51,8 @@ function ResponsiveDrawer(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   //Props to be sent to app drawer
-  const appDrawerProps = {currentPage : props.currentPage, options : props.options, optionSelectedHandler : props.optionSelectedHandler};
+  const appDrawerProps = {currentPage : props.currentPage, options : props.options, 
+    optionSelectedHandler : props.optionSelectedHandler,curTheme:props.curTheme};
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
