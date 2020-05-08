@@ -42,13 +42,26 @@ export default function WeeklyIncreaseDataTable() {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            {WeeklyData.data.headers.map((item,index)=>{
-              return <StyledTableCell>{item}</StyledTableCell>              
+            {WeeklyData.data.headers.map((item, index) => {
+              return <StyledTableCell align="center" key={index}>{item}</StyledTableCell>
             })}
           </TableRow>
         </TableHead>
         <TableBody>
-          
+          {WeeklyData.data.stateWiseData.map((item, index) => (
+            <StyledTableRow key={index}>
+              <StyledTableCell component="th" scope="row">
+                {item.stateName}
+              </StyledTableCell>
+              {item.weeklyData.map((weeklyItem, index) => {
+                return <React.Fragment>
+                  <StyledTableCell align="center">{weeklyItem.value}</StyledTableCell>
+                  <StyledTableCell align="center">{weeklyItem.rank}</StyledTableCell>
+                </React.Fragment>
+              })}
+
+            </StyledTableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
