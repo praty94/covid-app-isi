@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 242;
 const appBarHeight = 64;
+const appBarHeightMobile=56;
 const useStyles = makeStyles((theme) => ({
   root: {
     [theme.breakpoints.up('sm')]: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop:appBarHeight
       },
       [theme.breakpoints.up('xs')]:{
-        marginTop:56
+        marginTop:appBarHeightMobile
       },
     background:theme.palette.primary.main
   },  
