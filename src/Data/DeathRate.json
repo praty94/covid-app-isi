@@ -1,0 +1,43 @@
+{
+    "data": {
+        "countryData": {
+            "deathRate": null
+        },
+        "stateData": [
+            {
+                "stateName": "Andhra Pradesh",
+                "deathRate": [
+                    {
+                        "date": "16-03-2020",
+                        "rate": "0.00%"
+                    },
+                    {
+                        "date": "23-03-2020",
+                        "rate": "0.00%"
+                    },
+                    {
+                        "date": "30-03-2020",
+                        "rate": "0.00%"
+                    }
+                ]
+            },
+            {
+                "stateName": "Delhi",
+                "deathRate": [
+                    {
+                        "date": "16-03-2020",
+                        "rate": "14.29%"
+                    },
+                    {
+                        "date": "23-03-2020",
+                        "rate": "3.33%"
+                    },
+                    {
+                        "date": "30-03-2020",
+                        "rate": "2.06%"
+                    }
+                ]
+            }
+        ]
+    }
+}
