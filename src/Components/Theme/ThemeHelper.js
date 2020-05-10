@@ -8,7 +8,7 @@ const themeHelper = (theme) => {
                 main : "#FFFFFF"
               },
               secondary:{
-                main : '#368bf6'
+                main : '#81c784'
               },
               type:"light"
             }
@@ -20,7 +20,7 @@ const themeHelper = (theme) => {
                 main : "#333"
               },
               secondary:{
-                main : '#368bf6'
+                main : '#81c784'
               },
               type:"dark"
             }

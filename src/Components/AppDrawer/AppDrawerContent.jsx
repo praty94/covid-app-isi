@@ -46,7 +46,7 @@ const DrawerContent = (props) => {
                 {props.options.map((item, index) => (
                     index === props.options.length - 1 ?
                         <React.Fragment>
-                            <Divider style={{marginTop:"50px"}}/>
+                            <Divider style={{marginTop:"50px"}} key="divider"/>
                             {getListItem(props, item)}
                         </React.Fragment>
                         :

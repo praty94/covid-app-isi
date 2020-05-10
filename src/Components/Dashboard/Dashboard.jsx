@@ -3,7 +3,7 @@ import { sidebarOptions } from "../../Data/AppElements";
 import { ThemeProvider } from '@material-ui/core/styles';
 import ResponsiveAppDrawer from '../AppDrawer/AppDrawer';
 import ThemeHelper from '../Theme/ThemeHelper';
-import { WeeklyIncreaseDataTable } from '../index';
+import PageSwitchHelper from '../PageSwitchHelper/PageSwitchHelper';
 import Wrapper from '../../HOC/Wrapper';
 
 let light = "light", dark = "dark";
@@ -18,11 +18,12 @@ class Dashboard extends React.Component {
         <ResponsiveAppDrawer options={sidebarOptions} curTheme={this.state.theme} currentPage={this.state.currentPage}
           themeToggleHandler={() => this.toggleTheme()} optionSelectedHandler={(val) => this.setCurrentpage(val)}></ResponsiveAppDrawer>
         <Wrapper>
-          <WeeklyIncreaseDataTable></WeeklyIncreaseDataTable>
+          <PageSwitchHelper pageId={this.state.currentPage}></PageSwitchHelper>
         </Wrapper>
       </ThemeProvider>
     );
   }
+
   setCurrentpage = pageid => {
     //updating state only if selected page is different
     if (pageid !== this.state.currentPage)
@@ -37,7 +38,6 @@ class Dashboard extends React.Component {
       this.setState({ theme: light });
       localStorage.setItem('theme', light);
     }
-
   }
 }
 
