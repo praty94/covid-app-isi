@@ -21,6 +21,7 @@ export default function StateSelector(props) {
         id="multiple-state-selector"
         options={props.states}
         getOptionLabel={(option) => option}        
+        onChange={(e,value)=>props.handleStateChange(value)}
         renderInput={(params) => (
           <TextField {...params} color="secondary" variant="outlined" label="States" placeholder="Select States.." />
         )}

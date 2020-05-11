@@ -6,7 +6,7 @@ const appBarHeight = 64;
 const appBarHeightMobile=56;
 const useStyles = makeStyles((theme) => ({
   root: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
         marginLeft: drawerWidth,
         marginTop:appBarHeight
       },

@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function WeeklyIncrease() {
+export default function WeeklyIncrease(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -67,10 +67,8 @@ export default function WeeklyIncrease() {
             <TabPanel value={value} index={0}>
                 <WeeklyIncreaseDataTable></WeeklyIncreaseDataTable>
             </TabPanel>
-            <TabPanel value={value} index={1}>
-                <div style={{minWidth:'750px',height:'500px'}}>
-                    <WeeklyGraph></WeeklyGraph>
-                </div>
+            <TabPanel value={value} index={1}>                
+                <WeeklyGraph theme={props.theme}></WeeklyGraph>                
             </TabPanel>
         </div>
     );

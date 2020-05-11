@@ -61,7 +61,7 @@ export default function WeeklyIncreaseDataTable() {
               </StyledTableCell>
               {item.weeklyData.map((weeklyItem, index) => {
                 return (
-                  <React.Fragment>
+                  <React.Fragment key={index}>
                     <StyledTableCell align="center">
                       {weeklyItem.value}
                     </StyledTableCell>

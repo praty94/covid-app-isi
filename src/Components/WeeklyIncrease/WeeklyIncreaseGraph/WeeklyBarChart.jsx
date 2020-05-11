@@ -1,51 +1,31 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactApexChart from "react-apexcharts";
+import barChartThemeHelper from '../../Theme/BarChartThemeHelper';
+import useWindowDimensions from '../../../Helpers/WindowDimensionHelper';
 
 const WeeklyBarChart = (props) => {
-    
-    const [chartData] = useState({
+    const { height, width } = useWindowDimensions();
+    const [chartData, setChartData] = useState({
         series: props.seriesData,
-        options: {
-            chart: {
-                type: 'bar',
-                height: 350
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '55%',
-                   // endingShape: 'rounded'
-                },
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                show: true,
-                width: 2,
-                colors: ['transparent']
-            },
-            xaxis: {
-                categories: props.categories,
-            },            
-            fill: {
-                opacity: 1
-            },
-            tooltip: {
-                y: {
-                    formatter: function (val) {
-                        return "$ " + val + " thousands"
-                    }
-                }
-            }
-        },
-
-
+        options: barChartThemeHelper({ categories: props.categories, theme: props.theme })
     });
-   
-    return <ReactApexChart options={chartData.options} series={chartData.series} type="bar" />
-    
-
+    useEffect(() => {
+        console.log("[WeeklybarChart] useEffect called");
+        setChartData({
+            series: props.seriesData,
+            options: barChartThemeHelper({ categories: props.categories, theme: props.theme })
+        });
+    }, [props.theme, props.seriesData, props.categories]);
+    return <ReactApexChart style={{marginTop:"9px",marginLeft:"-5px"}} width={getRealWidth(width)}
+    height={0.65 * height} options={chartData.options} series={chartData.series} type="bar" />
 }
-
+const getRealWidth = (width) => {
+    if(width > 650 && width <960){
+        return width-80;
+    }else if(width >=960){
+        return width-320;
+    }else{
+        return width-80;
+    }
+}
 export default WeeklyBarChart;

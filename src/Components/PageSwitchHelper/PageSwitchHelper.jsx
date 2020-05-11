@@ -3,7 +3,7 @@ import { WeeklyIncrease } from '../index';
 const PageSwitchHelper = (props) => {
     switch(props.pageId){
         case 2:
-            return <WeeklyIncrease></WeeklyIncrease>;
+            return <WeeklyIncrease theme={props.theme}></WeeklyIncrease>;
         default:
             return <h1>Not configured</h1>
     }
