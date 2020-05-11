@@ -19,4 +19,9 @@ body {
   flex-wrap: nowrap;
   overflow: hidden;
 }
-
+.PrivateTabIndicator-colorSecondary-579{
+  display:none;
+}
+.MuiTab-textColorInherit.Mui-selected{
+  border-bottom: 2px solid #81c784;
+}

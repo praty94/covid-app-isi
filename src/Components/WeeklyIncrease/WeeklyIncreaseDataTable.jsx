@@ -39,7 +39,7 @@ export default function WeeklyIncreaseDataTable() {
         <TableHead>
           <TableRow>
           <StyledTableCell></StyledTableCell>
-          {WeeklyData.data.stateWiseData[0].weeklyData.map((item,index)=>(
+          {WeeklyData.data.stateData[0].weeklyData.map((item,index)=>(
               <StyledTableCell align="center" colSpan={2} key={index}>{item.startDate} <br/>to<br/> {item.endDate}</StyledTableCell>
           ))}         
           </TableRow>
@@ -54,14 +54,14 @@ export default function WeeklyIncreaseDataTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {WeeklyData.data.stateWiseData.map((item, index) => (
+          {WeeklyData.data.stateData.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {item.stateName}
               </StyledTableCell>
               {item.weeklyData.map((weeklyItem, index) => {
                 return (
-                  <React.Fragment>
+                  <React.Fragment key={index}>
                     <StyledTableCell align="center">
                       {weeklyItem.value}
                     </StyledTableCell>
