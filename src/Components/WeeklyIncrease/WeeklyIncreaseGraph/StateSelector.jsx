@@ -13,15 +13,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StateSelector(props) {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Autocomplete
         multiple        
         id="multiple-state-selector"
         options={props.states}
-        getOptionLabel={(option) => option}        
+        getOptionLabel={(option) => option}      
         onChange={(e,value)=>props.handleStateChange(value)}
+        defaultValue={props.defaultStates}
         renderInput={(params) => (
           <TextField {...params} color="secondary" variant="outlined" label="States" placeholder="Select States.." />
         )}
