@@ -60,15 +60,15 @@ export default function WeeklyIncrease(props) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Tabs centered value={value} onChange={handleChange} aria-label="weeklyIncrease tabs" variant="fullWidth">
-                    <Tab label="Analysis" {...a11yProps(0)} />
-                    <Tab label="Graph" {...a11yProps(1)} />
+                    <Tab label="Graph" {...a11yProps(0)} />
+                    <Tab label="Analysis" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <WeeklyIncreaseDataTable></WeeklyIncreaseDataTable>
+                <WeeklyGraph theme={props.theme}></WeeklyGraph>
             </TabPanel>
-            <TabPanel value={value} index={1}>                
-                <WeeklyGraph theme={props.theme}></WeeklyGraph>                
+            <TabPanel value={value} index={1}>
+                <WeeklyIncreaseDataTable></WeeklyIncreaseDataTable>
             </TabPanel>
         </div>
     );
