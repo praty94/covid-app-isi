@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from "react-apexcharts";
-import barChartThemeHelper from '../../Theme/BarChartThemeHelper';
-import useWindowDimensions from '../../../Helpers/WindowDimensionHelper';
+import barChartThemeHelper from '../Theme/BarChartThemeHelper';
+import useWindowDimensions from '../../Helpers/WindowDimensionHelper';
 
 const WeeklyBarChart = (props) => {
     const { height, width } = useWindowDimensions();

@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import WeeklyData from "../../../Data/WeeklyRateOfIncrease.json";
-import StateSelector from './StateSelector';
-import WeeklyBarChart from './WeeklyBarChart';
+import RecoveryData from "../../Data/RecoveryRate.json";
+import StateSelector from '../Common Components/StateSelector';
+import WeeklyBarChart from '../Common Components/BarChart';
 
 const getFormattedData = () => {
     let stateNameArray = [], seriesData = [], categories = [],defaultStates=[],currentSeriesData=[];
     let index = 0;
-    WeeklyData.data.stateData.forEach((item) => {
+    RecoveryData.data.stateData.forEach((item) => {
         stateNameArray.push(item.stateName);
-        let ratioArray = [];
-        item.ratios.forEach((ratio) => {
-            ratioArray.push(ratio.value);
+        let rateArray = [];
+        item.recoveryRate.forEach((item) => {
+            rateArray.push(item.rate);
             if (index === 0)
-                categories.push(ratio.name);
+                categories.push(item.date);
         });
 
         //Only 1st 5 states are used for showing default data
         if(index<5){
             defaultStates.push(item.stateName);
-            currentSeriesData.push({name: item.stateName, data: ratioArray});
+            currentSeriesData.push({name: item.stateName, data: rateArray});
         }
 
         index += 1;
         //mapping data wih state name so that it can be retrieved in O(1)
-        seriesData[item.stateName] = { name: item.stateName, data: ratioArray };
+        seriesData[item.stateName] = { name: item.stateName, data: rateArray };
     });
     return { stateNames: stateNameArray.sort(),seriesData,currentSeriesData, categories,defaultStates };
 }
