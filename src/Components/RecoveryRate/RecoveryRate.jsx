@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
-//import RecoveryRateDataTable from './RecoveryRateDataTable';
+import {AppBar,Tabs,Tab,Box} from '@material-ui/core';
+import RecoveryRateDataTable from './RecoveryRateDataTable';
 import RecoveryRateGraph from './RecoveryRateGraph';
 
 function TabPanel(props) {
@@ -57,6 +54,7 @@ export default function RecoveryRate(props) {
     };
 
     return (
+        <React.Fragment>
         <div className={classes.root}>
             <AppBar position="static">
                 <Tabs centered value={value} onChange={handleChange} aria-label="weeklyIncrease tabs" variant="fullWidth">
@@ -68,8 +66,9 @@ export default function RecoveryRate(props) {
                 <RecoveryRateGraph theme={props.theme}></RecoveryRateGraph>
             </TabPanel>
             <TabPanel value={value} index={1}>                
-                panel 2
+               <RecoveryRateDataTable></RecoveryRateDataTable>
             </TabPanel>
         </div>
+        </React.Fragment>
     );
 }

@@ -18,15 +18,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 const getListItem = (props, item) => {
-    if (item.id === props.currentPage) {
+    if (item.id === props.currentPage.id) {
         return (
-            <ListItem selected button key={item.id} onClick={() => props.optionSelectedHandler(item.id)}>
+            <ListItem selected button key={item.id} onClick={() => props.optionSelectedHandler(item)}>
                 <ListItemIcon >{getIcon(item.icon)}</ListItemIcon>
                 <ListItemText primary={item.name} />
             </ListItem>);
     } else {
         return (
-            <ListItem button key={item.id} onClick={() => props.optionSelectedHandler(item.id)}>
+            <ListItem button key={item.id} onClick={() => props.optionSelectedHandler(item)}>
                 <ListItemIcon style={{ color: green[300] }}>{getIcon(item.icon)}</ListItemIcon>
                 <ListItemText primary={item.name} />
             </ListItem>);

@@ -35,7 +35,7 @@ export default function WeeklyIncreaseDataTable() {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
+      <Table className={classes.table} aria-label="WeeklyIncrease table">
         <TableHead>
           <TableRow>
           <StyledTableCell></StyledTableCell>

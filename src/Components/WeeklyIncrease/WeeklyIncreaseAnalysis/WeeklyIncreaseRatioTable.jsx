@@ -32,7 +32,7 @@ export default function WeeklyIncreaseRatioTable() {
 
   return (
     <TableContainer component={Paper}>
-      <Table style={{ width: getTableWidth(width) }} aria-label="customized table">
+      <Table style={{ width: getTableWidth(width) }} aria-label="Weekly increase ratio table">
         <TableHead>
           <TableRow>
             <StyledTableCell>State / UT</StyledTableCell>
@@ -51,7 +51,7 @@ export default function WeeklyIncreaseRatioTable() {
                 return (
                   <React.Fragment key={index}>
                     <StyledTableCell align="center">
-                      {weeklyItem.value}
+                      {weeklyItem.value ? weeklyItem.value : "N/A"}
                     </StyledTableCell>
                   </React.Fragment>
                 );
