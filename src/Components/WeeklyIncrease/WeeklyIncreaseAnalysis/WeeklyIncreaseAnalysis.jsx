@@ -4,9 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
-import WeeklyIncreaseAnalysis from './WeeklyIncreaseAnalysis/WeeklyIncreaseAnalysis';
-import WeeklyGraph from './WeeklyIncreaseGraph';
+import WeeklyIncreaseDataTable from './WeeklyIncreaseDataTable';
+import WeeklyIncreaseRatioTable from './WeeklyIncreaseRatioTable';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -20,9 +19,9 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Box p={2}>
+               <div style={{marginTop:10}}>
                     {children}
-                </Box>
+                </div>
             )}
         </div>
     );
@@ -36,8 +35,8 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
     return {
-        id: `weeklyIncrease-tab-${index}`,
-        'aria-controls': `weeklyIncrease-tabpanel-${index}`,
+        id: `weeklyIncreaseAnalysis-tab-${index}`,
+        'aria-controls': `weeklyIncreaseAnalysis-tabpanel-${index}`,
     };
 }
 
@@ -48,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function WeeklyIncrease(props) {
+export default function WeeklyIncreaseAnalysis(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -59,16 +58,16 @@ export default function WeeklyIncrease(props) {
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <Tabs centered value={value} onChange={handleChange} aria-label="weeklyIncrease tabs" variant="fullWidth">
-                    <Tab label="Graph" {...a11yProps(0)} />
-                    <Tab label="Analysis" {...a11yProps(1)} />
+                <Tabs centered value={value} onChange={handleChange} aria-label="weeklyIncreaseAnalysis tabs" variant="fullWidth">
+                    <Tab label="Count" {...a11yProps(0)} />
+                    <Tab label="Ratio" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <WeeklyGraph theme={props.theme}></WeeklyGraph>
+                <WeeklyIncreaseDataTable></WeeklyIncreaseDataTable>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <WeeklyIncreaseAnalysis></WeeklyIncreaseAnalysis>
+                <WeeklyIncreaseRatioTable></WeeklyIncreaseRatioTable>
             </TabPanel>
         </div>
     );

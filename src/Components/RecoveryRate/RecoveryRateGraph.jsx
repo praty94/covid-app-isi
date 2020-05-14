@@ -4,9 +4,10 @@ import StateSelector from '../Common Components/StateSelector';
 import WeeklyBarChart from '../Common Components/BarChart';
 
 const getFormattedData = () => {
-    let stateNameArray = [], seriesData = [], categories = [],defaultStates=[],currentSeriesData=[];
+    let stateNameArray = [], seriesData = [], categories = [], defaultStates = [], currentSeriesData = [];
     let index = 0;
-    RecoveryData.data.stateData.forEach((item) => {
+    const {stateData,countryData} = {...RecoveryData.data}
+    stateData.forEach((item) => {
         stateNameArray.push(item.stateName);
         let rateArray = [];
         item.recoveryRate.forEach((item) => {
@@ -16,34 +17,41 @@ const getFormattedData = () => {
         });
 
         //Only 1st 5 states are used for showing default data
-        if(index<5){
+        if (index < 5) {
             defaultStates.push(item.stateName);
-            currentSeriesData.push({name: item.stateName, data: rateArray});
+            currentSeriesData.push({ name: item.stateName, data: rateArray });
         }
 
         index += 1;
         //mapping data wih state name so that it can be retrieved in O(1)
         seriesData[item.stateName] = { name: item.stateName, data: rateArray };
     });
-    return { stateNames: stateNameArray.sort(),seriesData,currentSeriesData, categories,defaultStates };
+    //Mapping data for india
+    let countryRateArray = [];
+    countryData.recoveryRate.forEach((item) => {
+        countryRateArray.push(item.rate);
+    });
+    //mapping data wih state name so that it can be retrieved in O(1)
+    seriesData[countryData.countryName] = { name: countryData.countryName, data: countryRateArray };
+    return { stateNames: [countryData.countryName,...stateNameArray.sort()], seriesData, currentSeriesData, categories, defaultStates };
 }
 
-const { stateNames, seriesData,currentSeriesData, categories,defaultStates } = getFormattedData();
+const { stateNames, seriesData, currentSeriesData, categories, defaultStates } = getFormattedData();
 
 const WeeklyGraph = (props) => {
-    const [chartData,setChartData] = useState({currentSeriesData});
-    const filterChartData = (selectedStateArray)=>{        
-        let filteredData = [];        
-        for(let i=0;i<selectedStateArray.length;i++){
-            if(seriesData[selectedStateArray[i]]){
+    const [chartData, setChartData] = useState({ currentSeriesData });
+    const filterChartData = (selectedStateArray) => {
+        let filteredData = [];
+        for (let i = 0; i < selectedStateArray.length; i++) {
+            if (seriesData[selectedStateArray[i]]) {
                 filteredData.push(seriesData[selectedStateArray[i]]);
             }
         }
         return filteredData;
     }
-    const handleStateChange = (selectedStateArray) => {        
+    const handleStateChange = (selectedStateArray) => {
         console.log(selectedStateArray);
-        setChartData({currentSeriesData : filterChartData(selectedStateArray)});
+        setChartData({ currentSeriesData: filterChartData(selectedStateArray) });
     }
 
     return (
