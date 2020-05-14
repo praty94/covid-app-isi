@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import {Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper} from "@material-ui/core";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
 import WeeklyData from "../../../Data/WeeklyRateOfIncrease.json";
 import useWindowDimensions from '../../../Helpers/WindowDimensionHelper';
 
@@ -19,41 +19,40 @@ const StyledTableRow = withStyles(theme => ({
   }
 }))(TableRow);
 const getTableWidth = (width) => {
-  if(width < 690){
-    return width-250;
-  }else if(width >= 690 && width<960){
-    return width - 100;
-  }else{
-    return width-340;
+  if (width > 650 && width < 960) {
+    return width - 80;
+  } else if (width >= 960) {
+    return width - 320;
+  } else {
+    return width - 80;
   }
-  
 }
 export default function WeeklyIncreaseRatioTable() {
   const { width } = useWindowDimensions();
-  
+
   return (
     <TableContainer component={Paper}>
-      <Table style={{width:getTableWidth(width)}} aria-label="customized table">
+      <Table style={{ width: getTableWidth(width) }} aria-label="customized table">
         <TableHead>
           <TableRow>
-          <StyledTableCell>State / UT</StyledTableCell>
-          {WeeklyData.data.stateData[0].ratios.map((item,index)=>(
+            <StyledTableCell>State / UT</StyledTableCell>
+            {WeeklyData.data.stateData[0].ratios.map((item, index) => (
               <StyledTableCell align="center" key={index}>{item.name}</StyledTableCell>
-          ))}         
-          </TableRow>          
+            ))}
+          </TableRow>
         </TableHead>
         <TableBody>
           {WeeklyData.data.stateData.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {item.stateName}
-              </StyledTableCell>              
+              </StyledTableCell>
               {item.ratios.map((weeklyItem, index) => {
                 return (
                   <React.Fragment key={index}>
                     <StyledTableCell align="center">
                       {weeklyItem.value}
-                    </StyledTableCell>                    
+                    </StyledTableCell>
                   </React.Fragment>
                 );
               })}
