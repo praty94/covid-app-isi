@@ -19,7 +19,7 @@ body {
   flex-wrap: nowrap;
   overflow: hidden;
 }
-.PrivateTabIndicator-colorSecondary-579{
+.MuiTabs-indicator{
   display:none;
 }
 .MuiTab-textColorInherit.Mui-selected{

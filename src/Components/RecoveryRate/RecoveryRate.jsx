@@ -5,8 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import WeeklyIncreaseAnalysis from './WeeklyIncreaseAnalysis/WeeklyIncreaseAnalysis';
-import WeeklyGraph from './WeeklyIncreaseGraph';
+//import RecoveryRateDataTable from './RecoveryRateDataTable';
+import RecoveryRateGraph from './RecoveryRateGraph';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -15,8 +15,8 @@ function TabPanel(props) {
         <div
             role="tabpanel"
             hidden={value !== index}
-            id={`weeklyIncrease-tabpanel-${index}`}
-            aria-labelledby={`weeklyIncrease-tab-${index}`}
+            id={`recoveryRate-tabpanel-${index}`}
+            aria-labelledby={`recoveryRate-tab-${index}`}
             {...other}
         >
             {value === index && (
@@ -36,8 +36,8 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
     return {
-        id: `weeklyIncrease-tab-${index}`,
-        'aria-controls': `weeklyIncrease-tabpanel-${index}`,
+        id: `recoveryRate-tab-${index}`,
+        'aria-controls': `recoveryRate-tabpanel-${index}`,
     };
 }
 
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function WeeklyIncrease(props) {
+export default function RecoveryRate(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -65,10 +65,10 @@ export default function WeeklyIncrease(props) {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <WeeklyGraph theme={props.theme}></WeeklyGraph>
+                <RecoveryRateGraph theme={props.theme}></RecoveryRateGraph>
             </TabPanel>
-            <TabPanel value={value} index={1}>
-                <WeeklyIncreaseAnalysis></WeeklyIncreaseAnalysis>
+            <TabPanel value={value} index={1}>                
+                panel 2
             </TabPanel>
         </div>
     );

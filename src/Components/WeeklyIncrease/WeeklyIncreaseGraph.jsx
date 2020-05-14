@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import WeeklyData from "../../../Data/WeeklyRateOfIncrease.json";
-import StateSelector from './StateSelector';
-import WeeklyBarChart from './WeeklyBarChart';
+import WeeklyData from "../../Data/WeeklyRateOfIncrease.json";
+import StateSelector from '../Common Components/StateSelector';
+import WeeklyBarChart from '../Common Components/BarChart';
 
 const getFormattedData = () => {
     let stateNameArray = [], seriesData = [], categories = [],defaultStates=[],currentSeriesData=[];
@@ -22,7 +22,8 @@ const getFormattedData = () => {
         }
 
         index += 1;
-        seriesData.push({ name: item.stateName, data: ratioArray });
+        //mapping data wih state name so that it can be retrieved in O(1)
+        seriesData[item.stateName] = { name: item.stateName, data: ratioArray };
     });
     return { stateNames: stateNameArray.sort(),seriesData,currentSeriesData, categories,defaultStates };
 }
@@ -33,10 +34,9 @@ const WeeklyGraph = (props) => {
     const [chartData,setChartData] = useState({currentSeriesData});
     const filterChartData = (selectedStateArray)=>{        
         let filteredData = [];        
-        for(let i=0;i<seriesData.length;i++){
-            if(selectedStateArray.indexOf(seriesData[i].name) !== -1){
-                console.log("match found"+seriesData[i].name);
-                filteredData.push(seriesData[i]);
+        for(let i=0;i<selectedStateArray.length;i++){
+            if(seriesData[selectedStateArray[i]]){
+                filteredData.push(seriesData[selectedStateArray[i]]);
             }
         }
         return filteredData;

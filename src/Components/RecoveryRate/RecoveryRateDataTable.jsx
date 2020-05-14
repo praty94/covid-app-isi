@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import WeeklyData from "../../Data/WeeklyRateOfIncrease.json";
+import RecoveryData from "../../Data/RecoveryRate.json";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -30,31 +30,22 @@ const useStyles = makeStyles({
   }
 });
 
-export default function WeeklyIncreaseDataTable() {
+export default function RecoveryRateDataTable() {
   const classes = useStyles();
-
+  const {stateData,countryData} = {...RecoveryData.data}
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-          <StyledTableCell></StyledTableCell>
+          <StyledTableCell>State/Ut</StyledTableCell>
           {WeeklyData.data.stateData[0].weeklyData.map((item,index)=>(
               <StyledTableCell align="center" colSpan={2} key={index}>{item.startDate} <br/>to<br/> {item.endDate}</StyledTableCell>
           ))}         
-          </TableRow>
-          <TableRow>           
-            {WeeklyData.data.headers.map((item, index) => {
-              return (                
-                <StyledTableCell align="center" key={index}>
-                  {item}
-                </StyledTableCell>                
-              );
-            })}
-          </TableRow>
+          </TableRow>          
         </TableHead>
         <TableBody>
-          {WeeklyData.data.stateData.map((item, index) => (
+          {RecoveryData.data.stateData.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {item.stateName}

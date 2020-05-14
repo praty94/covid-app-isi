@@ -1,9 +1,11 @@
 import React from 'react';
-import { WeeklyIncrease } from '../index';
+import { WeeklyIncrease,RecoveryRate } from '../index';
 const PageSwitchHelper = (props) => {
     switch(props.pageId){
         case 2:
-            return <WeeklyIncrease theme={props.theme}></WeeklyIncrease>;
+            return <WeeklyIncrease theme={props.theme}></WeeklyIncrease>;   
+            case 3:
+                return <RecoveryRate theme={props.theme}></RecoveryRate>         
         default:
             return <h1>Not configured</h1>
     }
