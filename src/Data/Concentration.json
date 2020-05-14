@@ -1,0 +1,14 @@
+{
+    "data": {     
+      "stateData": [
+        {
+          "stateName": "Andhra Pradesh",
+          "concentration": 0.4615
+        },
+        {
+          "stateName": "Delhi",
+          "concentration": 0.63
+        }
+    ]
+  }
+}
