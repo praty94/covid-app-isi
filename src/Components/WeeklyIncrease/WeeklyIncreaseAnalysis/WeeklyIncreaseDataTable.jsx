@@ -38,17 +38,21 @@ export default function WeeklyIncreaseDataTable() {
       <Table className={classes.table} aria-label="WeeklyIncrease table">
         <TableHead>
           <TableRow>
-          <StyledTableCell></StyledTableCell>
-          {WeeklyData.data.stateData[0].weeklyData.map((item,index)=>(
-              <StyledTableCell align="center" colSpan={2} key={index}>{item.startDate} <br/>to<br/> {item.endDate}</StyledTableCell>
-          ))}         
+            <StyledTableCell></StyledTableCell>
+            {WeeklyData.data.stateData[0].weeklyData.map((item, index) => (
+              <StyledTableCell align="center" colSpan={2} key={index}>{item.startDate} <br />to<br /> {item.endDate}</StyledTableCell>
+            ))}
           </TableRow>
-          <TableRow>           
+          <TableRow>
             {WeeklyData.data.headers.map((item, index) => {
-              return (                
-                <StyledTableCell align="center" key={index}>
+              return (
+                index === 0 ? 
+                <StyledTableCell key={index}>
                   {item}
-                </StyledTableCell>                
+                </StyledTableCell> :
+                <StyledTableCell align="center" key={index}>
+                    {item}
+                </StyledTableCell>
               );
             })}
           </TableRow>

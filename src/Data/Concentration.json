@@ -1,14 +1,58 @@
 {
-    "data": {     
-      "stateData": [
-        {
-          "stateName": "Andhra Pradesh",
-          "concentration": 0.4615
-        },
-        {
-          "stateName": "Delhi",
-          "concentration": 0.63
-        }
+  "data": {
+    "stateData": [
+      {
+        "stateName": "Andhra Pradesh",
+        "concentration": 0.4615
+      },
+      {
+        "stateName": "Delhi",
+        "concentration": 0.63
+      },
+      {
+        "stateName": "Gujarat",
+        "concentration": 0.091
+      },
+      {
+        "stateName": "Jammu & Kashmir",
+        "concentration": 0.33
+      },
+      {
+        "stateName": "Karnataka",
+        "concentration": 0.2
+      },
+      {
+        "stateName": "Kerala",
+        "concentration": 0.4285
+      },
+      {
+        "stateName": "Madhya Pradesh",
+        "concentration": 0.0384
+      },
+      {
+        "stateName": "Maharashtra",
+        "concentration": 0.083
+      },
+      {
+        "stateName": "Rajasthan",
+        "concentration": 0.2121
+      },
+      {
+        "stateName": "Tamil Nadu",
+        "concentration": 0.421
+      },
+      {
+        "stateName": "Telangana",
+        "concentration": 0.2121
+      },
+      {
+        "stateName": "Uttar Pradesh",
+        "concentration": 0.1467
+      },
+      {
+        "stateName": "West Bengal",
+        "concentration": 0.13
+      }
     ]
   }
 }
