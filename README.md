@@ -1,4 +1,4 @@
-<h1 align="center">Covid 19 Stat and analysis Application [ISI]</h1>
+<h1 align="center">Covid 19 Stat and analysis Application</h1>
   
 ## Available Scripts :rocket:
 
