@@ -1,5 +1,5 @@
 import {colors} from './ChartColors';
-const barChartThemeHelper = (data) => {
+const barChartThemeHelper = (data) => {    
     let options = {
         chart: {
             type: 'bar',
@@ -8,9 +8,10 @@ const barChartThemeHelper = (data) => {
         colors:colors,
         plotOptions: {
             bar: {
-                horizontal: false,
+                horizontal: !!data.horizontal,
                 columnWidth: '55%',
-                endingShape: 'rounded'
+                endingShape: 'rounded',
+                distributed: !!data.distributed
             },
         },
         dataLabels: {

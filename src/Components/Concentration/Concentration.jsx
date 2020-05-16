@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {AppBar,Tabs,Tab,Box} from '@material-ui/core';
 import ConcentrationDataTable from './ConcentrationDataTable';
+import ConcentrationGraph from './ConcentrationGraph';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Concentration() {
+export default function Concentration(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -61,7 +62,7 @@ export default function Concentration() {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-               Graph
+               <ConcentrationGraph theme={props.theme}></ConcentrationGraph>
             </TabPanel>
             <TabPanel value={value} index={1}>                
                <ConcentrationDataTable></ConcentrationDataTable>

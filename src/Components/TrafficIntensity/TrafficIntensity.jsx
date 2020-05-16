@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {AppBar,Tabs,Tab,Box} from '@material-ui/core';
 import DataTable from '../Common Components/DataTable';
 import TrafficIntensityData from '../../Data/TrafficIntensity.json';
-
+import TrafficIntensityGraph from './TrafficIntensityGraph';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function TrafficIntensity() {
+export default function TrafficIntensity(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -62,7 +62,7 @@ export default function TrafficIntensity() {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-               Graph
+               <TrafficIntensityGraph theme={props.theme}></TrafficIntensityGraph>
             </TabPanel>
             <TabPanel value={value} index={1}>                
                <DataTable data={TrafficIntensityData.data} category="trafficIntensity" headerCategory="name" itemCategory="value"></DataTable>
