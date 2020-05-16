@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ConcentrationData from "../../Data/Concentration.json";
 import StateSelector from '../Common Components/StateSelector';
-import WeeklyBarChart from '../Common Components/BarChart';
+import BarChart from '../Common Components/BarChart';
 
 const getFormattedData = () => {
     let stateMap = {}, concentrationArray = [], allStates = [],defaultStates=[], currentStates = [], currentSeriesData = [];
@@ -44,7 +44,7 @@ const ConcentrationGraph = (props) => {
     return (
         <div>
             <StateSelector defaultStates={defaultStates} states={stateNames} handleStateChange={(selectedStateArray) => handleStateChange(selectedStateArray)}></StateSelector>
-            <WeeklyBarChart distributed={true} horizontal={true} hideLegend={true} theme={props.theme} seriesData={chartData.currentSeriesData} categories={chartData.currentStates}></WeeklyBarChart>
+            <BarChart distributed={true} horizontal={true} hideLegend={true} theme={props.theme} seriesData={chartData.currentSeriesData} categories={chartData.currentStates}></BarChart>
         </div>
     );
 }

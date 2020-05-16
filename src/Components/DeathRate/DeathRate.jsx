@@ -56,7 +56,7 @@ export default function DeathRate(props) {
     return (        
         <div className={classes.root}>
             <AppBar position="static">
-                <Tabs centered value={value} onChange={handleChange} aria-label="weeklyIncrease tabs" variant="fullWidth">
+                <Tabs centered value={value} onChange={handleChange} aria-label="deathRate tabs" variant="fullWidth">
                     <Tab label="Graph" {...a11yProps(0)} />
                     <Tab label="Analysis" {...a11yProps(1)} />
                 </Tabs>

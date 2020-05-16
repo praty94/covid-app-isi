@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DeathRateData from "../../Data/DeathRate.json";
 import StateSelector from '../Common Components/StateSelector';
-import WeeklyBarChart from '../Common Components/BarChart';
+import BarChart from '../Common Components/BarChart';
 
 const getFormattedData = () => {
     let stateNameArray = [], seriesData = [], categories = [], defaultStates = [], currentSeriesData = [];
@@ -32,7 +32,7 @@ const getFormattedData = () => {
 
 const { stateNames, seriesData, currentSeriesData, categories, defaultStates } = getFormattedData();
 
-const WeeklyGraph = (props) => {
+const DeathRateGraph = (props) => {
     const [chartData, setChartData] = useState({ currentSeriesData });
     const filterChartData = (selectedStateArray) => {
         let filteredData = [];
@@ -51,11 +51,11 @@ const WeeklyGraph = (props) => {
     return (
         <div>
             <StateSelector defaultStates={defaultStates} states={stateNames} handleStateChange={(selectedStateArray) => handleStateChange(selectedStateArray)}></StateSelector>
-            <WeeklyBarChart theme={props.theme} seriesData={chartData.currentSeriesData} categories={categories}></WeeklyBarChart>
+            <BarChart theme={props.theme} seriesData={chartData.currentSeriesData} categories={categories}></BarChart>
         </div>
     );
 }
 
 
 
-export default WeeklyGraph;
+export default DeathRateGraph;
