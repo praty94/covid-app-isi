@@ -11,7 +11,7 @@ const BarChart = (props) => {
             categories: props.categories,
             distributed: props.distributed,
             theme: props.theme,
-            legend:props.legend,
+            hideLegend:props.hideLegend,
             horizontal: props.horizontal
         })
     });
@@ -24,7 +24,7 @@ const BarChart = (props) => {
                 categories: props.categories,
                 distributed: props.distributed,
                 theme: props.theme,
-                legend:props.legend,
+                hideLegend:props.hideLegend,
                 horizontal: props.horizontal
             })
         });

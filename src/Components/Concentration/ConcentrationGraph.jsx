@@ -44,7 +44,7 @@ const ConcentrationGraph = (props) => {
     return (
         <div>
             <StateSelector defaultStates={defaultStates} states={stateNames} handleStateChange={(selectedStateArray) => handleStateChange(selectedStateArray)}></StateSelector>
-            <WeeklyBarChart distributed={true} horizontal={true} legend={false} theme={props.theme} seriesData={chartData.currentSeriesData} categories={chartData.currentStates}></WeeklyBarChart>
+            <WeeklyBarChart distributed={true} horizontal={true} hideLegend={true} theme={props.theme} seriesData={chartData.currentSeriesData} categories={chartData.currentStates}></WeeklyBarChart>
         </div>
     );
 }
