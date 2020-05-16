@@ -5,7 +5,6 @@ export const sidebarOptions = [
     {id:4,name:"Traffic Intensity",icon:"intensity"},
     {id:5,name:"Concentration",icon:"concentration"},
     {id:6,name:"Tested Positive",icon:"positive"},
-    {id:7,name:"Major Cities",icon:"city"},
-    {id:8,name:"Death Rate",icon:"death"},
-    {id:9,name:"About",icon:"about"}
+    {id:7,name:"Death Rate",icon:"death"},
+    {id:8,name:"About",icon:"about"}
 ];

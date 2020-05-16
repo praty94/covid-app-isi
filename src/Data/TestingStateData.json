@@ -1,0 +1,44 @@
+{
+    "data": {
+        "stateData": [
+            {
+                "stateName": "Andhra Pradesh",
+                "testData": [
+                    {
+                        "startDate": "02-04-2020",
+                        "endDate": "10-05-2020",
+                        "totalTests": 4574,
+                        "positive":233,
+                        "positivePerc":5.09400962
+                    },
+                    {
+                        "startDate": "11-04-2020",
+                        "endDate": "17-05-2020",
+                        "totalTests": 13861,
+                        "positive":207,
+                        "positivePerc":1.493398745
+                    }
+                ]
+            },
+            {
+                "stateName": "Bihar",
+                "testData": [
+                    {
+                        "startDate": "02-04-2020",
+                        "endDate": "10-05-2020",
+                        "totalTests": 3979,
+                        "positive":34,
+                        "positivePerc":0.8544860518
+                    },
+                    {
+                        "startDate": "11-04-2020",
+                        "endDate": "17-05-2020",
+                        "totalTests": 4029,
+                        "positive":23,
+                        "positivePerc":0.5708612559
+                    }
+                ]
+            }
+        ]
+    }
+}
