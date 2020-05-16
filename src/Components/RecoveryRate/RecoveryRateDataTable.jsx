@@ -37,7 +37,7 @@ export default function RecoveryRateDataTable() {
           <TableRow>
             <StyledTableCell>State / UT</StyledTableCell>
             {stateData[0].recoveryRate.map((item, index) => (
-              <StyledTableCell align="center" key={index}>{item.date}</StyledTableCell>
+              <StyledTableCell style={{whiteSpace:"nowrap"}} align="center" key={index}>{item.date}</StyledTableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -46,8 +46,8 @@ export default function RecoveryRateDataTable() {
             <StyledTableCell component="th" scope="row">
               {countryData.countryName}
             </StyledTableCell>
-            {countryData.recoveryRate.map((item) => (
-              <StyledTableCell align="center"> {item.rate} </StyledTableCell>
+            {countryData.recoveryRate.map((item,index) => (
+              <StyledTableCell align="center" key={index}> {item.rate} </StyledTableCell>
             ))}
           </StyledTableRow>
           {stateData.map((item, index) => (

@@ -37,7 +37,7 @@ export default function DeathRateDataTable() {
           <TableRow>
             <StyledTableCell>State / UT</StyledTableCell>
             {stateData[0].deathRate.map((item, index) => (
-              <StyledTableCell align="center" key={index}>{item.date}</StyledTableCell>
+              <StyledTableCell style={{whiteSpace:"nowrap"}} align="center" key={index}>{item.date}</StyledTableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -47,8 +47,8 @@ export default function DeathRateDataTable() {
             <StyledTableCell component="th" scope="row">
               {countryData.countryName}
             </StyledTableCell>
-            {countryData.deathRate.map((item) => (
-              <StyledTableCell align="center"> {item.rate} </StyledTableCell>
+            {countryData.deathRate.map((item,index) => (
+              <StyledTableCell align="center" key={index}> {item.rate} </StyledTableCell>
             ))}
           </StyledTableRow> : null}
           {stateData.map((item, index) => (
