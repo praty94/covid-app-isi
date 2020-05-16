@@ -11,6 +11,7 @@ const BarChart = (props) => {
             categories: props.categories,
             distributed: props.distributed,
             theme: props.theme,
+            legend:props.legend,
             horizontal: props.horizontal
         })
     });
@@ -23,10 +24,11 @@ const BarChart = (props) => {
                 categories: props.categories,
                 distributed: props.distributed,
                 theme: props.theme,
+                legend:props.legend,
                 horizontal: props.horizontal
             })
         });
-    }, [props.theme, props.seriesData, props.categories, props.distributed,props.horizontal]);
+    }, [props]);
 
     return <ReactApexChart style={{ marginTop: "9px", marginLeft: "-5px" }} width={getRealWidth(width)}
         height={0.65 * height} options={chartData.options} series={chartData.series} type="bar" />
