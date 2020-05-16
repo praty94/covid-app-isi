@@ -14,8 +14,8 @@ function TabPanel(props) {
         <div
             role="tabpanel"
             hidden={value !== index}
-            id={`weeklyIncrease-tabpanel-${index}`}
-            aria-labelledby={`weeklyIncrease-tab-${index}`}
+            id={`weeklyIncreaseAnalysis-tabpanel-${index}`}
+            aria-labelledby={`weeklyIncreaseAnalysis-tab-${index}`}
             {...other}
         >
             {value === index && (
@@ -33,11 +33,15 @@ TabPanel.propTypes = {
     value: PropTypes.any.isRequired,
 };
 
-function a11yProps(index) {
-    return {
+function a11yProps(index,value,classes) {
+    let allyProps = {
         id: `weeklyIncreaseAnalysis-tab-${index}`,
-        'aria-controls': `weeklyIncreaseAnalysis-tabpanel-${index}`,
-    };
+        'aria-controls': `weeklyIncreaseAnalysis-tabpanel-${index}`
+    }
+    if(index === value)
+        allyProps.className = classes.customSelect;
+
+    return allyProps;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
     },
+    customSelect:{
+        borderBottom:'2px solid #7a85ff!important'
+    }
 }));
 
 export default function WeeklyIncreaseAnalysis(props) {
@@ -59,8 +66,8 @@ export default function WeeklyIncreaseAnalysis(props) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Tabs centered value={value} onChange={handleChange} aria-label="weeklyIncreaseAnalysis tabs" variant="fullWidth">
-                    <Tab label="Count" {...a11yProps(0)} />
-                    <Tab label="Ratio" {...a11yProps(1)} />
+                    <Tab label="Count" {...a11yProps(0,value,classes)}/>
+                    <Tab label="Ratio" {...a11yProps(1,value,classes)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>

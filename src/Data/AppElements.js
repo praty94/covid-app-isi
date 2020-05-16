@@ -1,5 +1,5 @@
 export const sidebarOptions = [
-    {id:1,name:"Home",icon:"home"},
+    {id:1,name:"Dashboard",icon:"dashboard"},
     {id:2,name:"Weekly Increase",icon:"increase"},
     {id:3,name:"Recovery Rate",icon:"recovery"},
     {id:4,name:"Traffic Intensity",icon:"intensity"},

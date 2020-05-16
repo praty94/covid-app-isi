@@ -1,8 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
-import WeeklyData from "../../../Data/WeeklyRateOfIncrease.json";
-import useWindowDimensions from '../../../Helpers/WindowDimensionHelper';
+import useWindowDimensions from '../../Helpers/WindowDimensionHelper';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -27,35 +26,39 @@ const getTableWidth = (width) => {
     return width - 80;
   }
 }
-export default function WeeklyIncreaseRatioTable() {
+export default function DataTable(props) {
   const { width } = useWindowDimensions();
-
+  const { countryData, stateData } = { ...props.data };
   return (
     <TableContainer component={Paper}>
-      <Table style={{ width: getTableWidth(width) }} aria-label="Weekly increase ratio table">
+      <Table style={{ width: getTableWidth(width) }} aria-label="Custom Data table">
         <TableHead>
           <TableRow>
             <StyledTableCell>State / UT</StyledTableCell>
-            {WeeklyData.data.stateData[0].ratios.map((item, index) => (
-              <StyledTableCell align="center" key={index}>{item.name}</StyledTableCell>
+            {stateData[0][props.category].map((item, index) => (
+              <StyledTableCell align="center" key={index}>{item[props.headerCategory]}</StyledTableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {WeeklyData.data.stateData.map((item, index) => (
+          <StyledTableRow key="countryRow">
+            <StyledTableCell component="th" scope="row">
+              {countryData.countryName}
+            </StyledTableCell>
+            {countryData[props.category].map((item) => (
+              <StyledTableCell align="center"> {item[props.itemCategory]} </StyledTableCell>
+            ))}
+          </StyledTableRow>
+          {stateData.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {item.stateName}
               </StyledTableCell>
-              {item.ratios.map((weeklyItem, index) => {
-                return (
-                  <React.Fragment key={index}>
-                    <StyledTableCell align="center">
-                      {weeklyItem.value ? weeklyItem.value : "N/A"}
-                    </StyledTableCell>
-                  </React.Fragment>
-                );
-              })}
+              {item[props.category].map((recoveryItem, index) => (
+                    <StyledTableCell align="center" key={index}>
+                      {recoveryItem[props.itemCategory] ? recoveryItem[props.itemCategory] : "N/A"}
+                    </StyledTableCell>                  
+                ))}
             </StyledTableRow>
           ))}
         </TableBody>

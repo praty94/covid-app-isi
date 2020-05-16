@@ -1,8 +1,8 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
-import WeeklyData from "../../../Data/WeeklyRateOfIncrease.json";
-import useWindowDimensions from '../../../Helpers/WindowDimensionHelper';
+import ConcentrationData from "../../Data/Concentration.json";
+import useWindowDimensions from '../../Helpers/WindowDimensionHelper';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -27,35 +27,27 @@ const getTableWidth = (width) => {
     return width - 80;
   }
 }
-export default function WeeklyIncreaseRatioTable() {
+export default function ConcentrationDataTable() {
   const { width } = useWindowDimensions();
-
+  const { stateData } = { ...ConcentrationData.data };
   return (
     <TableContainer component={Paper}>
-      <Table style={{ width: getTableWidth(width) }} aria-label="Weekly increase ratio table">
+      <Table style={{ width: getTableWidth(width) }} aria-label="Concentration Data table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>State / UT</StyledTableCell>
-            {WeeklyData.data.stateData[0].ratios.map((item, index) => (
-              <StyledTableCell align="center" key={index}>{item.name}</StyledTableCell>
-            ))}
+            <StyledTableCell>State / UT</StyledTableCell>            
+            <StyledTableCell align="center">Concentration</StyledTableCell>            
           </TableRow>
         </TableHead>
-        <TableBody>
-          {WeeklyData.data.stateData.map((item, index) => (
+        <TableBody>          
+          {stateData.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {item.stateName}
               </StyledTableCell>
-              {item.ratios.map((weeklyItem, index) => {
-                return (
-                  <React.Fragment key={index}>
-                    <StyledTableCell align="center">
-                      {weeklyItem.value ? weeklyItem.value : "N/A"}
-                    </StyledTableCell>
-                  </React.Fragment>
-                );
-              })}
+              <StyledTableCell component="th" scope="row" align="center">
+                {item.concentration}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

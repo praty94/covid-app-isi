@@ -1,13 +1,8 @@
 import React from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import { withStyles } from "@material-ui/core/styles";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
 import RecoveryData from "../../Data/RecoveryRate.json";
+import useWindowDimensions from '../../Helpers/WindowDimensionHelper';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -23,45 +18,48 @@ const StyledTableRow = withStyles(theme => ({
     }
   }
 }))(TableRow);
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700
+const getTableWidth = (width) => {
+  if (width > 650 && width < 960) {
+    return width - 80;
+  } else if (width >= 960) {
+    return width - 320;
+  } else {
+    return width - 80;
   }
-});
-
+}
 export default function RecoveryRateDataTable() {
-  const classes = useStyles();
-  const {stateData,countryData} = {...RecoveryData.data}
+  const { width } = useWindowDimensions();
+  const { countryData, stateData } = { ...RecoveryData.data };
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
+      <Table style={{ width: getTableWidth(width) }} aria-label="Recovery Rate Data table">
         <TableHead>
           <TableRow>
-          <StyledTableCell>State/Ut</StyledTableCell>
-          {WeeklyData.data.stateData[0].weeklyData.map((item,index)=>(
-              <StyledTableCell align="center" colSpan={2} key={index}>{item.startDate} <br/>to<br/> {item.endDate}</StyledTableCell>
-          ))}         
-          </TableRow>          
+            <StyledTableCell>State / UT</StyledTableCell>
+            {stateData[0].recoveryRate.map((item, index) => (
+              <StyledTableCell align="center" key={index}>{item.date}</StyledTableCell>
+            ))}
+          </TableRow>
         </TableHead>
         <TableBody>
-          {RecoveryData.data.stateData.map((item, index) => (
+          <StyledTableRow key="countryRow">
+            <StyledTableCell component="th" scope="row">
+              {countryData.countryName}
+            </StyledTableCell>
+            {countryData.recoveryRate.map((item) => (
+              <StyledTableCell align="center"> {item.rate} </StyledTableCell>
+            ))}
+          </StyledTableRow>
+          {stateData.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {item.stateName}
               </StyledTableCell>
-              {item.weeklyData.map((weeklyItem, index) => {
-                return (
-                  <React.Fragment key={index}>
-                    <StyledTableCell align="center">
-                      {weeklyItem.value}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {weeklyItem.rank}
-                    </StyledTableCell>
-                  </React.Fragment>
-                );
-              })}
+              {item.recoveryRate.map((recoveryItem, index) => (
+                    <StyledTableCell align="center" key={index}>
+                      {recoveryItem.rate ? recoveryItem.rate : "N/A"}
+                    </StyledTableCell>                  
+                ))}
             </StyledTableRow>
           ))}
         </TableBody>

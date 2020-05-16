@@ -5,32 +5,32 @@ import ConcentrationIcon from '@material-ui/icons/BubbleChart';
 import HospitalIcon from '@material-ui/icons/LocalHospital';
 import CityIcon from '@material-ui/icons/EmojiTransportation';
 import DeathIcon from '@material-ui/icons/Warning';
-import HomeIcon from '@material-ui/icons/Home';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import AboutIcon from '@material-ui/icons/Info';
 import IntensityIcon from '@material-ui/icons/GraphicEq';
-
-export const getIcon = (val) => {
+/* Helper method to get icon based on icon name and optional props */
+export const getIcon = (val,props) => {
     switch (val) {
-        case 'home':
-            return <HomeIcon></HomeIcon>;
+        case 'dashboard':
+            return <DashboardIcon {...props}></DashboardIcon>;
         case 'increase':
-            return <TrendingUpIcon></TrendingUpIcon>;
+            return <TrendingUpIcon {...props}></TrendingUpIcon>;
         case 'recovery':
-            return <VerifiedUserIcon></VerifiedUserIcon>;
+            return <VerifiedUserIcon {...props}></VerifiedUserIcon>;
         case 'intensity':
-            return <IntensityIcon></IntensityIcon>;
+            return <IntensityIcon {...props}></IntensityIcon>;
         case 'concentration':
-            return <ConcentrationIcon></ConcentrationIcon>
+            return <ConcentrationIcon {...props}></ConcentrationIcon>
         case 'positive':
-            return <HospitalIcon></HospitalIcon>;
+            return <HospitalIcon {...props}></HospitalIcon>;
         case 'city':
-            return <CityIcon></CityIcon>;
+            return <CityIcon {...props}></CityIcon>;
         case 'about':
-            return <AboutIcon></AboutIcon>;
+            return <AboutIcon {...props}></AboutIcon>;
         case 'death':
-            return <DeathIcon></DeathIcon>;
+            return <DeathIcon {...props}></DeathIcon>;
         default:
-            return <TrendingUpIcon></TrendingUpIcon>;
+            return <TrendingUpIcon {...props}></TrendingUpIcon>;
     }
 
 }

@@ -6,6 +6,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Light from '@material-ui/icons/Brightness7';
 import Dark from '@material-ui/icons/Brightness4';
 import Content from './AppDrawerContent';
+import { getIcon } from '../../Helpers/IconHelper';
+import { green } from '@material-ui/core/colors';
 
 const drawerWidth = 242;
 
@@ -13,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  textMargin:{
-    marginTop:7
+  textMargin: {
+    marginTop: 7
   },
   drawer: {
     [theme.breakpoints.up('md')]: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    zIndex:1101
+    zIndex: 1101
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -43,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  headerIcon:{
+    marginRight:10,
+    color: green[300] 
+  }
 }));
 
 function ResponsiveDrawer(props) {
@@ -52,8 +58,10 @@ function ResponsiveDrawer(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   //Props to be sent to app drawer
-  const appDrawerProps = {currentPage : props.currentPage, options : props.options, 
-    optionSelectedHandler : props.optionSelectedHandler,curTheme:props.curTheme};
+  const appDrawerProps = {
+    currentPage: props.currentPage, options: props.options,
+    optionSelectedHandler: props.optionSelectedHandler, curTheme: props.curTheme
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -69,17 +77,17 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle} className={classes.menuButton}>
             <MenuIcon />
           </IconButton>
-
-          <Grid justify="space-between" container >
+          {getIcon(props.currentPage.icon,{className:classes.headerIcon,fontSize:"large"})}
+          <Grid justify="space-between" container >            
             <Grid item >
               <Typography variant="h6" noWrap className={classes.textMargin}>
-                Covid App Title
+                {props.currentPage.name}
               </Typography>
             </Grid>
             <Grid item>
               <div>
-                <IconButton edge="end" color="inherit" aria-label="Toggle Dark and Light mode" 
-                    onClick={() => props.themeToggleHandler()}>
+                <IconButton edge="end" color="inherit" aria-label="Toggle Dark and Light mode"
+                  onClick={() => props.themeToggleHandler()}>
                   {props.curTheme === "light" ? <Light /> : <Dark />}
                 </IconButton>
               </div>

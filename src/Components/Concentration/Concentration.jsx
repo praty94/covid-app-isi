@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {AppBar,Tabs,Tab,Box} from '@material-ui/core';
-import RecoveryRateDataTable from './RecoveryRateDataTable';
-import RecoveryRateGraph from './RecoveryRateGraph';
+import ConcentrationDataTable from './ConcentrationDataTable';
+import ConcentrationGraph from './ConcentrationGraph';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -12,8 +12,8 @@ function TabPanel(props) {
         <div
             role="tabpanel"
             hidden={value !== index}
-            id={`recoveryRate-tabpanel-${index}`}
-            aria-labelledby={`recoveryRate-tab-${index}`}
+            id={`concentration-tabpanel-${index}`}
+            aria-labelledby={`concentration-tab-${index}`}
             {...other}
         >
             {value === index && (
@@ -33,8 +33,8 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
     return {
-        id: `recoveryRate-tab-${index}`,
-        'aria-controls': `recoveryRate-tabpanel-${index}`,
+        id: `concentration-tab-${index}`,
+        'aria-controls': `concentration-tabpanel-${index}`,
     };
 }
 
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function RecoveryRate(props) {
+export default function Concentration(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -56,17 +56,17 @@ export default function RecoveryRate(props) {
     return (        
         <div className={classes.root}>
             <AppBar position="static">
-                <Tabs centered value={value} onChange={handleChange} aria-label="weeklyIncrease tabs" variant="fullWidth">
+                <Tabs centered value={value} onChange={handleChange} aria-label="concentration tabs" variant="fullWidth">
                     <Tab label="Graph" {...a11yProps(0)} />
                     <Tab label="Analysis" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <RecoveryRateGraph theme={props.theme}></RecoveryRateGraph>
+               <ConcentrationGraph theme={props.theme}></ConcentrationGraph>
             </TabPanel>
             <TabPanel value={value} index={1}>                
-               <RecoveryRateDataTable></RecoveryRateDataTable>
+               <ConcentrationDataTable></ConcentrationDataTable>
             </TabPanel>
-        </div>        
+        </div>
     );
 }

@@ -10,7 +10,7 @@ let light = "light", dark = "dark";
 class Dashboard extends React.Component {
   state = {
     theme: localStorage.getItem('theme') || light,
-    currentPage: sidebarOptions[0].id
+    currentPage: sidebarOptions[0]
   };
   render() {
     return (
@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
         <ResponsiveAppDrawer options={sidebarOptions} curTheme={this.state.theme} currentPage={this.state.currentPage}
           themeToggleHandler={() => this.toggleTheme()} optionSelectedHandler={(val) => this.setCurrentpage(val)}></ResponsiveAppDrawer>
         <Wrapper>
-          <PageSwitchHelper pageId={this.state.currentPage} theme={this.state.theme}></PageSwitchHelper>
+          <PageSwitchHelper pageId={this.state.currentPage.id} theme={this.state.theme}></PageSwitchHelper>
         </Wrapper>
       </ThemeProvider>
     );
@@ -26,10 +26,10 @@ class Dashboard extends React.Component {
   componentDidMount(){
     document.body.style.backgroundColor = themeColors[this.state.theme].primary;
   }
-  setCurrentpage = pageid => {
+  setCurrentpage = (page) => {
     //updating state only if selected page is different
-    if (pageid !== this.state.currentPage)
-      this.setState({ currentPage: pageid });
+    if (page.id !== this.state.currentPage.id)
+      this.setState({ currentPage: page });
   };
 
   toggleTheme = () => {
