@@ -10,7 +10,7 @@ const PageSwitchHelper = (props) => {
             return <TrafficIntensity theme={props.theme}></TrafficIntensity>;
         case 5:
             return <Concentration theme={props.theme}></Concentration>;
-        case 8:
+        case 7:
             return <DeathRate theme={props.theme}></DeathRate>;
         default:
             return <h1>Not configured</h1>
