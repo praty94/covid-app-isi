@@ -1,5 +1,6 @@
 <h1 align="center">Covid 19 Stat and analysis Application [ISI]</h1>
 <div align="center">
+  
 ## Available Scripts
 
 In the project directory, you can run:
