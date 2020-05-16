@@ -23,6 +23,7 @@ const { stateNames, stateMap, currentSeriesData, currentStates,defaultStates } =
 
 const ConcentrationGraph = (props) => {
     const [chartData, setChartData] = useState({ currentSeriesData,currentStates });
+    
     const filterChartData = (selectedStateArray) => {
         let filteredData = [],currentStates=[];
         for (let i = 0; i < selectedStateArray.length; i++) {
@@ -33,6 +34,7 @@ const ConcentrationGraph = (props) => {
         }
         return {seriesData : [{ name: "Concentration", data: filteredData}],currentStates};
     }
+    
     const handleStateChange = (selectedStateArray) => {
         const {seriesData,currentStates} = filterChartData(selectedStateArray);
         console.log(currentStates);
