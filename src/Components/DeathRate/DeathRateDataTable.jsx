@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
-import RecoveryData from "../../Data/RecoveryRate.json";
+import DeathRateData from "../../Data/DeathRate.json";
 import useWindowDimensions from '../../Helpers/WindowDimensionHelper';
 
 const StyledTableCell = withStyles(theme => ({
@@ -27,37 +27,38 @@ const getTableWidth = (width) => {
     return width - 80;
   }
 }
-export default function RecoveryRateDataTable() {
+export default function DeathRateDataTable() {
   const { width } = useWindowDimensions();
-  const { countryData, stateData } = { ...RecoveryData.data };
+  const { countryData, stateData } = { ...DeathRateData.data };
   return (
     <TableContainer component={Paper}>
       <Table style={{ width: getTableWidth(width) }} aria-label="Recovery Rate Data table">
         <TableHead>
           <TableRow>
             <StyledTableCell>State / UT</StyledTableCell>
-            {stateData[0].recoveryRate.map((item, index) => (
+            {stateData[0].deathRate.map((item, index) => (
               <StyledTableCell style={{whiteSpace:"nowrap"}} align="center" key={index}>{item.date}</StyledTableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
+        {countryData.countryName ? 
           <StyledTableRow key="countryRow">
             <StyledTableCell component="th" scope="row">
               {countryData.countryName}
             </StyledTableCell>
-            {countryData.recoveryRate.map((item,index) => (
+            {countryData.deathRate.map((item,index) => (
               <StyledTableCell align="center" key={index}> {item.rate} </StyledTableCell>
             ))}
-          </StyledTableRow>
+          </StyledTableRow> : null}
           {stateData.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {item.stateName}
               </StyledTableCell>
-              {item.recoveryRate.map((recoveryItem, index) => (
+              {item.deathRate.map((deathItem, index) => (
                     <StyledTableCell align="center" key={index}>
-                      {recoveryItem.rate ? recoveryItem.rate : "N/A"}
+                      {deathItem.rate ? deathItem.rate : "N/A"}
                     </StyledTableCell>                  
                 ))}
             </StyledTableRow>

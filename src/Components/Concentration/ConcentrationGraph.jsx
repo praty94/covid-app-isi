@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ConcentrationData from "../../Data/Concentration.json";
 import StateSelector from '../Common Components/StateSelector';
-import WeeklyBarChart from '../Common Components/BarChart';
+import BarChart from '../Common Components/BarChart';
 
 const getFormattedData = () => {
     let stateMap = {}, concentrationArray = [], allStates = [],defaultStates=[], currentStates = [], currentSeriesData = [];
@@ -23,6 +23,7 @@ const { stateNames, stateMap, currentSeriesData, currentStates,defaultStates } =
 
 const ConcentrationGraph = (props) => {
     const [chartData, setChartData] = useState({ currentSeriesData,currentStates });
+    
     const filterChartData = (selectedStateArray) => {
         let filteredData = [],currentStates=[];
         for (let i = 0; i < selectedStateArray.length; i++) {
@@ -33,6 +34,7 @@ const ConcentrationGraph = (props) => {
         }
         return {seriesData : [{ name: "Concentration", data: filteredData}],currentStates};
     }
+    
     const handleStateChange = (selectedStateArray) => {
         const {seriesData,currentStates} = filterChartData(selectedStateArray);
         console.log(currentStates);
@@ -42,7 +44,7 @@ const ConcentrationGraph = (props) => {
     return (
         <div>
             <StateSelector defaultStates={defaultStates} states={stateNames} handleStateChange={(selectedStateArray) => handleStateChange(selectedStateArray)}></StateSelector>
-            <WeeklyBarChart distributed={true} horizontal={true} legend={false} theme={props.theme} seriesData={chartData.currentSeriesData} categories={chartData.currentStates}></WeeklyBarChart>
+            <BarChart distributed={true} horizontal={true} hideLegend={true} theme={props.theme} seriesData={chartData.currentSeriesData} categories={chartData.currentStates}></BarChart>
         </div>
     );
 }

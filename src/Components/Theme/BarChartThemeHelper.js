@@ -30,7 +30,7 @@ const barChartThemeHelper = (data) => {
             opacity: 1
         },
         legend: {
-            show:!!data.legend,
+            show:!!!data.hideLegend,
             itemMargin: {
               vertical: 5
             }

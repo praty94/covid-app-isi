@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import RecoveryData from "../../Data/RecoveryRate.json";
+import DeathRateData from "../../Data/DeathRate.json";
 import StateSelector from '../Common Components/StateSelector';
 import BarChart from '../Common Components/BarChart';
 
 const getFormattedData = () => {
     let stateNameArray = [], seriesData = [], categories = [], defaultStates = [], currentSeriesData = [];
     let index = 0;
-    const {stateData,countryData} = {...RecoveryData.data}
+    const { stateData } = { ...DeathRateData.data }
     stateData.forEach((item) => {
         stateNameArray.push(item.stateName);
         let rateArray = [];
-        item.recoveryRate.forEach((item) => {
+        item.deathRate.forEach((item) => {
             rateArray.push(item.rate);
             if (index === 0)
                 categories.push(item.date);
@@ -26,19 +26,13 @@ const getFormattedData = () => {
         //mapping data wih state name so that it can be retrieved in O(1)
         seriesData[item.stateName] = { name: item.stateName, data: rateArray };
     });
-    //Mapping data for india
-    let countryRateArray = [];
-    countryData.recoveryRate.forEach((item) => {
-        countryRateArray.push(item.rate);
-    });
-    //mapping data wih state name so that it can be retrieved in O(1)
-    seriesData[countryData.countryName] = { name: countryData.countryName, data: countryRateArray };
-    return { stateNames: [countryData.countryName,...stateNameArray.sort()], seriesData, currentSeriesData, categories, defaultStates };
+    
+    return { stateNames: stateNameArray.sort(), seriesData, currentSeriesData, categories, defaultStates };
 }
 
 const { stateNames, seriesData, currentSeriesData, categories, defaultStates } = getFormattedData();
 
-const RecoveryRateGraph = (props) => {
+const DeathRateGraph = (props) => {
     const [chartData, setChartData] = useState({ currentSeriesData });
     const filterChartData = (selectedStateArray) => {
         let filteredData = [];
@@ -64,4 +58,4 @@ const RecoveryRateGraph = (props) => {
 
 
 
-export default RecoveryRateGraph;
+export default DeathRateGraph;
