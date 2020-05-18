@@ -39,7 +39,7 @@ const getRealWidth = (width) => {
     } else if (width >= 960) {
         return width - 320;
     } else {
-        return width - 80;
+        return width - 50;
     }
 }
 export default BarChart;

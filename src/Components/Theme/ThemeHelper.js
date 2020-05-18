@@ -15,6 +15,16 @@ const themeHelper = (theme) => {
           main: themeColors.light.secondary
         },
         type: "light"
+      },
+      breakpoints: {
+        values: {
+          xs: 0,
+          sm: 600,
+          smmd:690,
+          md: 960,
+          lg: 1280,
+          xl: 1920,
+        },
       }
     });
   } else {
@@ -27,6 +37,16 @@ const themeHelper = (theme) => {
           main:  themeColors.dark.secondary
         },
         type: "dark"
+      },
+      breakpoints: {
+        values: {
+          xs: 0,
+          sm: 600,
+          smmd:690,
+          md: 960,
+          lg: 1280,
+          xl: 1920,
+        },
       }
     });
   }
