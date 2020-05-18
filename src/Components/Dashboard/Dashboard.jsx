@@ -1,49 +1,26 @@
-import React from "react";
-import { sidebarOptions } from "../../Data/AppElements";
-import { ThemeProvider } from '@material-ui/core/styles';
-import ResponsiveAppDrawer from '../AppDrawer/AppDrawer';
-import ThemeHelper,{themeColors} from '../Theme/ThemeHelper';
-import PageSwitchHelper from '../PageSwitchHelper/PageSwitchHelper';
-import Wrapper from '../../HOC/Wrapper';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Card from '../Card/Card';
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+}));
 
-let light = "light", dark = "dark";
-class Dashboard extends React.Component {
-  state = {
-    theme: localStorage.getItem('theme') || light,
-    currentPage: sidebarOptions[0]
-  };
-  render() {
+export default function Dashboard() {
+    const classes = useStyles();
+
     return (
-      <ThemeProvider theme={ThemeHelper(this.state.theme)}>
-        <ResponsiveAppDrawer options={sidebarOptions} curTheme={this.state.theme} currentPage={this.state.currentPage}
-          themeToggleHandler={() => this.toggleTheme()} optionSelectedHandler={(val) => this.setCurrentpage(val)}></ResponsiveAppDrawer>
-        <Wrapper>
-          <PageSwitchHelper pageId={this.state.currentPage.id} theme={this.state.theme}></PageSwitchHelper>
-        </Wrapper>
-      </ThemeProvider>
+        <div className={classes.root}>
+            <Grid container spacing={3}>
+                <Card item xs={3}></Card>
+            </Grid>            
+        </div>
     );
-  }
-  componentDidMount(){
-    document.body.style.backgroundColor = themeColors[this.state.theme].primary;
-  }
-  setCurrentpage = (page) => {
-    //updating state only if selected page is different
-    if (page.id !== this.state.currentPage.id)
-      this.setState({ currentPage: page });
-  };
-
-  toggleTheme = () => {
-    if (this.state.theme === light) {
-      this.setState({ theme: dark });
-      document.body.style.backgroundColor = themeColors.dark.primary;
-      localStorage.setItem('theme', dark);
-
-    } else {
-      this.setState({ theme: light });
-      document.body.style.backgroundColor = themeColors.light.primary;
-      localStorage.setItem('theme', light);
-    }
-  }
 }
-
-export default Dashboard;

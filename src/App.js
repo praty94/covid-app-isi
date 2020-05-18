@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import { Dashboard } from './Components';
+import { AppShell } from './Components';
 function App() {
   return (
-    <Dashboard></Dashboard>
+    <AppShell></AppShell>
   );
 }
 

@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)'
   },
+  drawerPaperDark:{
+    backgroundColor:'#333',
+    width: drawerWidth,
+    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)'
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -68,7 +73,7 @@ function ResponsiveDrawer(props) {
   };
 
   const container = window !== undefined ? () => window().document.body : undefined;
-
+  const navBarClasses = props.curTheme === "light" ? classes.drawerPaper:classes.drawerPaperDark;
   return (
     <React.Fragment>
       <AppBar position="fixed" className={classes.appBar}>
@@ -104,7 +109,7 @@ function ResponsiveDrawer(props) {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
-              paper: classes.drawerPaper,
+              paper: navBarClasses,
             }}
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
@@ -116,8 +121,8 @@ function ResponsiveDrawer(props) {
         <Hidden smDown implementation="css">
           <Drawer
             classes={{
-              paper: classes.drawerPaper,
-            }}
+              paper: navBarClasses,
+            }}            
             variant="permanent"
             open
           >

@@ -1,7 +1,10 @@
 import React from 'react';
-import { WeeklyIncrease, RecoveryRate, TrafficIntensity,Concentration,DeathRate,TestedPositive } from '../index';
+import { WeeklyIncrease, RecoveryRate, TrafficIntensity,Concentration,DeathRate,TestedPositive,Dashboard } from '../index';
+
 const PageSwitchHelper = (props) => {
     switch (props.pageId) {
+        case 1:
+            return <Dashboard theme={props.theme}></Dashboard>
         case 2:
             return <WeeklyIncrease theme={props.theme}></WeeklyIncrease>;
         case 3:
