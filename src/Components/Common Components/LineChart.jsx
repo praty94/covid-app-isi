@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from "react-apexcharts";
-import barChartThemeHelper from '../Theme/BarChartThemeHelper';
+import LineChartThemeHelper from '../Theme/LineChartThemeHelper';
 import useWindowDimensions from '../../Helpers/WindowDimensionHelper';
 
 const LineChart = (props) => {
@@ -9,62 +9,52 @@ const LineChart = (props) => {
         series: [{
             name: 'Confirmed',
             data: props.data.totalConfirmedArray
-        }, {
-            name: 'Deceased',
-            data: props.data.totalDeceasedArray
         },
         {
             name: 'Recovery',
             data: props.data.totalRecoveredArray
+        },
+        {
+            name: 'Deceased',
+            data: props.data.totalDeceasedArray
         }],
-        options: barChartThemeHelper({
+        options: LineChartThemeHelper({
             categories: props.data.dateArray,            
             theme: props.theme
         })
     });
 
-    // useEffect(() => {
-    //     console.log("[BarChart] useEffect called");
-    //     setChartData({
-    //         series: props.seriesData,
-    //         options: barChartThemeHelper({
-    //             categories: props.categories,
-    //             distributed: props.distributed,
-    //             theme: props.theme,
-    //             hideLegend:props.hideLegend,
-    //             horizontal: props.horizontal
-    //         })
-    //     });
-    // }, [props]);
-    const states = {
-        options: {
-            chart: {
-                height: 350,
-                type: 'area'
+    useEffect(() => {
+        console.log("[BarChart] useEffect called");
+        setChartData({ 
+            series: [{
+                name: 'Confirmed',
+                data: props.data.totalConfirmedArray
             },
-            dataLabels: {
-                enabled: false
-            },           
-            xaxis: {
-                type: 'datetime',
-                categories: props.data.dateArray
+            {
+                name: 'Recovery',
+                data: props.data.totalRecoveredArray
             },
-            tooltip: {
-                x: {
-                    format: 'dd/MM/yy'
-                },
-            },
-        }
-    };
+            {
+                name: 'Deceased',
+                data: props.data.totalDeceasedArray
+            }],           
+            options: LineChartThemeHelper({
+                categories: props.data.dateArray,            
+                theme: props.theme
+            })
+        });
+    }, [props]);
+    
 
     return <ReactApexChart style={{ marginTop: "9px", marginLeft: "-5px" }} width={getRealWidth(width)}
-        height={0.65 * height} options={states.options} series={chartData.series} type="area" />
+        height={0.65 * height} options={chartData.options} series={chartData.series} type="line" />
 }
 const getRealWidth = (width) => {
     if (width > 650 && width < 960) {
-        return width - 50;
+        return width - 45;
     } else if (width >= 960) {
-        return width - 280;
+        return width - 285;
     } else {
         return width - 20;
     }

@@ -15,7 +15,12 @@ const useStyles = makeStyles((theme) => ({
   customCard: {
     transition: 'box-shadow .3s',
     margin: '0.5em',
-    minWidth: '23%',
+    [theme.breakpoints.down('sm')]: {
+      width: '46%',
+      minWidth:'46%'
+    },
+    width: '23%',
+    minWidth:'23%',
     cursor: 'pointer',
     '&:hover': {
       boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3),0px 4px 5px 0px rgba(0,0,0,0.24),0px 1px 10px 0px rgba(0,0,0,0.22)'
@@ -41,15 +46,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CustomCard(props) {
-  const classes = useStyles();
-
+  const classes = useStyles();  
   return (
     <Card className={cx(classes.customCard, classes[props.cardType])}>
       <CardContent className={classes.content}>
         <Typography color="textSecondary" gutterBottom>
           {props.title}
-        </Typography>
-        <Typography variant="h4">
+        </Typography>        
+        <Typography variant="h4">         
           <CountUp start={0} end={+props.value} duration={1} separator=","/>         
         </Typography>
         <Typography color="inherit">
