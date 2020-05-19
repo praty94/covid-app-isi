@@ -2,39 +2,45 @@ import React, { useState } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { scaleQuantile } from 'd3-scale';
 import ReactTooltip from 'react-tooltip';
-
-import LinearGradient from './LinearGradient.js';
+import './App.css';
 
 /**
 * Courtesy: https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json
-* Looking topojson for other countries/world? 
-* Visit: https://github.com/markmarkoh/datamaps
 */
 const INDIA_TOPO_JSON = require('./india.topo.json');
 
 const PROJECTION_CONFIG = {
-  scale: 350,
+  scale: 900,
   center: [78.9629, 22.5937] // always in [East Latitude, North Longitude]
 };
 
 // Red Variants
 const COLOR_RANGE = [
-  '#ffedea',
-  '#ffcec5',
-  '#ffad9f',
-  '#ff8a75',
-  '#ff5533',
-  '#e2492d',
-  '#be3d26',
-  '#9a311f',
-  '#782618'
+  "#16a085",
+  "#2ecc71",
+  "#f1c40f",
+  "#f39c12",
+  "#d35400",
+  "#e67e22",
+  "#c0392b",
+  "#2980b9",
+  "#9b59b6",
+  "#34495e",
+  "#ff9ff3",
+  "#00d2d3",
+  "#feca57",
+  "#54a0ff",
+  "#5f27cd",
+  "#48dbfb",
+  "#1dd1a1",
+  "#576574",
+  "#222f3e",
+  "#b71540",
+  "#0c2461",
+  "#6a89cc"
 ];
 
 const DEFAULT_COLOR = '#EEE';
-
-const getRandomInt = () => {
-  return parseInt(Math.random() * 100);
-};
 
 const geographyStyle = {
   default: {
@@ -51,52 +57,13 @@ const geographyStyle = {
 };
 
 // will generate random heatmap data on every call
-const getHeatMapData = () => {
-  return [
-    { id: 'AP', state: 'Andhra Pradesh', value: getRandomInt() },
-    { id: 'AR', state: 'Arunachal Pradesh', value: getRandomInt() },
-    { id: 'AS', state: 'Assam', value: getRandomInt() },
-    { id: 'BR', state: 'Bihar', value: getRandomInt() },
-    { id: 'CT', state: 'Chhattisgarh', value: getRandomInt() },
-    { id: 'GA', state: 'Goa', value: 21 },
-    { id: 'GJ', state: 'Gujarat', value: 22 },
-    { id: 'HR', state: 'Haryana', value: getRandomInt() },
-    { id: 'HP', state: 'Himachal Pradesh', value: 24 },
-    { id: 'JH', state: 'Jharkhand', value: 26 },
-    { id: 'KA', state: 'Karnataka', value: 27 },
-    { id: 'KL', state: 'Kerala', value: getRandomInt() },
-    { id: 'MP', state: 'Madhya Pradesh', value: getRandomInt() },
-    { id: 'MH', state: 'Maharashtra', value: getRandomInt() },
-    { id: 'MN', state: 'Manipur', value: getRandomInt() },
-    { id: 'ML', state: 'Meghalaya', value: 59 },
-    { id: 'MZ', state: 'Mizoram', value: getRandomInt() },
-    { id: 'NL', state: 'Nagaland', value: 59 },
-    { id: 'OR', state: 'Odisha', value: 59 },
-    { id: 'PB', state: 'Punjab', value: getRandomInt() },
-    { id: 'RJ', state: 'Rajasthan', value: getRandomInt() },
-    { id: 'SK', state: 'Sikkim', value: getRandomInt() },
-    { id: 'TN', state: 'Tamil Nadu', value: getRandomInt() },
-    { id: 'TG', state: 'Telangana', value: getRandomInt() },
-    { id: 'TR', state: 'Tripura', value: 14 },
-    { id: 'UT', state: 'Uttarakhand', value: getRandomInt() },
-    { id: 'UP', state: 'Uttar Pradesh', value: 15 },
-    { id: 'WB', state: 'West Bengal', value: 17 },
-    { id: 'WB', state: 'West Bengal', value: 17 },
-    { id: 'AN', state: 'Andaman and Nicobar Islands', value: getRandomInt() },
-    { id: 'CH', state: 'Chandigarh', value: getRandomInt() },
-    { id: 'DN', state: 'Dadra and Nagar Haveli', value: 19 },
-    { id: 'DD', state: 'Daman and Diu', value: 20 },
-    { id: 'DL', state: 'Delhi', value: 59 },
-    { id: 'JK', state: 'Jammu and Kashmir', value: 25 },
-    { id: 'LA', state: 'Ladakh', value: getRandomInt() },
-    { id: 'LD', state: 'Lakshadweep', value: getRandomInt() },
-    { id: 'PY', state: 'Puducherry', value: getRandomInt() }
-  ];
+const getHeatMapData = (data) => {
+  return data.activeHeatMapData;
 };
 
-function IndiaCovidMap() {
+function IndiaCovidMap(props) {
   const [tooltipContent, setTooltipContent] = useState('');
-  const [data, setData] = useState(getHeatMapData());
+  const [data, setData] = useState(getHeatMapData(props.data));
 
   const gradientData = {
     fromColor: COLOR_RANGE[0],
@@ -124,13 +91,13 @@ function IndiaCovidMap() {
   };
 
   return (
-    <React.Fragment>
+    <React.Fragment>      
       <ReactTooltip>{tooltipContent}</ReactTooltip>
         <ComposableMap
           projectionConfig={PROJECTION_CONFIG}
           projection="geoMercator"
           width={600}
-          height={220}
+          height={500}
           data-tip=""
         >
           <Geographies geography={INDIA_TOPO_JSON}>
@@ -151,9 +118,8 @@ function IndiaCovidMap() {
               })
             }
           </Geographies>
-        </ComposableMap>
-        
-        </React.Fragment>
+        </ComposableMap>        
+    </React.Fragment>
   );
 }
 

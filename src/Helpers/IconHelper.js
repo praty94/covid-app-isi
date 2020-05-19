@@ -1,6 +1,6 @@
 import React from 'react';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import RecoveryIcon from '@material-ui/icons/VerifiedUser';
 import ConcentrationIcon from '@material-ui/icons/BubbleChart';
 import HospitalIcon from '@material-ui/icons/LocalHospital';
 import CityIcon from '@material-ui/icons/EmojiTransportation';
@@ -16,7 +16,7 @@ export const getIcon = (val,props) => {
         case 'increase':
             return <TrendingUpIcon {...props}></TrendingUpIcon>;
         case 'recovery':
-            return <VerifiedUserIcon {...props}></VerifiedUserIcon>;
+            return <RecoveryIcon {...props}></RecoveryIcon>;
         case 'intensity':
             return <IntensityIcon {...props}></IntensityIcon>;
         case 'concentration':

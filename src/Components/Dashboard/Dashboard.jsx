@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Card from '../Card/Card';
 import { fetchSummary } from '../../Api/Covid19India';
-import LineChart from '../Common Components/LineChart';
 import { Typography, Divider } from '@material-ui/core';
+import IndiaCovidMap from '../IndiaCovidMap/IndiaCovidMap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,25 +29,37 @@ const formatChartsData = (timeSeriesArray) => {
     }
     return { init: true, totalConfirmedArray, totalDeceasedArray, totalRecoveredArray, dateArray };
 }
+const formatHeatMapData = (statewiseArray) => {
+    let activeHeatMapData = [],confirmedHeatMapData = [],deathsHeatMapData = [];
+    //starting mapping from index 1 since the first index is always the overall country status
+    for (let i = 1; i < statewiseArray.length; i++) {
+        activeHeatMapData.push({ id: statewiseArray[i].statecode, state: statewiseArray[i].state, value: statewiseArray[i].active });
+        confirmedHeatMapData.push({ id: statewiseArray[i].statecode, state: statewiseArray[i].state, value: statewiseArray[i].confirmed });
+        deathsHeatMapData.push({ id: statewiseArray[i].statecode, state: statewiseArray[i].state, value: statewiseArray[i].deaths });
+    }
+    return {activeHeatMapData,confirmedHeatMapData,deathsHeatMapData,init:true};
+}
 export default function Dashboard(props) {
     const classes = useStyles();
     const [cardsData, setCardsData] = useState({});
     const [chartsData, setChartsData] = useState({});
+    const [heatMapData, setHeatMapData] = useState({});
     useEffect(() => {
         (async () => {
             const response = await fetchSummary();
             if (!response || !response.data)
                 return;
             const { statewise, cases_time_series } = { ...response.data };
-            
+
             setCardsData({
-                confirmedProps: { cardType: "confirmed", title: "Confirmed", value: statewise[0].confirmed, valueChange: statewise[0].deltaconfirmed},
-                activeProps: { cardType: "active", title: "Active", value: statewise[0].active },
-                recoveredProps: { cardType: "recovered", title: "Recovered", value: statewise[0].recovered, valueChange: statewise[0].deltarecovered },
-                deathProps: { cardType: "death", title: "Deceased", value: statewise[0].deaths, valueChange: statewise[0].deltadeaths},                
+                confirmedProps: { cardType: "confirmed", title: "Confirmed", icon: "increase", value: statewise[0].confirmed, valueChange: statewise[0].deltaconfirmed },
+                activeProps: { cardType: "active", icon: "concentration", title: "Active", value: statewise[0].active },
+                recoveredProps: { cardType: "recovered", icon: "recovery", title: "Recovered", value: statewise[0].recovered, valueChange: statewise[0].deltarecovered },
+                deathProps: { cardType: "death", icon: "death", title: "Deceased", value: statewise[0].deaths, valueChange: statewise[0].deltadeaths },
             });
             setChartsData(formatChartsData(cases_time_series));
 
+            setHeatMapData(formatHeatMapData(statewise));
         })();
         return () => {
             console.log("[Dashboard] unmounted");
@@ -68,14 +80,14 @@ export default function Dashboard(props) {
                             <Card item sm={6} md={3} {...cardsData.deathProps}></Card>
                         </React.Fragment> : null}
                 </Grid>
-                
-                <Grid container direction="row" alignItems="center" justify="center">
-                {chartsData.init ?
-                <Paper className="mapContainer" item md={6}>
-                    <LineChart theme={props.theme} data={chartsData}></LineChart> </Paper>: null}
-                </Grid>
-
             </Grid>
+            <Container fluid>
+                <Row>
+                    <Col>1 of 3</Col>
+                    <Col xs={6}>{heatMapData.init?<IndiaCovidMap data={heatMapData}></IndiaCovidMap>:null}</Col>
+                    <Col>1 of 3</Col>
+                </Row>
+            </Container>
         </div>
     );
 }
