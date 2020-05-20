@@ -1,0 +1,19 @@
+{
+    "data": {
+        "headers": [
+            "Last Week",
+            "This week",
+            "Change"
+        ],
+        "overallData": [
+            {
+                "name": "Average number of confirmed cases/day",
+                "values": [
+                    3204,
+                    3735,
+                    1.17
+                ]
+            }
+        ]
+    }
+}
