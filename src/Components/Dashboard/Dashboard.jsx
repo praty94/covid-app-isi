@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Card from '../Card/Card';
 import { fetchSummary } from '../../Api/Covid19India';
 import { Typography, Divider } from '@material-ui/core';
 import IndiaCovidMap from '../IndiaCovidMap/IndiaCovidMap';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import {
+    ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary,
+    MenuItem, FormControl, Select, Grid
+} from '@material-ui/core';
 import LineChart from '../Common Components/LineChart';
+import DashboardTable from '../Common Components/SimpleDataTable';
+import OverallData from '../../Data/OverallData.json';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -154,7 +153,22 @@ export default function Dashboard(props) {
                     </ExpansionPanel>
                     : null}
             </div>
-
+            <div style={{ marginTop: 20 }}>
+                <ExpansionPanel TransitionProps={{ unmountOnExit: true }} expanded={expanded === 'panel3'}
+                    onChange={handleChangeExpanded('panel3')}>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel3bh-content"
+                        id="panel3bh-header">
+                        <Typography className={classes.heading}>Covid 19 Comparision data - India [TBD]</Typography>
+                        {expanded === 'panel3' ? null : <Typography className={classes.secondaryHeading}>Tap to expand
+                                                    </Typography>}
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails className={classes.customPanel}>
+                        <DashboardTable data={OverallData.data}></DashboardTable>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+            </div>
         </div>
     );
 }

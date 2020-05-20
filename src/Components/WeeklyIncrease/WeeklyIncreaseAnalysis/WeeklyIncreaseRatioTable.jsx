@@ -2,7 +2,6 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
 import WeeklyData from "../../../Data/WeeklyRateOfIncrease.json";
-import useWindowDimensions from '../../../Helpers/WindowDimensionHelper';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -18,21 +17,12 @@ const StyledTableRow = withStyles(theme => ({
     }
   }
 }))(TableRow);
-const getTableWidth = (width) => {
-  if (width > 650 && width < 960) {
-    return width - 80;
-  } else if (width >= 960) {
-    return width - 320;
-  } else {
-    return width - 80;
-  }
-}
-export default function WeeklyIncreaseRatioTable() {
-  const { width } = useWindowDimensions();
 
+export default function WeeklyIncreaseRatioTable() {
+  
   return (
     <TableContainer component={Paper}>
-      <Table style={{ width: getTableWidth(width) }} aria-label="Weekly increase ratio table">
+      <Table aria-label="Weekly increase ratio table">
         <TableHead>
           <TableRow>
             <StyledTableCell>State / UT</StyledTableCell>
