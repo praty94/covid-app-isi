@@ -5,7 +5,6 @@ import Card from '../Card/Card';
 import { fetchSummary } from '../../Api/Covid19India';
 import { Typography, Divider } from '@material-ui/core';
 import IndiaCovidMap from '../IndiaCovidMap/IndiaCovidMap';
-import { Container } from 'react-bootstrap';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -110,7 +109,7 @@ export default function Dashboard(props) {
                 </Grid>
 
             </Grid>
-            <Container style={{ marginTop: 20 }}>
+            <div style={{ marginTop: 20 }}>
                 {chartsData && chartsData.init ?
                     <ExpansionPanel TransitionProps={{ unmountOnExit: true }} expanded={expanded === 'panel1'} onChange={handleChangeExpanded('panel1')}>
                         <ExpansionPanelSummary
@@ -126,8 +125,8 @@ export default function Dashboard(props) {
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
                     : null}
-            </Container>
-            <Container style={{ marginTop: 20 }}>
+            </div>
+            <div style={{ marginTop: 20 }}>
                 {heatMapData.init ?
                     <ExpansionPanel TransitionProps={{ unmountOnExit: true }} expanded={expanded === 'panel2'} onChange={handleChangeExpanded('panel2')}>
                         <ExpansionPanelSummary
@@ -154,7 +153,7 @@ export default function Dashboard(props) {
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
                     : null}
-            </Container>
+            </div>
 
         </div>
     );
