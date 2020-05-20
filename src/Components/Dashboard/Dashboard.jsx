@@ -5,7 +5,15 @@ import Card from '../Card/Card';
 import { fetchSummary } from '../../Api/Covid19India';
 import { Typography, Divider } from '@material-ui/core';
 import IndiaCovidMap from '../IndiaCovidMap/IndiaCovidMap';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import LineChart from '../Common Components/LineChart';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,7 +23,19 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-    }
+    },
+    customPanel: {
+        display: 'block'
+    },
+    heading: {
+        fontSize: theme.typography.pxToRem(15),
+        flexBasis: '33.33%',
+        flexShrink: 0,
+    },
+    secondaryHeading: {
+        fontSize: theme.typography.pxToRem(15),
+        color: theme.palette.text.secondary,
+    },
 }));
 const formatChartsData = (timeSeriesArray) => {
     let totalConfirmedArray = [], totalDeceasedArray = [], totalRecoveredArray = [], dateArray = [];
@@ -30,20 +50,28 @@ const formatChartsData = (timeSeriesArray) => {
     return { init: true, totalConfirmedArray, totalDeceasedArray, totalRecoveredArray, dateArray };
 }
 const formatHeatMapData = (statewiseArray) => {
-    let activeHeatMapData = [],confirmedHeatMapData = [],deathsHeatMapData = [];
+    let activeHeatMapData = [], confirmedHeatMapData = [], deathsHeatMapData = [];
     //starting mapping from index 1 since the first index is always the overall country status
     for (let i = 1; i < statewiseArray.length; i++) {
         activeHeatMapData.push({ id: statewiseArray[i].statecode, state: statewiseArray[i].state, value: statewiseArray[i].active });
         confirmedHeatMapData.push({ id: statewiseArray[i].statecode, state: statewiseArray[i].state, value: statewiseArray[i].confirmed });
         deathsHeatMapData.push({ id: statewiseArray[i].statecode, state: statewiseArray[i].state, value: statewiseArray[i].deaths });
     }
-    return {activeHeatMapData,confirmedHeatMapData,deathsHeatMapData,init:true};
+    return { activeHeatMapData, confirmedHeatMapData, deathsHeatMapData, init: true };
 }
 export default function Dashboard(props) {
     const classes = useStyles();
     const [cardsData, setCardsData] = useState({});
     const [chartsData, setChartsData] = useState({});
     const [heatMapData, setHeatMapData] = useState({});
+    const [expanded, setExpanded] = useState(false);
+    const [mapOption, setMapOption] = useState('confirmedHeatMapData');
+    const handleChangeExpanded = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
+    const handleChange = (event) => {
+        setMapOption(event.target.value);
+    };
     useEffect(() => {
         (async () => {
             const response = await fetchSummary();
@@ -80,14 +108,54 @@ export default function Dashboard(props) {
                             <Card item sm={6} md={3} {...cardsData.deathProps}></Card>
                         </React.Fragment> : null}
                 </Grid>
+
             </Grid>
-            <Container fluid>
-                <Row>
-                    <Col>1 of 3</Col>
-                    <Col xs={6}>{heatMapData.init?<IndiaCovidMap data={heatMapData}></IndiaCovidMap>:null}</Col>
-                    <Col>1 of 3</Col>
-                </Row>
+            <Container style={{ marginTop: 20 }}>
+                {chartsData && chartsData.init ?
+                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }} expanded={expanded === 'panel1'} onChange={handleChangeExpanded('panel1')}>
+                        <ExpansionPanelSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1bh-content"
+                            id="panel1bh-header">
+                            <Typography className={classes.heading}>Covid 19 Graph [TBD]</Typography>
+                            {expanded === 'panel1' ? null : <Typography className={classes.secondaryHeading}>Tap to expand
+                                        </Typography>}
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails className={classes.customPanel}>
+                            <LineChart data={chartsData} theme={props.theme}></LineChart>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                    : null}
             </Container>
+            <Container style={{ marginTop: 20 }}>
+                {heatMapData.init ?
+                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }} expanded={expanded === 'panel2'} onChange={handleChangeExpanded('panel2')}>
+                        <ExpansionPanelSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel2bh-content"
+                            id="panel2bh-header">
+                            <Typography className={classes.heading}>Covid 19 Map - India [TBD]</Typography>
+                            {expanded === 'panel2' ? null : <Typography className={classes.secondaryHeading}>Tap to expand
+                                                    </Typography>}
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails className={classes.customPanel}>
+                            <FormControl style={{ width: 250 }} variant="outlined" className={classes.formControl}>
+                                <Select
+                                    labelId="demo-simple-select-outlined-label"
+                                    id="demo-simple-select-outlined"
+                                    value={mapOption}
+                                    onChange={handleChange}>
+                                    <MenuItem value={'confirmedHeatMapData'}>Confirmed</MenuItem>
+                                    <MenuItem value={'activeHeatMapData'}>Active</MenuItem>
+                                    <MenuItem value={'deathsHeatMapData'}>Deceased</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <IndiaCovidMap data={heatMapData[mapOption]}></IndiaCovidMap>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                    : null}
+            </Container>
+
         </div>
     );
 }
