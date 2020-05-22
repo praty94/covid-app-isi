@@ -1,4 +1,5 @@
 {
+  "heading":"It is defined as (Number of districts having atleast 75% of total confirmed cases in that state) / (total number districts in that state) , ie. Lower value of concentration indicates that cases are concentrated in few districts only.(lower concentration implies less spread)",
   "data": {
     "stateData": [
       {

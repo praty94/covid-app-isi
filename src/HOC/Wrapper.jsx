@@ -3,28 +3,32 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 242;
 const appBarHeight = 64;
-const appBarHeightMobile=56;
+const appBarHeightMobile = 56;
 const useStyles = makeStyles((theme) => ({
   root: {
     [theme.breakpoints.up('md')]: {
-        marginLeft: drawerWidth,
-        marginTop:appBarHeight
-      },
-      [theme.breakpoints.up('xs')]:{
-        marginTop:appBarHeightMobile
-      },
-    background:theme.palette.primary.main
-  },  
+      marginLeft: drawerWidth
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: appBarHeight
+    },
+    marginTop: appBarHeightMobile,
+
+    background: theme.palette.primary.main
+  },
   content: {
-    padding: theme.spacing(3),
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(3)
+    },    
+    padding: theme.spacing(1)    
   },
 }));
 
-function Wrapper(props) {  
-  const classes = useStyles();  
+function Wrapper(props) {
+  const classes = useStyles();
   return (
-    <div className={classes.root}>      
-      <main className={classes.content}>        
+    <div className={classes.root}>
+      <main className={classes.content}>
         {props.children}
       </main>
     </div>

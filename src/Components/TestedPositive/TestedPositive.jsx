@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab, Box, Typography } from '@material-ui/core';
-import DeathRateDataTable from './DeathRateDataTable';
-import DeathRateGraph from './DeathRateGraph';
-import DeathRateData from '../../Data/DeathRate.json';
-
+import DataTable from '../Common Components/DataTable';
+import TestedPositiveData from '../../Data/TestingStateData.json';
+import TestedPositiveGraph from './TestedPostiveGraph';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -13,8 +12,8 @@ function TabPanel(props) {
         <div
             role="tabpanel"
             hidden={value !== index}
-            id={`DeathRate-tabpanel-${index}`}
-            aria-labelledby={`DeathRate-tab-${index}`}
+            id={`TestedPositive-tabpanel-${index}`}
+            aria-labelledby={`TestedPositive-tab-${index}`}
             {...other}
         >
             {value === index && (
@@ -34,8 +33,8 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
     return {
-        id: `DeathRate-tab-${index}`,
-        'aria-controls': `DeathRate-tabpanel-${index}`,
+        id: `TestedPositive-tab-${index}`,
+        'aria-controls': `TestedPositive-tabpanel-${index}`,
     };
 }
 
@@ -47,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function DeathRate(props) {
+export default function TestedPositive(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -57,19 +56,20 @@ export default function DeathRate(props) {
 
     return (
         <React.Fragment>
-            <Typography color="textSecondary">{DeathRateData.heading}</Typography>
+            <Typography color="textSecondary">{TestedPositiveData.heading}</Typography>
             <div className={classes.root}>
                 <AppBar position="static">
-                    <Tabs centered value={value} onChange={handleChange} aria-label="deathRate tabs" variant="fullWidth">
+                    <Tabs centered value={value} onChange={handleChange} aria-label="TestedPositive tabs" variant="fullWidth">
                         <Tab label="Graph" {...a11yProps(0)} />
                         <Tab label="Analysis" {...a11yProps(1)} />
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <DeathRateGraph theme={props.theme}></DeathRateGraph>
+                    <TestedPositiveGraph theme={props.theme}></TestedPositiveGraph>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <DeathRateDataTable></DeathRateDataTable>
+                    <DataTable data={TestedPositiveData.data} category="testData" headerRange={true}
+                        headerCategory1="startDate" headerCategory2="endDate" itemCategory="percPositive"></DataTable>
                 </TabPanel>
             </div>
         </React.Fragment>

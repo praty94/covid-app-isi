@@ -1,7 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
-import ConcentrationData from "../../Data/Concentration.json";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -18,27 +17,29 @@ const StyledTableRow = withStyles(theme => ({
   }
 }))(TableRow);
 
-export default function ConcentrationDataTable() {
- 
-  const { stateData } = { ...ConcentrationData.data };
+export default function SimpleDataTable(props) {  
+  const { headers, content } = { ...props.data };
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="Concentration Data table">
+      <Table  aria-label="Custom Data table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>State / UT</StyledTableCell>            
-            <StyledTableCell align="center">Concentration</StyledTableCell>            
+            {headers.map((item, index) => {              
+                return <StyledTableCell align="center" key={index}>{item}</StyledTableCell>
+            })}
           </TableRow>
         </TableHead>
-        <TableBody>          
-          {stateData.map((item, index) => (
+        <TableBody>        
+          {content.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
-                {item.stateName}
+                {item.name}
               </StyledTableCell>
-              <StyledTableCell component="th" scope="row" align="center">
-                {item.concentration}
-              </StyledTableCell>
+              {item.values.map((item, index) => (
+                <StyledTableCell align="center" key={index}>
+                  {item ? item : "N/A"}
+                </StyledTableCell>
+              ))}
             </StyledTableRow>
           ))}
         </TableBody>

@@ -2,7 +2,6 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
 import RecoveryData from "../../Data/RecoveryRate.json";
-import useWindowDimensions from '../../Helpers/WindowDimensionHelper';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -18,21 +17,12 @@ const StyledTableRow = withStyles(theme => ({
     }
   }
 }))(TableRow);
-const getTableWidth = (width) => {
-  if (width > 650 && width < 960) {
-    return width - 80;
-  } else if (width >= 960) {
-    return width - 320;
-  } else {
-    return width - 80;
-  }
-}
+
 export default function RecoveryRateDataTable() {
-  const { width } = useWindowDimensions();
   const { countryData, stateData } = { ...RecoveryData.data };
   return (
     <TableContainer component={Paper}>
-      <Table style={{ width: getTableWidth(width) }} aria-label="Recovery Rate Data table">
+      <Table aria-label="Recovery Rate Data table">
         <TableHead>
           <TableRow>
             <StyledTableCell>State / UT</StyledTableCell>

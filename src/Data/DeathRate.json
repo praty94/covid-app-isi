@@ -1,4 +1,5 @@
 {
+  "heading":"(Cumulative number of  Deceased  till date) / (Cumulative number of  Confirmed cases till date)",
   "data": {
     "countryData": {
       "deathRate": null

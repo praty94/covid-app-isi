@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import {AppBar,Tabs,Tab,Box} from '@material-ui/core';
+import { AppBar, Tabs, Tab, Box, Typography } from '@material-ui/core';
 import ConcentrationDataTable from './ConcentrationDataTable';
 import ConcentrationGraph from './ConcentrationGraph';
-
+import ConcentrationData from '../../Data/Concentration.json';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
+        marginTop: 20
     },
 }));
 
@@ -53,20 +54,23 @@ export default function Concentration(props) {
         setValue(newValue);
     };
 
-    return (        
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Tabs centered value={value} onChange={handleChange} aria-label="concentration tabs" variant="fullWidth">
-                    <Tab label="Graph" {...a11yProps(0)} />
-                    <Tab label="Analysis" {...a11yProps(1)} />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
-               <ConcentrationGraph theme={props.theme}></ConcentrationGraph>
-            </TabPanel>
-            <TabPanel value={value} index={1}>                
-               <ConcentrationDataTable></ConcentrationDataTable>
-            </TabPanel>
-        </div>
+    return (
+        <React.Fragment>
+            <Typography color="textSecondary">{ConcentrationData.heading}</Typography>
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Tabs centered value={value} onChange={handleChange} aria-label="concentration tabs" variant="fullWidth">
+                        <Tab label="Graph" {...a11yProps(0)} />
+                        <Tab label="Analysis" {...a11yProps(1)} />
+                    </Tabs>
+                </AppBar>
+                <TabPanel value={value} index={0}>
+                    <ConcentrationGraph theme={props.theme}></ConcentrationGraph>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <ConcentrationDataTable></ConcentrationDataTable>
+                </TabPanel>
+            </div>
+        </React.Fragment>
     );
 }

@@ -1,9 +1,12 @@
 import React from 'react';
 import './App.css';
-import { Dashboard } from './Components';
+import { AppContextProvider } from './Context/AppContext';
+import { AppShell } from './Components';
 function App() {
   return (
-    <Dashboard></Dashboard>
+    <AppContextProvider>
+      <AppShell></AppShell>
+    </AppContextProvider>
   );
 }
 
