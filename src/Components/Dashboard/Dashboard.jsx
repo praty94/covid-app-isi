@@ -43,27 +43,37 @@ const formatChartsData = (timeSeriesArray) => {
             totalDeceasedArray.push(+item.totaldeceased);
             totalRecoveredArray.push(+item.totalrecovered);
             dateArray.push(item.date + " 2020");
-        });
+        });        
     }
     return { init: true, totalConfirmedArray, totalDeceasedArray, totalRecoveredArray, dateArray };
 }
 const formatHeatMapData = (statewiseArray) => {
     let activeHeatMapData = [], confirmedHeatMapData = [], deathsHeatMapData = [];
+    let maxActive = 0, maxConfirmed = 0, maxDeaths = 0;
     //starting mapping from index 1 since the first index is always the overall country status
     for (let i = 1; i < statewiseArray.length; i++) {
         activeHeatMapData.push({ id: statewiseArray[i].statecode, state: statewiseArray[i].state, value: statewiseArray[i].active });
         confirmedHeatMapData.push({ id: statewiseArray[i].statecode, state: statewiseArray[i].state, value: statewiseArray[i].confirmed });
         deathsHeatMapData.push({ id: statewiseArray[i].statecode, state: statewiseArray[i].state, value: statewiseArray[i].deaths });
+
+        maxActive = Math.max(maxActive, statewiseArray[i].active);
+        maxConfirmed = Math.max(maxConfirmed, statewiseArray[i].confirmed);
+        maxDeaths = Math.max(maxDeaths, statewiseArray[i].deaths);
     }
-    return { activeHeatMapData, confirmedHeatMapData, deathsHeatMapData, init: true };
+    return {
+        activeData: { heatMapData : activeHeatMapData, max : maxActive },
+        confirmedData: { heatMapData : confirmedHeatMapData, max : maxConfirmed },
+        deathsActive: { heatMapData : deathsHeatMapData, max : maxDeaths }, init: true
+    };
 }
 export default function Dashboard(props) {
     const classes = useStyles();
+    const heatMapOptions = ['confirmedData','activeData','deathsActive'];
     const [cardsData, setCardsData] = useState({});
     const [chartsData, setChartsData] = useState({});
     const [heatMapData, setHeatMapData] = useState({});
     const [expanded, setExpanded] = useState(false);
-    const [mapOption, setMapOption] = useState('confirmedHeatMapData');
+    const [mapOption, setMapOption] = useState(heatMapOptions[0]);
     const handleChangeExpanded = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
@@ -78,10 +88,10 @@ export default function Dashboard(props) {
             const { statewise, cases_time_series } = { ...response.data };
 
             setCardsData({
-                confirmedProps: { cardType: "confirmed", title: "Confirmed", icon: "increase", value: statewise[0].confirmed, valueChange: statewise[0].deltaconfirmed },
-                activeProps: { cardType: "active", icon: "concentration", title: "Active", value: statewise[0].active },
-                recoveredProps: { cardType: "recovered", icon: "recovery", title: "Recovered", value: statewise[0].recovered, valueChange: statewise[0].deltarecovered },
-                deathProps: { cardType: "death", icon: "death", title: "Deceased", value: statewise[0].deaths, valueChange: statewise[0].deltadeaths },
+                confirmedProps: { cardType: "confirmed", pageId:1, title: "Confirmed", value: statewise[0].confirmed, valueChange: statewise[0].deltaconfirmed },
+                activeProps: { cardType: "active", pageId:4, title: "Active", value: statewise[0].active },
+                recoveredProps: { cardType: "recovered",pageId:2, title: "Recovered", value: statewise[0].recovered, valueChange: statewise[0].deltarecovered },
+                deathProps: { cardType: "death",pageId:6, title: "Deceased", value: statewise[0].deaths, valueChange: statewise[0].deltadeaths },
             });
             setChartsData(formatChartsData(cases_time_series));
 
@@ -143,9 +153,9 @@ export default function Dashboard(props) {
                                     id="demo-simple-select-outlined"
                                     value={mapOption}
                                     onChange={handleChange}>
-                                    <MenuItem value={'confirmedHeatMapData'}>Confirmed</MenuItem>
-                                    <MenuItem value={'activeHeatMapData'}>Active</MenuItem>
-                                    <MenuItem value={'deathsHeatMapData'}>Deceased</MenuItem>
+                                    <MenuItem value={heatMapOptions[0]}>Confirmed</MenuItem>
+                                    <MenuItem value={heatMapOptions[1]}>Active</MenuItem>
+                                    <MenuItem value={heatMapOptions[2]}>Deceased</MenuItem>
                                 </Select>
                             </FormControl>
                             <IndiaCovidMap data={heatMapData[mapOption]}></IndiaCovidMap>

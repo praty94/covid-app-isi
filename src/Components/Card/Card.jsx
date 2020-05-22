@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../Context/AppContext';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import cx from 'classnames';
 import CountUp from 'react-countup';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import {getIcon} from '../../Helpers/IconHelper';
+import { getIcon } from '../../Helpers/IconHelper';
 import { green } from '@material-ui/core/colors';
+import { sidebarOptions } from '../../Data/AppElements';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -53,22 +52,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
 }));
-const getActionButtonText = (title) => {
-  switch (title) {
-    case "Confirmed":
-      return "Weekly Increase";
-    case "Recovered":
-      return "Recovery Rate";
-    case "Deceased":
-      return "Death Rate";
-    case "Active":
-      return "Concentration";
-    default:
-      return "";
-  }
-}
-export default function CustomCard(props) {
+
+const CustomCard = (props) => {
   const classes = useStyles();
+  const [appState, setAppState] = useContext(AppContext);
+  const displayPage = () => {
+    setAppState({ theme: appState.theme, currentPage: sidebarOptions[props.pageId] });
+  };
 
   return (
     <Card className={cx(classes.customCard, classes[props.cardType])}>
@@ -89,9 +79,19 @@ export default function CustomCard(props) {
         {/*div for padding*/}
         {props.valueChange ? null : <div style={{ height: "24px" }}></div>}
       </CardContent>
-      <CardActions disableSpacing>     
-        <Button size="small" startIcon={getIcon(props.icon,{style:{ color: green[300] }})}>{getActionButtonText(props.title)}</Button>
-      </CardActions>
+      {sidebarOptions[props.pageId] ?
+        <CardActions disableSpacing>
+          <Button size="small"
+            onClick={() => displayPage()} startIcon={getIcon(sidebarOptions[props.pageId].icon, { style: { color: green[300] } })}>
+            {sidebarOptions[props.pageId].name}
+          </Button>
+        </CardActions> : null}
     </Card>
   );
 }
+
+CustomCard.propTypes = {
+  pageId: PropTypes.number.isRequired
+};
+
+export default CustomCard;
