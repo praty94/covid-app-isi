@@ -8,8 +8,11 @@ const LineChartThemeHelper = (data) => {
         dataLabels: {
             enabled: false
         },
-        xaxis: {
-            type: 'datetime',
+        xaxis: {              
+            type:'datetime',
+            labels:{
+                datetimeUTC: false
+            },     
             categories: data.categories
         },
         legend: {
