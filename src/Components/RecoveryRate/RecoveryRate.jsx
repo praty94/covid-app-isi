@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import {AppBar,Tabs,Tab,Box} from '@material-ui/core';
+import { AppBar, Tabs, Tab, Box, Typography } from '@material-ui/core';
 import RecoveryRateDataTable from './RecoveryRateDataTable';
 import RecoveryRateGraph from './RecoveryRateGraph';
-
+import RecoveryRateData from '../../Data/RecoveryRate.json';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -42,7 +42,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
+        marginTop: 20
     },
+    icon: {
+        height: 20,
+        color: '#fff'
+    }
 }));
 
 export default function RecoveryRate(props) {
@@ -53,20 +58,23 @@ export default function RecoveryRate(props) {
         setValue(newValue);
     };
 
-    return (        
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Tabs centered value={value} onChange={handleChange} aria-label="recoveryRate tabs" variant="fullWidth">
-                    <Tab label="Graph" {...a11yProps(0)} />
-                    <Tab label="Analysis" {...a11yProps(1)} />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
-                <RecoveryRateGraph theme={props.theme}></RecoveryRateGraph>
-            </TabPanel>
-            <TabPanel value={value} index={1}>                
-               <RecoveryRateDataTable></RecoveryRateDataTable>
-            </TabPanel>
-        </div>        
+    return (
+        <React.Fragment>
+            <Typography color="textSecondary">{RecoveryRateData.heading}</Typography>
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Tabs centered value={value} onChange={handleChange} aria-label="recoveryRate tabs" variant="fullWidth">
+                        <Tab label="Graph" {...a11yProps(0)} />
+                        <Tab label="Analysis" {...a11yProps(1)} />
+                    </Tabs>
+                </AppBar>
+                <TabPanel value={value} index={0}>
+                    <RecoveryRateGraph theme={props.theme}></RecoveryRateGraph>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <RecoveryRateDataTable></RecoveryRateDataTable>
+                </TabPanel>
+            </div>
+        </React.Fragment>
     );
 }

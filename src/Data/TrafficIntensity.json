@@ -1,4 +1,5 @@
 {
+  "heading": "Traffic intensity has been calculated for 4 time span ,viz: 3days,5 days,7 days and 14 days, for example traffic intensity for last 5 days = (Number of confirmed cases during that period) / (Number of recovered cases during that period)",
   "data": {
     "countryData": {
       "countryName": "India",

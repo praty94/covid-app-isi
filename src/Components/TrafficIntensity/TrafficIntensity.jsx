@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import {AppBar,Tabs,Tab,Box} from '@material-ui/core';
+import { AppBar, Tabs, Tab, Box,Typography } from '@material-ui/core';
 import DataTable from '../Common Components/DataTable';
 import TrafficIntensityData from '../../Data/TrafficIntensity.json';
 import TrafficIntensityGraph from './TrafficIntensityGraph';
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
+        marginTop:20
     },
 }));
 
@@ -53,20 +54,24 @@ export default function TrafficIntensity(props) {
         setValue(newValue);
     };
 
-    return (        
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Tabs centered value={value} onChange={handleChange} aria-label="trafficIntensity tabs" variant="fullWidth">
-                    <Tab label="Graph" {...a11yProps(0)} />
-                    <Tab label="Analysis" {...a11yProps(1)} />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
-               <TrafficIntensityGraph theme={props.theme}></TrafficIntensityGraph>
-            </TabPanel>
-            <TabPanel value={value} index={1}>                
-               <DataTable data={TrafficIntensityData.data} category="trafficIntensity" headerCategory="name" itemCategory="value"></DataTable>
-            </TabPanel>
-        </div>
+    return (
+        <React.Fragment>
+            <Typography color="textSecondary"> {TrafficIntensityData.heading}</Typography>
+
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Tabs centered value={value} onChange={handleChange} aria-label="trafficIntensity tabs" variant="fullWidth">
+                        <Tab label="Graph" {...a11yProps(0)} />
+                        <Tab label="Analysis" {...a11yProps(1)} />
+                    </Tabs>
+                </AppBar>
+                <TabPanel value={value} index={0}>
+                    <TrafficIntensityGraph theme={props.theme}></TrafficIntensityGraph>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <DataTable data={TrafficIntensityData.data} category="trafficIntensity" headerCategory="name" itemCategory="value"></DataTable>
+                </TabPanel>
+            </div>
+        </React.Fragment>
     );
 }

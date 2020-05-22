@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '../Card/Card';
 import { fetchSummary } from '../../Api/Covid19India';
-import { Typography, Divider } from '@material-ui/core';
 import IndiaCovidMap from '../IndiaCovidMap/IndiaCovidMap';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
     ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary,
-    MenuItem, FormControl, Select, Grid
+    MenuItem, FormControl, Select, Grid,Typography, Divider
 } from '@material-ui/core';
 import LineChart from '../Common Components/LineChart';
 import DashboardTable from '../Common Components/SimpleDataTable';
@@ -125,7 +124,7 @@ export default function Dashboard(props) {
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1bh-content"
                             id="panel1bh-header">
-                            <Typography className={classes.heading}>Covid 19 Graph [TBD]</Typography>
+                            <Typography className={classes.heading}>Covid 19 Time Series Graph - India [TBD]</Typography>
                             {expanded === 'panel1' ? null : <Typography className={classes.secondaryHeading}>Tap to expand
                                         </Typography>}
                         </ExpansionPanelSummary>

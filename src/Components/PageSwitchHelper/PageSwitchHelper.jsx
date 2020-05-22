@@ -1,5 +1,6 @@
 import React from 'react';
-import { WeeklyIncrease, RecoveryRate, TrafficIntensity,Concentration,DeathRate,TestedPositive,Dashboard } from '../index';
+import { WeeklyIncrease, RecoveryRate, TrafficIntensity, Concentration, DeathRate, TestedPositive, Dashboard } from '../index';
+import AboutPage from '../About/AboutPage';
 
 const PageSwitchHelper = (props) => {
     switch (props.pageId) {
@@ -17,6 +18,8 @@ const PageSwitchHelper = (props) => {
             return <TestedPositive theme={props.theme}></TestedPositive>
         case 7:
             return <DeathRate theme={props.theme}></DeathRate>;
+        case 8:
+            return <AboutPage theme={props.theme}></AboutPage>
         default:
             return <h1>Not configured</h1>
     }

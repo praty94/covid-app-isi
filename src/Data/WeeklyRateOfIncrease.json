@@ -1,4 +1,5 @@
 {
+  "heading": "It compares the number of confirmed cases of  two consecutive weeks for different states in terms of ratio and rank",
   "data": {
     "headers": [
       "State / UT",
