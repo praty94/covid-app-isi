@@ -24,3 +24,7 @@ body {
 .MuiTab-textColorInherit.Mui-selected{
   border-bottom: 2px solid #81c784;
 }
+
+.rsm-svg {
+  max-height: 600px;
+}
