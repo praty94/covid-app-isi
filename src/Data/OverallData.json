@@ -70,15 +70,7 @@
                     "47.43%",
                     1.35
                 ]
-            },
-            {
-                "name": "Average number of confirmed cases/day",
-                "values": [
-                    3204,
-                    3735,
-                    1.17
-                ]
-            },
+            },            
             {
                 "name": "Average number of Deaths/day",
                 "values": [
