@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import QuestionIcon from '@material-ui/icons/HelpOutline';
 import AnswerIcon from '@material-ui/icons/ChevronRight';
 import { green } from '@material-ui/core/colors';
+import parse from 'html-react-parser';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -43,7 +44,7 @@ const Faq = () => {
                     <Grid container className={classes.answerContainer}>
                         <AnswerIcon style={{ color: '#66aaff' }} item></AnswerIcon>
                         <Typography item variant="subtitle1" className={classes.text} gutterBottom>
-                            {item.answer}
+                            {parse(item.answer)}
                         </Typography>
                     </Grid>
                 </Paper>
