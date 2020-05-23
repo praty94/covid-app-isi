@@ -1,0 +1,32 @@
+{
+    "data":[
+        {
+            "question":"Can I download the analysis report ?",
+            "answer":"Yes, the analysis report can be downloaded as csv file and graph can be downloaded as png file."
+        },
+        {
+            "question":"How many states can be selected  for comparison?",
+            "answer":"Depends on user. You can select any number and any combination of states for comparison."
+        },
+        {
+            "question":"How is it different than other dashboards?",
+            "answer":"In this dashboard analysis from different perspective has been shown, which will help decision makers to take decision more effectively."
+        },
+        {
+            "question":"What is traffic intensity? Why is it calculated?",
+            "answer":"It is ratio of confirmed cases to recovered cases in a particular time span. It can be used to forcast/check the healthcare capability of a particular state. Lower the traffic intensity, greater is the chance to flatten the curve."
+        },
+        {
+            "question":"What is concentration? Why is it calculated?",
+            "answer":"For a particular state it is (Number of districts having atleat  75% of  cases) / (total number of districts in that state) , ie. Lower value of concentration indicates that cases are concentrated in few districts only.It can be used to check the spread of the pandemic, lower concentration implies less spread."
+        },
+        {
+            "question":"What are your data sources? How is the data gathered for this project?",
+            "answer":"Live data is taken from Google sheet api provided by <a href='https://api.covid19india.org/' target='_blank' style='color: inherit;'>covid19india.org</a>, which is taken from state bulletins and official handles.The data is validated by a group of volunteers."
+        },
+        {
+            "question":"How can we get statewise confirmed, active and deceased data?",
+            "answer":"In the Dashboard page if you click on the option <strong>Covid 19 Map - India [TBD]</strong>, the heat map of india will appear for confrimed cases( by default). On the top left of the heat map section  you can click on different options confirmed, active , deceases to get corresponding heat maps. To get statewise confirmed, active and deceased data just move your cursour or click on the required state on the corresponding heat map of India."
+        }
+    ]
+}

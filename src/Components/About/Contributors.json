@@ -1,17 +1,48 @@
 {
-    "contributors":{
-        "dev":[{
-            "name":"Pratyay Bandyopadhyay",
-            "avatar":"https://github.com/praty94.png",
-            "github":"https://github.com/praty94",
-            "linkedIn":"https://www.linkedin.com/in/pratyay-bandyopadhyay/"
-        },
-        {
-            "name":"Sandip Das",
-            "avatar":"https://github.com/SandipDust.png",
-            "github":"https://github.com/SandipDust",
-            "linkedIn":"https://www.linkedin.com/in/sandipdust/"
-        }],
-        "analytics":[]
+    "contributors": {
+        "dev": [
+            {
+                "name": "Pratyay Bandyopadhyay",
+                "currentRole": "Full Stack Developer",
+                "avatar": "https://github.com/praty94.png",
+                "github": "https://github.com/praty94",
+                "linkedIn": "https://www.linkedin.com/in/pratyay-bandyopadhyay/"
+            },
+            {
+                "name": "Sandip Das",
+                "currentRole": "Front End Developer",
+                "avatar": "https://github.com/SandipDust.png",
+                "github": "https://github.com/SandipDust",
+                "linkedIn": "https://www.linkedin.com/in/sandipdust/"
+            }
+        ],
+        "analytics": {
+            "head": {
+                "name": "Prof. Amitava Bandyopadhyay",
+                "currentRole": "Dept. of SQC & OR, ISI Kolkata"
+            },
+            "team": [
+                {
+                    "name": "Sayantan Choudhury",
+                    "currentRole": "M Tech QROR, ISI Kolkata",
+                    "linkedIn": "https://www.linkedin.com/in/sayantan-choudhury-320996192"
+                },
+                {
+                    "name": "Aman Kumar",
+                    "currentRole": "M Tech QROR, ISI Kolkata",
+                    "linkedIn": "https://www.linkedin.com/in/aman-kumar-3b8970147"
+                },
+                {
+                    "name": "Souryadeep Majumder",
+                    "currentRole": "M Tech QROR, ISI Kolkata",
+                    "linkedIn": "https://www.linkedin.com/in/souryadeep-majumder-ab22721a7"
+                },
+                {
+                    "name": "Pritam Sen",
+                    "currentRole": "M Tech QROR, ISI Kolkata",
+                    "linkedIn": "https://www.linkedin.com/in/pritam-sen-a4b932128"
+                }
+            ]
+        }
     }
 }

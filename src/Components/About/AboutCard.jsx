@@ -6,8 +6,14 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({    
+    container:{
+        maxWidth:500
+    },
     paper: {
-        padding: theme.spacing(2),
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
+        paddingRight: theme.spacing(1),
+        paddingLeft: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary
     },
@@ -21,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     rightContent: {
         marginLeft: 15,
         textAlign: 'left'
+    },
+    buttonContainer:{
+        marginLeft:-15
     }
 }));
 
@@ -29,8 +38,8 @@ const openLink = (url) =>{
 }
 const AboutCard = (props) => {
     const classes = useStyles();
-    const {data} = {...props};
-    return (<Grid item xs={12} md={6}>
+    const {data} = {...props};    
+    return (<Grid item xs={12} md={6} className={classes.container}>
         <Paper className={classes.paper}>
             <Grid container style={{ flexWrap: 'noWrap' }}>
                 <Grid item root className={classes.center}>
@@ -38,14 +47,15 @@ const AboutCard = (props) => {
                 </Grid>
                 <Grid item root className={classes.rightContent}>
                     <Typography variant="h6" color="textPrimary">{data.name}</Typography>
-                    <Grid>
-                        {data.github ?
-                        <IconButton onClick={() => openLink(data.github)} aria-label="delete">
-                            <GitHubIcon />
-                        </IconButton>:null}
+                    <Typography color="textSecondary">{data.currentRole}</Typography>
+                    <Grid className={classes.buttonContainer}>                        
                         {data.linkedIn?
                         <IconButton onClick={() => openLink(data.linkedIn)} aria-label="delete">
                             <LinkedInIcon />
+                        </IconButton>:null}
+                        {data.github ?
+                        <IconButton onClick={() => openLink(data.github)} aria-label="delete">
+                            <GitHubIcon />
                         </IconButton>:null}
                     </Grid>
                 </Grid>
