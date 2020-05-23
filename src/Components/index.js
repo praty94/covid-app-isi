@@ -7,3 +7,4 @@ export {default as TrafficIntensity} from './TrafficIntensity/TrafficIntensity';
 export {default as Concentration} from './Concentration/Concentration';
 export {default as DeathRate} from './DeathRate/DeathRate';
 export {default as TestedPositive} from './TestedPositive/TestedPositive';
+export {default as FAQ} from './FAQ/FAQ';

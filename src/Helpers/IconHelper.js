@@ -8,8 +8,9 @@ import DeathIcon from '@material-ui/icons/Warning';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AboutIcon from '@material-ui/icons/Info';
 import IntensityIcon from '@material-ui/icons/GraphicEq';
+import FAQIcon from '@material-ui/icons/ContactSupport';
 /* Helper method to get icon based on icon name and optional props */
-export const getIcon = (val,props) => {
+export const getIcon = (val, props) => {
     switch (val) {
         case 'dashboard':
             return <DashboardIcon {...props}></DashboardIcon>;
@@ -29,6 +30,8 @@ export const getIcon = (val,props) => {
             return <AboutIcon {...props}></AboutIcon>;
         case 'death':
             return <DeathIcon {...props}></DeathIcon>;
+        case 'faq':
+            return <FAQIcon {...props}></FAQIcon>
         default:
             return <TrendingUpIcon {...props}></TrendingUpIcon>;
     }
