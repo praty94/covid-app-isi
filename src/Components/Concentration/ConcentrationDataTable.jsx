@@ -1,7 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
-import ConcentrationData from "../../Data/Concentration.json";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -18,9 +17,9 @@ const StyledTableRow = withStyles(theme => ({
   }
 }))(TableRow);
 
-export default function ConcentrationDataTable() {
+export default function ConcentrationDataTable(props) {
  
-  const { stateData } = { ...ConcentrationData.data };
+  const { stateData } = { ...props.data };
   return (
     <TableContainer component={Paper}>
       <Table aria-label="Concentration Data table">

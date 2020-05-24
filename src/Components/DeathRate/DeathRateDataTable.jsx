@@ -1,7 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
-import DeathRateData from "../../Data/DeathRate.json";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -18,9 +17,9 @@ const StyledTableRow = withStyles(theme => ({
   }
 }))(TableRow);
 
-export default function DeathRateDataTable() {
+export default function DeathRateDataTable(props) {
   
-  const { countryData, stateData } = { ...DeathRateData.data };
+  const { countryData, stateData } = { ...props.data };
   return (
     <TableContainer component={Paper}>
       <Table aria-label="Recovery Rate Data table">

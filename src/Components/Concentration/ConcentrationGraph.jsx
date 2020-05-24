@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import ConcentrationData from "../../Data/Concentration.json";
 import StateSelector from '../Common Components/StateSelector';
 import BarChart from '../Common Components/BarChart';
 
-const getFormattedData = () => {
+const getFormattedData = (ConcentrationData) => {
     let stateMap = {}, concentrationArray = [], allStates = [],defaultStates=[], currentStates = [], currentSeriesData = [];
     const { stateData } = { ...ConcentrationData.data }
     stateData.forEach((item) => {
@@ -19,9 +18,10 @@ const getFormattedData = () => {
     return { stateNames: allStates.sort(), stateMap, currentSeriesData, currentStates,defaultStates };
 }
 
-const { stateNames, stateMap, currentSeriesData, currentStates,defaultStates } = getFormattedData();
+
 
 const ConcentrationGraph = (props) => {
+    const { stateNames, stateMap, currentSeriesData, currentStates,defaultStates } = getFormattedData(props.data);
     const [chartData, setChartData] = useState({ currentSeriesData,currentStates });
     
     const filterChartData = (selectedStateArray) => {

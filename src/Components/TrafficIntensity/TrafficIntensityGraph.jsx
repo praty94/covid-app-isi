@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import TrafficIntensityData from "../../Data/TrafficIntensity.json";
 import StateSelector from '../Common Components/StateSelector';
 import TrafficIntensityChart from '../Common Components/BarChart';
 
-const getFormattedData = () => {
+const getFormattedData = (TrafficIntensityData) => {
     let stateNameArray = [], seriesData = [], categories = [], defaultStates = [], currentSeriesData = [];
     let index = 0;
     const {stateData,countryData} = {...TrafficIntensityData.data}
@@ -36,9 +35,8 @@ const getFormattedData = () => {
     return { stateNames: [countryData.countryName,...stateNameArray.sort()], seriesData, currentSeriesData, categories, defaultStates };
 }
 
-const { stateNames, seriesData, currentSeriesData, categories, defaultStates } = getFormattedData();
-
 const TrafficIntensityGraph = (props) => {
+    const { stateNames, seriesData, currentSeriesData, categories, defaultStates } = getFormattedData(props.data);
     const [chartData, setChartData] = useState({ currentSeriesData });
     const filterChartData = (selectedStateArray) => {
         let filteredData = [];
