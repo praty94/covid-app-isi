@@ -44,7 +44,6 @@ const AppShell = () => {
       </Wrapper>
     </ThemeProvider>
   );
-
 }
 
 export default AppShell;
