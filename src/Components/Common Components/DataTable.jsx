@@ -29,7 +29,7 @@ export default function DataTable(props) {
             {stateData[0][props.category].map((item, index) => {
               if (props.headerRange)//If headerRange is specified table expects 2 header categories "start" to "end"
                 return (
-                  <StyledTableCell align="center" key={index}>
+                  <StyledTableCell style={{ whiteSpace:'nowrap'}} align="center" key={index}>
                     {item[props.headerCategory1]}<br />to<br />{item[props.headerCategory2]}
                   </StyledTableCell>);
               else
