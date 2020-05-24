@@ -7,7 +7,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import WeeklyData from "../../../Data/WeeklyRateOfIncrease.json";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -30,9 +29,9 @@ const useStyles = makeStyles({
   }
 });
 
-export default function WeeklyIncreaseDataTable() {
+export default function WeeklyIncreaseDataTable(props) {
   const classes = useStyles();
-
+  const WeeklyData = props.data;
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="WeeklyIncrease table">

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import DeathRateData from "../../Data/DeathRate.json";
 import StateSelector from '../Common Components/StateSelector';
 import BarChart from '../Common Components/BarChart';
 
-const getFormattedData = () => {
+const getFormattedData = (DeathRateData) => {
     let stateNameArray = [], seriesData = [], categories = [], defaultStates = [], currentSeriesData = [];
     let index = 0;
     const { stateData } = { ...DeathRateData.data }
@@ -30,9 +29,8 @@ const getFormattedData = () => {
     return { stateNames: stateNameArray.sort(), seriesData, currentSeriesData, categories, defaultStates };
 }
 
-const { stateNames, seriesData, currentSeriesData, categories, defaultStates } = getFormattedData();
-
 const DeathRateGraph = (props) => {
+    const { stateNames, seriesData, currentSeriesData, categories, defaultStates } = getFormattedData(props.data);
     const [chartData, setChartData] = useState({ currentSeriesData });
     const filterChartData = (selectedStateArray) => {
         let filteredData = [];

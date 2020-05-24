@@ -71,10 +71,10 @@ export default function WeeklyIncreaseAnalysis(props) {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <WeeklyIncreaseDataTable></WeeklyIncreaseDataTable>
+                <WeeklyIncreaseDataTable data={props.data}></WeeklyIncreaseDataTable>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <WeeklyIncreaseRatioTable></WeeklyIncreaseRatioTable>
+                <WeeklyIncreaseRatioTable data={props.data}></WeeklyIncreaseRatioTable>
             </TabPanel>
         </div>
     );

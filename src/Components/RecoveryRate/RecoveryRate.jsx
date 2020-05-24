@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Tabs, Tab, Box, Typography } from '@material-ui/core';
+import { AppBar, Tabs, Tab, Box, Typography, LinearProgress } from '@material-ui/core';
 import RecoveryRateDataTable from './RecoveryRateDataTable';
 import RecoveryRateGraph from './RecoveryRateGraph';
-import RecoveryRateData from '../../Data/RecoveryRate.json';
+import { fetchRecoveryRateData } from '../../Api/ISI_StatisticalData';
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -52,29 +53,42 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecoveryRate(props) {
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
-
+    const [value, setValue] = useState(0);
+    const [recoveryData, setRecoveryData] = useState(null);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+    useEffect(() => {
+        (async () => {
+            const responseData = await fetchRecoveryRateData();
+            if (!responseData || !responseData.data)
+                return;
 
+            setRecoveryData(responseData.data);
+
+        })();
+        return () => {
+            console.log("[Recovery Rate] unmounted");
+        };
+    }, []);
     return (
-        <React.Fragment>
-            <Typography color="textSecondary">{RecoveryRateData.heading}</Typography>
-            <div className={classes.root}>
-                <AppBar position="static">
-                    <Tabs centered value={value} onChange={handleChange} aria-label="recoveryRate tabs" variant="fullWidth">
-                        <Tab label="Graph" {...a11yProps(0)} />
-                        <Tab label="Analysis" {...a11yProps(1)} />
-                    </Tabs>
-                </AppBar>
-                <TabPanel value={value} index={0}>
-                    <RecoveryRateGraph theme={props.theme}></RecoveryRateGraph>
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                    <RecoveryRateDataTable></RecoveryRateDataTable>
-                </TabPanel>
-            </div>
-        </React.Fragment>
+        recoveryData ?
+            <React.Fragment>
+                <Typography color="textSecondary">{recoveryData.heading}</Typography>
+                <div className={classes.root}>
+                    <AppBar position="static">
+                        <Tabs centered value={value} onChange={handleChange} aria-label="recoveryRate tabs" variant="fullWidth">
+                            <Tab label="Graph" {...a11yProps(0)} />
+                            <Tab label="Analysis" {...a11yProps(1)} />
+                        </Tabs>
+                    </AppBar>
+                    <TabPanel value={value} index={0}>
+                        <RecoveryRateGraph theme={props.theme} data={recoveryData}></RecoveryRateGraph>
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <RecoveryRateDataTable data={recoveryData.data}></RecoveryRateDataTable>
+                    </TabPanel>
+                </div>
+            </React.Fragment> : <LinearProgress color="secondary" />
     );
 }
