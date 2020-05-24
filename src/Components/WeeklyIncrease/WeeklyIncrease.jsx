@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Typography, Tabs, Tab, Box } from '@material-ui/core';
 import WeeklyIncreaseAnalysis from './WeeklyIncreaseAnalysis/WeeklyIncreaseAnalysis';
 import WeeklyGraph from './WeeklyIncreaseGraph';
-import WeeklyData from "../../Data/WeeklyRateOfIncrease.json";
+import {fetchWeeklyIncreaseData} from '../../Api/ISI_StatisticalData';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -50,14 +50,28 @@ const useStyles = makeStyles((theme) => ({
 export default function WeeklyIncrease(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-
+    const [weeklyData,setWeeklyData] = React.useState(null);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+    useEffect(()=>{
+        (async () => {
+            const responseData = await fetchWeeklyIncreaseData();
+            if (!responseData || !responseData.data)
+                return;
+            
+                setWeeklyData(responseData.data);
+            
+        })();
+        return () => {
+            console.log("[WeeklyIncrease] unmounted");
+        };
+    },[]);
 
     return (
+        weeklyData ? 
         <React.Fragment>
-            <Typography color="textSecondary">{WeeklyData.heading}</Typography>            
+            <Typography color="textSecondary">{weeklyData.heading}</Typography>            
             <div className={classes.root}>
                 <AppBar position="static">
                     <Tabs centered value={value} onChange={handleChange} aria-label="weeklyIncrease tabs" variant="fullWidth">
@@ -66,12 +80,13 @@ export default function WeeklyIncrease(props) {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <WeeklyGraph theme={props.theme}></WeeklyGraph>
+                    <WeeklyGraph theme={props.theme} data={weeklyData}></WeeklyGraph>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <WeeklyIncreaseAnalysis></WeeklyIncreaseAnalysis>
+                    <WeeklyIncreaseAnalysis data={weeklyData}></WeeklyIncreaseAnalysis>
                 </TabPanel>
             </div>
         </React.Fragment>
+        : null
     );
 }

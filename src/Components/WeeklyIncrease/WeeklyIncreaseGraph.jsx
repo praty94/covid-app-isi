@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import WeeklyData from "../../Data/WeeklyRateOfIncrease.json";
 import StateSelector from '../Common Components/StateSelector';
 import WeeklyBarChart from '../Common Components/BarChart';
 
-const getFormattedData = () => {
+const getFormattedData = (WeeklyData) => {
     let stateNameArray = [], seriesData = [], categories = [],defaultStates=[],currentSeriesData=[];
     let index = 0;
     WeeklyData.data.stateData.forEach((item) => {
@@ -28,10 +27,11 @@ const getFormattedData = () => {
     return { stateNames: stateNameArray.sort(),seriesData,currentSeriesData, categories,defaultStates };
 }
 
-const { stateNames, seriesData,currentSeriesData, categories,defaultStates } = getFormattedData();
+
 
 const WeeklyGraph = (props) => {
-    const [chartData,setChartData] = useState({currentSeriesData});
+    const { stateNames, seriesData,currentSeriesData, categories,defaultStates } = getFormattedData(props.data);
+    const [chartData,setChartData] = useState({currentSeriesData});    
     const filterChartData = (selectedStateArray)=>{        
         let filteredData = [];        
         for(let i=0;i<selectedStateArray.length;i++){

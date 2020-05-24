@@ -1,7 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
-import WeeklyData from "../../../Data/WeeklyRateOfIncrease.json";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -18,8 +17,8 @@ const StyledTableRow = withStyles(theme => ({
   }
 }))(TableRow);
 
-export default function WeeklyIncreaseRatioTable() {
-  
+export default function WeeklyIncreaseRatioTable(props) {
+  const WeeklyData = props.data;
   return (
     <TableContainer component={Paper}>
       <Table aria-label="Weekly increase ratio table">

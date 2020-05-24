@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import LineChart from '../Common Components/LineChart';
 import DashboardTable from '../Common Components/SimpleDataTable';
-import OverallData from '../../Data/OverallData.json';
+import {fetchDashboardData} from '../../Api/ISI_StatisticalData';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -70,6 +70,7 @@ export default function Dashboard(props) {
     const heatMapOptions = ['confirmedData','activeData','deathsActive'];
     const [cardsData, setCardsData] = useState({});
     const [chartsData, setChartsData] = useState({});
+    const [dashboardData, setDashboardData] = useState({});
     const [heatMapData, setHeatMapData] = useState({});
     const [expanded, setExpanded] = useState(false);
     const [mapOption, setMapOption] = useState(heatMapOptions[0]);
@@ -96,10 +97,18 @@ export default function Dashboard(props) {
 
             setHeatMapData(formatHeatMapData(statewise));
         })();
+        (async () => {
+            const responseData = await fetchDashboardData();
+            if (!responseData || !responseData.data)
+                return;
+            
+            setDashboardData(responseData.data);
+            
+        })();
         return () => {
             console.log("[Dashboard] unmounted");
         };
-    }, []);
+    }, []);    
     return (
         <div className={classes.root}>
             <Typography variant="h6" color="textPrimary">Covid 19 Summary</Typography>
@@ -163,6 +172,7 @@ export default function Dashboard(props) {
                     : null}
             </div>
             <div style={{ marginTop: 20 }}>
+                {dashboardData && dashboardData.data?
                 <ExpansionPanel TransitionProps={{ unmountOnExit: true }} expanded={expanded === 'panel3'}
                     onChange={handleChangeExpanded('panel3')}>
                     <ExpansionPanelSummary
@@ -174,9 +184,9 @@ export default function Dashboard(props) {
                                                     </Typography>}
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.customPanel}>
-                        <DashboardTable data={OverallData.data}></DashboardTable>
+                        <DashboardTable data={dashboardData.data}></DashboardTable>
                     </ExpansionPanelDetails>
-                </ExpansionPanel>
+                </ExpansionPanel>:null}
             </div>
         </div>
     );
