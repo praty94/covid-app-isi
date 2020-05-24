@@ -1,9 +1,9 @@
 <h1 align="center">Covid 19 Stat and analysis Application</h1>
 
-## ⚡[Live Version](http://covid19.sandipdust.com/)
+## ⚡ [Live Version](http://covid19.sandipdust.com/)
 
-## 📃[Data repository](https://github.com/praty94/covid-data-isi)
-## :rocket:Available Scripts 
+## 📃 [Data repository](https://github.com/praty94/covid-data-isi)
+## :rocket: Available Scripts 
 
 In the project directory, you can run:
 
