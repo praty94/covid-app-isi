@@ -77,7 +77,6 @@ const AboutPage = () => {
                     </Link>
                     </Typography>
                     <Typography color="textPrimary" gutterBottom>Our team uses the data to provide more in depth analysis that we show in different parts of the application.</Typography>
-
                 </Paper>
             </div>
         </div>
