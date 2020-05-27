@@ -30,7 +30,7 @@ export default function SimpleDataTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>        
-          {content.map((item, index) => (
+          {content.countryData.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {item.name}
