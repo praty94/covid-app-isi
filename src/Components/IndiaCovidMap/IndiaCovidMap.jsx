@@ -62,6 +62,7 @@ function IndiaCovidMap(props) {
     setTooltipContent('');
   };
   useEffect(() => {
+    colorMap = {};
     setData(props.data.heatMapData);
   },[props.data]);
 
