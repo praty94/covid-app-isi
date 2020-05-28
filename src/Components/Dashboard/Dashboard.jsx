@@ -9,7 +9,7 @@ import {
     MenuItem, FormControl, Select, Grid,Typography, Divider
 } from '@material-ui/core';
 import LineChart from '../Common Components/LineChart';
-import DashboardTable from '../Common Components/SimpleDataTable';
+import DashboardStatTable from './DashboardStatTable';
 import {fetchDashboardData} from '../../Api/ISI_StatisticalData';
 
 const useStyles = makeStyles((theme) => ({
@@ -155,10 +155,10 @@ export default function Dashboard(props) {
                                                     </Typography>}
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails className={classes.customPanel}>
-                            <FormControl style={{ width: 250 }} variant="outlined" className={classes.formControl}>
+                            <FormControl style={{ width: 250 }} variant="outlined">
                                 <Select
-                                    labelId="demo-simple-select-outlined-label"
-                                    id="demo-simple-select-outlined"
+                                    labelId="heatmap-select-labelId"
+                                    id="heatmap-select-id"
                                     value={mapOption}
                                     onChange={handleChange}>
                                     <MenuItem value={heatMapOptions[0]}>Confirmed</MenuItem>
@@ -179,12 +179,12 @@ export default function Dashboard(props) {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel3bh-content"
                         id="panel3bh-header">
-                        <Typography className={classes.heading}>Covid 19 Comparision data - India [TBD]</Typography>
+                        <Typography className={classes.heading}>Covid 19 Comparision data [TBD]</Typography>
                         {expanded === 'panel3' ? null : <Typography className={classes.secondaryHeading}>Tap to expand
                                                     </Typography>}
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.customPanel}>
-                        <DashboardTable data={dashboardData.data}></DashboardTable>
+                        <DashboardStatTable data={dashboardData.data}></DashboardStatTable>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>:null}
             </div>

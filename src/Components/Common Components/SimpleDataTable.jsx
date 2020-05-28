@@ -18,10 +18,10 @@ const StyledTableRow = withStyles(theme => ({
 }))(TableRow);
 
 export default function SimpleDataTable(props) {  
-  const { headers, content } = { ...props.data };
+  const { headers, data } = { ...props.data };
   return (
-    <TableContainer component={Paper}>
-      <Table  aria-label="Custom Data table">
+    <TableContainer style={{marginTop:15}} component={Paper}>
+      <Table aria-label="Custom Data table">
         <TableHead>
           <TableRow>
             {headers.map((item, index) => {              
@@ -30,7 +30,7 @@ export default function SimpleDataTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>        
-          {content.countryData.map((item, index) => (
+          {data.map((item, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {item.name}
