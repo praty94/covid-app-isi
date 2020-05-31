@@ -12,6 +12,6 @@ const Gradient = (props) => (
 );
 
 Gradient.propTypes = {
-    colors: PropTypes.object.isRequired
+    colors: PropTypes.array.isRequired
 };
 export default Gradient;
