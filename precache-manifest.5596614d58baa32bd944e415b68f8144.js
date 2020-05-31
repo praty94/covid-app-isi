@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3c7e90f0ef6fb67b76c0aa0450aaaabe",
+    "revision": "f3c5bbbb8c50108f643ae521bcd11abe",
     "url": "/covid-app-isi/index.html"
   },
   {
-    "revision": "a7086e8a671da2b8f91e",
+    "revision": "8464666fe0a1f27a0b5d",
     "url": "/covid-app-isi/static/css/main.63e76035.chunk.css"
   },
   {
-    "revision": "2c0c9111007cf96527e6",
-    "url": "/covid-app-isi/static/js/2.78467da5.chunk.js"
+    "revision": "281bd16bf5a8b62c96ef",
+    "url": "/covid-app-isi/static/js/2.f6a5c6a6.chunk.js"
   },
   {
     "revision": "799162a164bdc1beedb1699a2bf06de4",
-    "url": "/covid-app-isi/static/js/2.78467da5.chunk.js.LICENSE.txt"
+    "url": "/covid-app-isi/static/js/2.f6a5c6a6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a7086e8a671da2b8f91e",
-    "url": "/covid-app-isi/static/js/main.3e0affda.chunk.js"
+    "revision": "8464666fe0a1f27a0b5d",
+    "url": "/covid-app-isi/static/js/main.0846fe4b.chunk.js"
   },
   {
     "revision": "fe5d0c1d2f3694169c39",
@@ -30,5 +30,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "60d7601e00b20fd1e3cec43ea811be82",
     "url": "/covid-app-isi/static/media/MainIconWhite.60d7601e.svg"
+  },
+  {
+    "revision": "69b251b73265d419a16abe37a3ec901b",
+    "url": "/covid-app-isi/static/media/testIco.69b251b7.png"
   }
 ]);
