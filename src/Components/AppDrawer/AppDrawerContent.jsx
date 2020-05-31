@@ -7,10 +7,10 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import { getIcon } from '../../Helpers/IconHelper';
 import { green } from '@material-ui/core/colors';
-import { MainIconWhite, MainIconBlack } from '../../Assets';
+import { logo } from '../../Assets';
 const useStyles = makeStyles((theme) => ({
     mainIcon: {
-        height: '15rem',
+        height: '13rem',
         padding: '2rem'
     },
     toolbar: {
@@ -36,10 +36,8 @@ const DrawerContent = (props) => {
     const classes = useStyles();
     return (
         <div>
-            <div className={classes.toolbar}>
-                {props.curTheme !== "light" ?
-                    <img className={classes.mainIcon} src={MainIconWhite} alt="mainIcon"></img> :
-                    <img className={classes.mainIcon} src={MainIconBlack} alt="mainIcon"></img>}
+            <div className={classes.toolbar}>               
+                    <img className={classes.mainIcon} src={logo} alt="mainIcon"></img> 
             </div>
             <Divider />
             <List>
