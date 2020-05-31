@@ -22,13 +22,9 @@ const DashboardStatTable = (props) => {
         console.log("[DashboardStatTable] useEffect called");
         let tabdata = {"headers":props.data.headers};
         if(selectedOption === "India"){            
-            tabdata.data = props.data.content.countryData;   
-            console.log("selected Option : "+selectedOption);
-            console.log(tabdata.data);         
+            tabdata.data = props.data.content.countryData;
         }else{
-            tabdata.data = props.data.content.stateData[selectedOption].data;
-            console.log("selected Option : "+selectedOption);
-            console.log(tabdata.data);
+            tabdata.data = props.data.content.stateData[selectedOption].data;            
         }
         setTableData(tabdata);
     },[selectedOption,props]);
