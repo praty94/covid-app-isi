@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
     },
     marginT20:{
         marginTop:20
+    },
+    marginB20:{
+        marginBottom:20
     }
 }));
 const formatChartsData = (timeSeriesArray) => {
@@ -231,6 +234,7 @@ export default function Dashboard(props) {
                                                     </Typography>}
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.customPanel}>
+                        <Typography className={classes.marginB20} color="textSecondary">{dashboardData.heading}</Typography>
                         <DashboardStatTable data={dashboardData.data}></DashboardStatTable>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>:null}
