@@ -11,6 +11,10 @@ const LineChart = (props) => {
             data: props.data.totalConfirmedArray
         },
         {
+            name: 'Active',
+            data: props.data.totalActiveArray
+        },
+        {
             name: 'Recovery',
             data: props.data.totalRecoveredArray
         },
@@ -30,6 +34,10 @@ const LineChart = (props) => {
             series: [{
                 name: 'Confirmed',
                 data: props.data.totalConfirmedArray
+            },
+            {
+                name: 'Active',
+                data: props.data.totalActiveArray
             },
             {
                 name: 'Recovery',

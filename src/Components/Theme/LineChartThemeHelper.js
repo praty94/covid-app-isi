@@ -9,7 +9,7 @@ const LineChartThemeHelper = (data) => {
                 }
             }
         },
-        colors: ['#368bf6', '#81c784', '#eb5569'],
+        colors: ['#368bf6','#f2a365', '#81c784', '#eb5569'],
         dataLabels: {
             enabled: false
         },
