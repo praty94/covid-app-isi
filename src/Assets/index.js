@@ -1,1 +1,1 @@
-export {default as logo} from './icons/Logo-Max.png';
+export {default as logo} from './icons/logo.svg';
