@@ -16,7 +16,11 @@ import {fetchDashboardData} from '../../Api/ISI_StatisticalData';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1
+        flexGrow: 1,
+        marginTop:-10,
+        [theme.breakpoints.down('xs')]: {
+            marginTop:0
+        }
     },
     paper: {
         padding: theme.spacing(2),
@@ -142,7 +146,9 @@ export default function Dashboard(props) {
     }, []);    
     return (
         <div className={classes.root}>
-            <Typography variant="h6" color="textPrimary">Covid-19 Summary</Typography>
+            <Typography variant="h6" color="textPrimary">Dashboard to Facilitate Process of Unlocking</Typography>
+            <Divider></Divider>
+            <Typography variant="h6" color="textPrimary" style={{marginTop:10}}>Covid-19 Summary</Typography>
             <Typography color="textSecondary">India</Typography>
             <Divider></Divider>
             <Grid container direction="column">
