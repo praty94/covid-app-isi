@@ -60,9 +60,9 @@ const LineChart = (props) => {
 }
 const getRealWidth = (width) => {
     if (width > 650 && width < 960) {
-        return width - 80;
+        return width - 90;
     } else if (width >= 960) {
-        return width - 320;
+        return width - 330;
     } else {
         return width - 50;
     }
