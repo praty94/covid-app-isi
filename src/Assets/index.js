@@ -1,2 +1,1 @@
-export {default as MainIconWhite} from './icons/MainIconWhite.svg';
-export {default as MainIconBlack} from './icons/MainIconBlack.svg';
+export {default as logo} from './icons/logo.svg';

@@ -11,6 +11,10 @@ const LineChart = (props) => {
             data: props.data.totalConfirmedArray
         },
         {
+            name: 'Active',
+            data: props.data.totalActiveArray
+        },
+        {
             name: 'Recovery',
             data: props.data.totalRecoveredArray
         },
@@ -30,6 +34,10 @@ const LineChart = (props) => {
             series: [{
                 name: 'Confirmed',
                 data: props.data.totalConfirmedArray
+            },
+            {
+                name: 'Active',
+                data: props.data.totalActiveArray
             },
             {
                 name: 'Recovery',
@@ -52,9 +60,9 @@ const LineChart = (props) => {
 }
 const getRealWidth = (width) => {
     if (width > 650 && width < 960) {
-        return width - 80;
+        return width - 90;
     } else if (width >= 960) {
-        return width - 320;
+        return width - 330;
     } else {
         return width - 50;
     }

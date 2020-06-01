@@ -6,20 +6,25 @@
                 "currentRole": "Full Stack Developer",
                 "avatar": "https://github.com/praty94.png",
                 "github": "https://github.com/praty94",
-                "linkedIn": "https://www.linkedin.com/in/pratyay-bandyopadhyay/"
+                "linkedIn": "https://www.linkedin.com/in/pratyay-bandyopadhyay/",
+                "email":"mailto:pratyay94@gmail.com"
             },
             {
                 "name": "Sandip Das",
                 "currentRole": "Front End Developer",
                 "avatar": "https://github.com/SandipDust.png",
                 "github": "https://github.com/SandipDust",
-                "linkedIn": "https://www.linkedin.com/in/sandipdust/"
+                "linkedIn": "https://www.linkedin.com/in/sandipdust/",
+                "email":"mailto:riddhi.909@gmail.com"
             }
         ],
         "analytics": {
             "head": {
-                "name": "Prof. Amitava Bandyopadhyay",
-                "currentRole": "Dept. of SQC & OR, ISI Kolkata"
+                "name": "Amitava Bandyopadhyay",
+                "currentRole": "SQC & OR Unit, Indian Statistical Institute, Kolkata",
+                "avatar":"https://github.com/Amitava1982.png",
+                "email":"mailto:amitava_banerjee2001@yahoo.com"
+                
             },
             "team": [
                 {
@@ -27,28 +32,32 @@
                     "currentRole": "M Tech QROR, ISI Kolkata",
                     "avatar": "https://github.com/Sayantan81.png",
                     "github": "https://github.com/Sayantan81",
-                    "linkedIn": "https://www.linkedin.com/in/sayantan-choudhury-320996192"
+                    "linkedIn": "https://www.linkedin.com/in/sayantan-choudhury-320996192",
+                    "email":"mailto:sayantan.choudhury81@gmail.com"
                 },
                 {
                     "name": "Aman Kumar",
                     "currentRole": "M Tech QROR, ISI Kolkata",
                     "avatar": "https://github.com/amanjad504.png",
                     "github": "https://github.com/amanjad504",
-                    "linkedIn": "https://www.linkedin.com/in/aman-kumar-3b8970147"
+                    "linkedIn": "https://www.linkedin.com/in/aman-kumar-3b8970147",
+                    "email":"mailto:amankumar110707@gmail.com"
                 },
                 {
                     "name": "Souryadeep Majumder",
                     "currentRole": "M Tech QROR, ISI Kolkata",
                     "avatar": "https://github.com/1996Souryadeep.png",
                     "github": "https://github.com/1996Souryadeep",
-                    "linkedIn": "https://www.linkedin.com/in/souryadeep-majumder-ab22721a7"
+                    "linkedIn": "https://www.linkedin.com/in/souryadeep-majumder-ab22721a7",
+                    "email":"mailto:majumdersouryadeep@gmail.com"
                 },
                 {
                     "name": "Pritam Sen",
                     "currentRole": "M Tech QROR, ISI Kolkata",
                     "avatar": "https://github.com/pritamsen97.png",
                     "github": "https://github.com/pritamsen97",
-                    "linkedIn": "https://www.linkedin.com/in/pritam-sen-a4b932128"
+                    "linkedIn": "https://www.linkedin.com/in/pritam-sen-a4b932128",
+                    "email":"mailto:pritamsen672@gmail.com"
                 }
             ]
         }

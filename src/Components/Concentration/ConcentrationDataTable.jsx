@@ -19,14 +19,17 @@ const StyledTableRow = withStyles(theme => ({
 
 export default function ConcentrationDataTable(props) {
  
-  const { stateData } = { ...props.data };
+  const { stateData,headers } = { ...props.data };
   return (
     <TableContainer component={Paper}>
       <Table aria-label="Concentration Data table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>State / UT</StyledTableCell>            
-            <StyledTableCell align="center">Concentration</StyledTableCell>            
+            {headers.map((item,index)=>(
+              index === 0 ? 
+              <StyledTableCell>{item}</StyledTableCell>
+              :<StyledTableCell align="center">{item}</StyledTableCell>
+            ))}                     
           </TableRow>
         </TableHead>
         <TableBody>          

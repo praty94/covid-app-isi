@@ -29,7 +29,7 @@ const AboutPage = () => {
     const { contributors } = { ...Contributors };
     return (
         <div className={classes.container}>
-            <div>
+            <div style={{ marginTop: -10 }}>
                 <Typography variant="h6" color="textPrimary">Analytics Team</Typography>
                 <Divider></Divider>
                 <div>
@@ -52,7 +52,7 @@ const AboutPage = () => {
                         : null}
                 </div>
             </div>
-            <div style={{ marginTop: 20 }}>
+            <div style={{ marginTop: 10 }}>
                 <Typography variant="h6" color="textPrimary">Development Team</Typography>
                 <Divider></Divider>
                 <Grid container spacing={3} style={{ marginTop: 5 }}>
@@ -67,7 +67,7 @@ const AboutPage = () => {
                 <Typography variant="h6" color="textPrimary">Project Details</Typography>
                 <Divider></Divider>
                 <Paper className={classes.detailsContainer}>
-                    <Typography color="textPrimary" gutterBottom>This project is open source. Anybody is free to use, study and modify it .</Typography>
+                    <Typography color="textPrimary" gutterBottom>[TO BE UPDATED]</Typography>
                     <Button variant="outlined" size="large" startIcon={<GitHubIcon />} onClick={()=>handleGithubRedirect()}>Github Repository</Button>
                 </Paper>
                 <Paper className={classes.detailsContainer}>
@@ -77,8 +77,14 @@ const AboutPage = () => {
                     </Link>
                     </Typography>
                     <Typography color="textPrimary" gutterBottom>Our team uses the data to provide more in depth analysis that we show in different parts of the application.</Typography>
-
-                </Paper>
+                </Paper>                
+            </div>
+            <div style={{ marginTop: 20 }}>
+                <Typography variant="h6" color="textPrimary">Disclaimer</Typography>
+                <Divider></Divider>
+                <Paper className={classes.detailsContainer}>
+                    <Typography color="textPrimary" gutterBottom>This webpage reports information about COVID-19 related work being done by ISI researchers as provided by them. The purpose is quick dissemination of results obtained and capabilities available. The experimentation and validation for all these works are in progress and the results and inferences may change subsequently. For specific questions/issues, the respective scientist may be contacted.</Typography>                    
+                </Paper>                               
             </div>
         </div>
     );

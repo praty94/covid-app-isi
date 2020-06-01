@@ -1,5 +1,6 @@
 {
   "name": "covid-app-isi",
+  "homepage": "http://praty94.github.io/covid-app-isi",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +13,7 @@
     "apexcharts": "^3.19.0",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
+    "gh-pages": "^2.2.0",
     "html-react-parser": "^0.10.3",
     "http-proxy-middleware": "^1.0.4",
     "react": "^16.13.1",
@@ -26,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

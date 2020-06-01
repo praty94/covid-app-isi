@@ -1,13 +1,12 @@
 import React from 'react';
 import { Avatar, Paper, Grid, Typography } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import GitHubIcon from '@material-ui/icons/GitHub';
+import {LinkedIn,GitHub,Email} from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({    
-    container:{
-        maxWidth:500
+const useStyles = makeStyles((theme) => ({
+    container: {
+        maxWidth: 500
     },
     paper: {
         paddingTop: theme.spacing(1),
@@ -28,35 +27,39 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 15,
         textAlign: 'left'
     },
-    buttonContainer:{
-        marginLeft:-15
+    buttonContainer: {
+        marginLeft: -15
     }
 }));
 
-const openLink = (url) =>{
-    window.open(url, "_blank");
+const openLink = (url, sameTab) => {
+    sameTab ? window.location = url : window.open(url, "_blank");
 }
 const AboutCard = (props) => {
     const classes = useStyles();
-    const {data} = {...props};    
+    const { data } = { ...props };
     return (<Grid item xs={12} md={6} className={classes.container}>
         <Paper className={classes.paper}>
             <Grid container style={{ flexWrap: 'noWrap' }}>
-                <Grid item root className={classes.center}>
+                <Grid item className={classes.center}>
                     <Avatar className={classes.avatar} alt={data.name} src={data.avatar} />
                 </Grid>
-                <Grid item root className={classes.rightContent}>
+                <Grid item className={classes.rightContent}>
                     <Typography variant="h6" color="textPrimary">{data.name}</Typography>
                     <Typography color="textSecondary">{data.currentRole}</Typography>
-                    <Grid className={classes.buttonContainer}>                        
-                        {data.linkedIn?
-                        <IconButton onClick={() => openLink(data.linkedIn)} aria-label="delete">
-                            <LinkedInIcon />
-                        </IconButton>:null}
+                    <Grid className={classes.buttonContainer}>
+                        {data.linkedIn ?
+                            <IconButton onClick={() => openLink(data.linkedIn)} aria-label="delete">
+                                <LinkedIn />
+                            </IconButton> : null}
                         {data.github ?
-                        <IconButton onClick={() => openLink(data.github)} aria-label="delete">
-                            <GitHubIcon />
-                        </IconButton>:null}
+                            <IconButton onClick={() => openLink(data.github)} aria-label="delete">
+                                <GitHub />
+                            </IconButton> : null}
+                        {data.email ?
+                            <IconButton onClick={() => openLink(data.email, true)} aria-label="delete">
+                                <Email />
+                            </IconButton> : null}
                     </Grid>
                 </Grid>
             </Grid>

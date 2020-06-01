@@ -1,6 +1,5 @@
 import React from 'react';
-import { WeeklyIncrease, RecoveryRate, TrafficIntensity, Concentration, DeathRate, TestedPositive, Dashboard,FAQ } from '../index';
-import AboutPage from '../About/AboutPage';
+import { WeeklyIncrease, RecoveryRate, TrafficIntensity, Concentration, DeathRate, TestedPositive, Dashboard,FAQ,AboutPage } from '../index';
 
 const PageSwitchHelper = (props) => {
     switch (props.pageId) {
