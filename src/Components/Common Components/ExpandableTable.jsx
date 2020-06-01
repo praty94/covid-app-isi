@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles,withStyles } from '@material-ui/core/styles';
+import cx from 'classnames';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
@@ -12,17 +13,44 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-const useRowStyles = makeStyles({
+const useRowStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       borderBottom: 'unset',
-    },
+    }
   },
-});
+  clickableRow:{
+    '&:hover':{
+      backgroundColor: theme.palette.action.hover,
+      cursor:'pointer'
+    }
+  },
+  dynamicPadding:{
+    [theme.breakpoints.down('sm')]: {
+      padding:theme.spacing(1)
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding:theme.spacing(0.75)
+    }
+  },
+  expandIcon:{
+    marginLeft:-10,
+    marginRight:5,
+    [theme.breakpoints.down('xs')]: {
+      display:'none'
+    }
+  }
+}));
 const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    [theme.breakpoints.down('sm')]: {
+      padding:theme.spacing(1)
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding:theme.spacing(0.75)
+    }
   }
 }))(TableCell);
 const StyledTableRow = withStyles(theme => ({
@@ -42,17 +70,17 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow className={classes.root}>        
-        <TableCell align="left" >
-          <IconButton style={{marginLeft:-10,marginRight:5}} aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+      <TableRow className={cx(classes.root,classes.clickableRow)} onClick={() => setOpen(!open)} >        
+        <TableCell align="left" className={classes.dynamicPadding}>
+        <IconButton className={classes.expandIcon} aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
+          </IconButton>          
           {stateData.state}
         </TableCell>
-        <TableCell align="center">{stateData.confirmed}</TableCell>
-        <TableCell align="center">{stateData.active}</TableCell>
-        <TableCell align="center">{stateData.recovered}</TableCell>
-        <TableCell align="center">{stateData.deaths}</TableCell>
+        <TableCell align="center" className={classes.dynamicPadding}>{stateData.confirmed}</TableCell>
+        <TableCell align="center" className={classes.dynamicPadding}>{stateData.active}</TableCell>
+        <TableCell align="center" className={classes.dynamicPadding}>{stateData.recovered}</TableCell>
+        <TableCell align="center" className={classes.dynamicPadding}>{stateData.deaths}</TableCell>
       </TableRow>
       <StyledTableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -70,12 +98,12 @@ function Row(props) {
               </TableHead>
               <TableBody>
                 {districts.map((district, index) => (
-                  <StyledTableRow className={classes.root}>                   
-                    <TableCell align="left">{district}</TableCell>
-                    <TableCell align="center">{districtData[district].confirmed}</TableCell>
-                    <TableCell align="center">{districtData[district].active}</TableCell>
-                    <TableCell align="center">{districtData[district].recovered}</TableCell>
-                    <TableCell align="center">{districtData[district].deceased}</TableCell>
+                  <StyledTableRow className={classes.root} key={index}>                   
+                    <TableCell align="left" className={classes.dynamicPadding}>{district}</TableCell>
+                    <TableCell align="center" className={classes.dynamicPadding}>{districtData[district].confirmed}</TableCell>
+                    <TableCell align="center" className={classes.dynamicPadding}>{districtData[district].active}</TableCell>
+                    <TableCell align="center" className={classes.dynamicPadding}>{districtData[district].recovered}</TableCell>
+                    <TableCell align="center" className={classes.dynamicPadding}>{districtData[district].deceased}</TableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
