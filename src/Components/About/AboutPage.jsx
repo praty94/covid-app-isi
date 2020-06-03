@@ -67,13 +67,13 @@ const AboutPage = () => {
                 <Typography variant="h6" color="textPrimary">Project Details</Typography>
                 <Divider></Divider>
                 <Paper className={classes.detailsContainer}>
-                    <Typography color="textPrimary" gutterBottom>[TO BE UPDATED]</Typography>
+                    <Typography color="textPrimary" gutterBottom>Our project is available on Github.</Typography>
                     <Button variant="outlined" size="large" startIcon={<GitHubIcon />} onClick={()=>handleGithubRedirect()}>Github Repository</Button>
                 </Paper>
                 <Paper className={classes.detailsContainer}>
                     <Typography color="textPrimary" gutterBottom>API -&nbsp;
                     <Link href="https://api.covid19india.org/" target='_blank' color="secondary">
-                        api.covid19india.org
+                        <strong>api.covid19india.org</strong>
                     </Link>
                     </Typography>
                     <Typography color="textPrimary" gutterBottom>Our team uses the data to provide more in depth analysis that we show in different parts of the application.</Typography>

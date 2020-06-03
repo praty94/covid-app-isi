@@ -5,6 +5,8 @@ import { AppBar, Tabs, Tab, Box, Typography, LinearProgress } from '@material-ui
 import ConcentrationDataTable from './ConcentrationDataTable';
 import ConcentrationGraph from './ConcentrationGraph';
 import { fetchConcentrationData } from '../../Api/ISI_StatisticalData';
+import parse from 'html-react-parser';
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -70,12 +72,12 @@ export default function Concentration(props) {
     return (
         concentrationData ?
             <React.Fragment>
-                <Typography color="textSecondary">{concentrationData.heading}</Typography>
+                <Typography color="textPrimary">{parse(concentrationData.heading)}</Typography>
                 <div className={classes.root}>
                     <AppBar position="static">
                         <Tabs centered value={value} onChange={handleChange} aria-label="concentration tabs" variant="fullWidth">
                             <Tab label="Graph" {...a11yProps(0)} />
-                            <Tab label="Analysis" {...a11yProps(1)} />
+                            <Tab label="Data" {...a11yProps(1)} />
                         </Tabs>
                     </AppBar>
                     <TabPanel value={value} index={0}>

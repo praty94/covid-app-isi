@@ -5,6 +5,7 @@ import { AppBar, Tabs, Tab, Box, Typography, LinearProgress } from '@material-ui
 import DataTable from '../Common Components/DataTable';
 import TestedPositiveGraph from './TestedPostiveGraph';
 import { fetchTestedPositiveData } from '../../Api/ISI_StatisticalData';
+import parse from 'html-react-parser';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -70,20 +71,20 @@ export default function TestedPositive(props) {
     return (
         testedPositiveData ?
             <React.Fragment>
-                <Typography color="textSecondary">{testedPositiveData.heading}</Typography>
+                <Typography color="textPrimary">{parse(testedPositiveData.heading)}</Typography>
                 <div className={classes.root}>
                     <AppBar position="static">
                         <Tabs centered value={value} onChange={handleChange} aria-label="TestedPositive tabs" variant="fullWidth">
                             <Tab label="Graph" {...a11yProps(0)} />
-                            <Tab label="Analysis" {...a11yProps(1)} />
+                            <Tab label="Data" {...a11yProps(1)} />
                         </Tabs>
                     </AppBar>
                     <TabPanel value={value} index={0}>
                         <TestedPositiveGraph data={testedPositiveData} theme={props.theme}></TestedPositiveGraph>
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <DataTable data={testedPositiveData.data} category="testData" headerRange={true}
-                            headerCategory1="startDate" headerCategory2="endDate" itemCategory="percPositive"></DataTable>
+                        <DataTable data={testedPositiveData.data} category="testData"
+                            headerCategory="endDate" itemCategory="percPositive"></DataTable>
                     </TabPanel>
                 </div>
             </React.Fragment> : <LinearProgress color="secondary" />
