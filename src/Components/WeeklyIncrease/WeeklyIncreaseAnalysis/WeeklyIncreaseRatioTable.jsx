@@ -1,6 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
+import WeekFooter from '../WeekFooter';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -19,36 +20,40 @@ const StyledTableRow = withStyles(theme => ({
 
 export default function WeeklyIncreaseRatioTable(props) {
   const WeeklyData = props.data;
+  const {footers} = {...props.data.data};
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="Weekly increase ratio table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>State / UT</StyledTableCell>
-            {WeeklyData.data.stateData[0].ratios.map((item, index) => (
-              <StyledTableCell align="center" key={index}>{item.name}</StyledTableCell>
+    <React.Fragment>
+      <TableContainer style={{marginBottom:20}} component={Paper}>
+        <Table aria-label="Weekly increase ratio table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>State / UT</StyledTableCell>
+              {WeeklyData.data.stateData[0].ratios.map((item, index) => (
+                <StyledTableCell align="center" key={index}>{item.name}</StyledTableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {WeeklyData.data.stateData.map((item, index) => (
+              <StyledTableRow key={index}>
+                <StyledTableCell component="th" scope="row">
+                  {item.stateName}
+                </StyledTableCell>
+                {item.ratios.map((weeklyItem, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <StyledTableCell align="center">
+                        {weeklyItem.value ? weeklyItem.value : "N/A"}
+                      </StyledTableCell>
+                    </React.Fragment>
+                  );
+                })}
+              </StyledTableRow>
             ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {WeeklyData.data.stateData.map((item, index) => (
-            <StyledTableRow key={index}>
-              <StyledTableCell component="th" scope="row">
-                {item.stateName}
-              </StyledTableCell>
-              {item.ratios.map((weeklyItem, index) => {
-                return (
-                  <React.Fragment key={index}>
-                    <StyledTableCell align="center">
-                      {weeklyItem.value ? weeklyItem.value : "N/A"}
-                    </StyledTableCell>
-                  </React.Fragment>
-                );
-              })}
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableBody>
+        </Table>
+      </TableContainer>
+      {footers ?<WeekFooter data={footers}/> : null}
+    </React.Fragment>
   );
 }

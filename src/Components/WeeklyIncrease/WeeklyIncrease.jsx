@@ -5,6 +5,7 @@ import { AppBar, Typography, Tabs, Tab, Box, LinearProgress } from '@material-ui
 import WeeklyIncreaseAnalysis from './WeeklyIncreaseAnalysis/WeeklyIncreaseAnalysis';
 import WeeklyGraph from './WeeklyIncreaseGraph';
 import { fetchWeeklyIncreaseData } from '../../Api/ISI_StatisticalData';
+import parse from 'html-react-parser';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -71,12 +72,12 @@ export default function WeeklyIncrease(props) {
     return (
         weeklyData ?
             <React.Fragment>
-                <Typography color="textSecondary">{weeklyData.heading}</Typography>
+                <Typography color="textPrimary">{parse(weeklyData.heading)}</Typography>
                 <div className={classes.root}>
                     <AppBar position="static">
                         <Tabs centered value={value} onChange={handleChange} aria-label="weeklyIncrease tabs" variant="fullWidth">
                             <Tab label="Graph" {...a11yProps(0)} />
-                            <Tab label="Analysis" {...a11yProps(1)} />
+                            <Tab label="Data" {...a11yProps(1)} />
                         </Tabs>
                     </AppBar>
                     <TabPanel value={value} index={0}>
