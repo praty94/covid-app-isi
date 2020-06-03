@@ -11,6 +11,15 @@ export const fetchDashboardData = async () => {
     }    
 }
 
+export const fetchDownloadableReports = async () => {
+    try{
+        const response = await axios.get(`${baseUrl}/${appData}/Reports.json`);
+        return response;
+    }catch{
+        console.error("[fetchDownloadableReports] Failed");
+    }    
+}
+
 export const fetchWeeklyIncreaseData = async () => {
     try{
         const response = await axios.get(`${baseUrl}/${statData}/WeeklyRateOfIncrease.json`);
