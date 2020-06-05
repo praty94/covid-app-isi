@@ -11,6 +11,7 @@ import ExpandableTable from '../Common Components/ExpandableTable';
 import { fetchDashboardData, fetchDownloadableReports } from '../../Api/ISI_StatisticalData';
 import parse from 'html-react-parser';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import messages from '../../Messages/DashboardMessages.json';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -150,10 +151,10 @@ export default function Dashboard(props) {
     }, []);
     return (
         <div className={classes.root}>
-            <Typography variant="h6" color="textPrimary">Dashboard to Facilitate Process of Unlocking</Typography>
+            <Typography variant="h6" color="textPrimary">{messages.mainHeading}</Typography>
             <Divider></Divider>
-            <Typography variant="h6" color="textPrimary" style={{ marginTop: 10 }}>Covid-19 Summary</Typography>
-            <Typography color="textSecondary">India</Typography>
+            <Typography variant="h6" color="textPrimary" style={{ marginTop: 10 }}>{messages.subHeading}</Typography>
+            <Typography color="textSecondary">{messages.India}</Typography>
             <Divider></Divider>
             <Grid container direction="column">
                 <Grid container direction="row" alignItems="center" justify="center">
@@ -172,6 +173,7 @@ export default function Dashboard(props) {
                         panelName='panel1' heading='Covid-19 Time Series Graph'
                         handleChangeExpanded={handleChangeExpanded}>
                         <LineChart data={chartsData} theme={props.theme}></LineChart>
+                        <Typography>{messages.chartSubText}</Typography>
                     </DashboardSection>
                     : null}
             </div>
@@ -186,9 +188,9 @@ export default function Dashboard(props) {
                                 id="heatmap-select-id"
                                 value={mapOption}
                                 onChange={handleChange}>
-                                <MenuItem value={heatMapOptions[0]}>Confirmed</MenuItem>
-                                <MenuItem value={heatMapOptions[1]}>Active</MenuItem>
-                                <MenuItem value={heatMapOptions[2]}>Deceased</MenuItem>
+                                <MenuItem value={heatMapOptions[0]}>{messages.confirmed}</MenuItem>
+                                <MenuItem value={heatMapOptions[1]}>{messages.active}</MenuItem>
+                                <MenuItem value={heatMapOptions[2]}>{messages.deceased}</MenuItem>
                             </Select>
                         </FormControl>
                         <IndiaCovidMap data={heatMapData[mapOption]}></IndiaCovidMap>
