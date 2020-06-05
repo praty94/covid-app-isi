@@ -83,7 +83,10 @@ const AboutPage = () => {
                 <Typography variant="h6" color="textPrimary">Disclaimer</Typography>
                 <Divider></Divider>
                 <Paper className={classes.detailsContainer}>
-                    <Typography color="textPrimary" gutterBottom>This webpage reports information about COVID-19 related work being done by ISI researchers as provided by them. The purpose is quick dissemination of results obtained and capabilities available. The experimentation and validation for all these works are in progress and the results and inferences may change subsequently. For specific questions/issues, the respective scientist may be contacted.</Typography>                    
+                    <Typography color="textPrimary" gutterBottom>This dashboard uses data from (<Link href="https://www.covid19india.org/" target='_blank' color="inherit">
+                        <strong>covid19india.org</strong></Link>). While the analyses and presentation are carried out by us, we have no control over the accuracy of the base data.
+This dashboard provides information about the underlying scenario from different perspectives to facilitate decision making. However, specific actions are not prescribed. The user needs to look at the information and decide accordingly.
+Please refer to the ISI website for general disclaimers.</Typography>                    
                 </Paper>                               
             </div>
         </div>
