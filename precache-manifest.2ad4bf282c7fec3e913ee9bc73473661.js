@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0304d2e87f834d6d082ff5c4fe2f0b65",
+    "revision": "0b37646e43fd0b510623b3ef9f09a6d2",
     "url": "/covid-app-isi/index.html"
   },
   {
-    "revision": "1be1c422546a86cbc442",
+    "revision": "bcc555079936ae315f6c",
     "url": "/covid-app-isi/static/css/main.63e76035.chunk.css"
   },
   {
-    "revision": "eb556ce47ae748d662aa",
-    "url": "/covid-app-isi/static/js/2.60f8082f.chunk.js"
+    "revision": "42752a0be2d5706e19fc",
+    "url": "/covid-app-isi/static/js/2.042b375b.chunk.js"
   },
   {
     "revision": "799162a164bdc1beedb1699a2bf06de4",
-    "url": "/covid-app-isi/static/js/2.60f8082f.chunk.js.LICENSE.txt"
+    "url": "/covid-app-isi/static/js/2.042b375b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1be1c422546a86cbc442",
-    "url": "/covid-app-isi/static/js/main.b3f36c56.chunk.js"
+    "revision": "bcc555079936ae315f6c",
+    "url": "/covid-app-isi/static/js/main.33ce9c83.chunk.js"
   },
   {
     "revision": "fe5d0c1d2f3694169c39",
