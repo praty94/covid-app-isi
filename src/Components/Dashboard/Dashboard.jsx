@@ -223,8 +223,8 @@ export default function Dashboard(props) {
                         handleChangeExpanded={handleChangeExpanded}>
                         <Grid container spacing={2}>
                             {downloadableReportsData.data.map((item, index) => (
-                                <Grid item>
-                                <Button key={index} variant="outlined" size="large"
+                                <Grid item key={index}>
+                                <Button variant="outlined" size="large"
                                     startIcon={<DescriptionIcon />} onClick={() => handleFileRedirect(item.fileURL)}>
                                     {item.fileName}
                                 </Button>
