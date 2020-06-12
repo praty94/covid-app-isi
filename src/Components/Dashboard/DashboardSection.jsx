@@ -11,10 +11,16 @@ const useStyles = makeStyles((theme) => ({
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
-        flexBasis: '33.33%',
+        [theme.breakpoints.down('sm')]: {
+            flexBasis: '90%',
+        },
+        flexBasis: '45%',
         flexShrink: 0,
     },
     secondaryHeading: {
+        [theme.breakpoints.down('sm')]: {
+            display:'none'
+        },
         fontSize: theme.typography.pxToRem(15),
         color: theme.palette.text.secondary,
         marginLeft: 20
