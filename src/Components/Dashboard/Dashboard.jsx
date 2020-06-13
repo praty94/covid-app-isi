@@ -10,7 +10,7 @@ import DashboardStatTable from './DashboardStatTable';
 import ExpandableTable from '../Common Components/ExpandableTable';
 import { fetchDashboardData, fetchDownloadableReports } from '../../Api/ISI_StatisticalData';
 import parse from 'html-react-parser';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import DescriptionIcon from '@material-ui/icons/Description';
 import messages from '../../Messages/DashboardMessages.json';
 
 const useStyles = makeStyles((theme) => ({
@@ -225,7 +225,7 @@ export default function Dashboard(props) {
                             {downloadableReportsData.data.map((item, index) => (
                                 <Grid item>
                                 <Button key={index} variant="outlined" size="large"
-                                    startIcon={<GetAppIcon />} onClick={() => handleFileRedirect(item.fileURL)}>
+                                    startIcon={<DescriptionIcon />} onClick={() => handleFileRedirect(item.fileURL)}>
                                     {item.fileName}
                                 </Button>
                                 </Grid>
