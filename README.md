@@ -1,8 +1,14 @@
 <h1 align="center">Covid 19 Stat and analysis Application</h1>
 
-## ⚡ [Live Version](http://covid19.sandipdust.com/)
+## ⚡ [Live Version](https://praty94.github.io/covid-app-isi/)
 
 ## 📃 [Data repository](https://github.com/praty94/covid-data-isi)
+
+## License
+
+This project is licensed under the terms of the
+[MIT license](/LICENSE.md).
+
 ## :rocket: Available Scripts 
 
 In the project directory, you can run:
