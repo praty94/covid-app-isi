@@ -5,5 +5,11 @@
     "chartSubText":"Widening gap between confirmed and active cases indicate improved control (improvement in recovery). Increasing trend of active cases signifies risk. Increasing trend of active cases with widening gap between confirmed and active cases may signal gradual risk reduction.",
     "confirmed":"Confirmed",
     "active":"Active",
-    "deceased":"Deceased"
+    "deceased":"Deceased",
+    "timeSeriesGraph":"Covid-19 Time Series Graph",
+    "heatMap":"Covid-19 Heat Map",
+    "stateDistrictData":"State and District level Data",
+    "analysis":"Analysis",
+    "riskSummary":"Risk Summary – India / States / UT",
+    "riskReport":"Risk Summary Report"
 }

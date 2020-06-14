@@ -170,7 +170,7 @@ export default function Dashboard(props) {
             <div className={classes.marginT20}>
                 {chartsData && chartsData.init ?
                     <DashboardSection expanded={expanded === 'panel1'}
-                        panelName='panel1' heading='Covid-19 Time Series Graph'
+                        panelName='panel1' heading={messages.timeSeriesGraph}
                         handleChangeExpanded={handleChangeExpanded}>
                         <LineChart data={chartsData} theme={props.theme}></LineChart>
                         <Typography>{messages.chartSubText}</Typography>
@@ -180,7 +180,7 @@ export default function Dashboard(props) {
             <div className={classes.marginT20}>
                 {heatMapData.init ?
                     <DashboardSection expanded={expanded === 'panel2'}
-                        panelName='panel2' heading='Covid-19 Heat Map'
+                        panelName='panel2' heading={messages.heatMap}
                         handleChangeExpanded={handleChangeExpanded}>
                         <FormControl style={{ width: 250 }} variant="outlined">
                             <Select
@@ -200,17 +200,17 @@ export default function Dashboard(props) {
             <div className={classes.marginT20}>
                 {stateTableData && districtTableData ?
                     <DashboardSection expanded={expanded === 'panel3'}
-                        panelName='panel3' heading='State and District level Data'
+                        panelName='panel3' heading={messages.stateDistrictData}
                         handleChangeExpanded={handleChangeExpanded}>
                         <ExpandableTable stateData={stateTableData} districtData={districtTableData}></ExpandableTable>
                     </DashboardSection> : null}
             </div>
-            <Typography className={classes.marginT20} variant="h6" color="textPrimary">Analysis</Typography>
+            <Typography className={classes.marginT20} variant="h6" color="textPrimary">{messages.analysis}</Typography>
             <Divider></Divider>
             <div className={classes.marginT20}>
                 {dashboardData && dashboardData.data ?
                     <DashboardSection expanded={expanded === 'panel4'}
-                        panelName='panel4' heading='Risk Summary – India / States / UT'
+                        panelName='panel4' heading={messages.riskSummary}
                         handleChangeExpanded={handleChangeExpanded}>
                         <Typography className={classes.marginB20} color="textPrimary">{parse(dashboardData.heading)}</Typography>
                         <DashboardStatTable data={dashboardData.data}></DashboardStatTable>
@@ -219,7 +219,7 @@ export default function Dashboard(props) {
             <div className={classes.marginT20}>
                 {downloadableReportsData && downloadableReportsData.data ?
                     <DashboardSection expanded={expanded === 'panel5'}
-                        panelName='panel5' heading='Risk Summary Report'
+                        panelName='panel5' heading={messages.riskReport}
                         handleChangeExpanded={handleChangeExpanded}>
                         <Grid container spacing={2}>
                             {downloadableReportsData.data.map((item, index) => (
