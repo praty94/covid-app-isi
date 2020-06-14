@@ -12,7 +12,7 @@ const getFormattedData = (ConcentrationData) => {
     });
     
     //extracting first 5 states
-    currentSeriesData = [{ name: "Concentration", data: [...concentrationArray].slice(0, 5) }];
+    currentSeriesData = [{ name: "Spread", data: [...concentrationArray].slice(0, 5) }];
     currentStates = defaultStates = [...allStates].slice(0, 5);
 
     return { stateNames: allStates.sort(), stateMap, currentSeriesData, currentStates,defaultStates };
