@@ -62,18 +62,28 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  //user triggered events
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const handleOptionSelectedMobile = (item) =>{
+    handleDrawerToggle();
+    props.optionSelectedHandler(item);
+  };  
+
   //Props to be sent to app drawer
   const appDrawerProps = {
     currentPage: props.currentPage, options: props.options,
     optionSelectedHandler: props.optionSelectedHandler, curTheme: props.curTheme
   };
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+  const appDrawerPropsMobile = {
+    ...appDrawerProps,
+    optionSelectedHandler:handleOptionSelectedMobile
   };
 
   const container = window !== undefined ? () => window().document.body : undefined;
   const navBarClasses = props.curTheme === "light" ? classes.drawerPaper:classes.drawerPaperDark;
+
   return (
     <React.Fragment>
       <AppBar position="fixed" className={classes.appBar}>
@@ -115,7 +125,7 @@ function ResponsiveDrawer(props) {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            <Content {...appDrawerProps}></Content>
+            <Content {...appDrawerPropsMobile}></Content>
           </Drawer>
         </Hidden>
         <Hidden smDown implementation="css">
