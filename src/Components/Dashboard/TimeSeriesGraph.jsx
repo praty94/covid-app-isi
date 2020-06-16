@@ -3,6 +3,8 @@ import LineChart from '../Common Components/LineChart';
 import { fetchTimeSeriesData } from '../../Api/Covid19India';
 import StateSelector from '../Common Components/SingleStateSelector';
 import StateMap from '../../Data/StateMap.json';
+import {LinearProgress} from '@material-ui/core';
+
 const formatChartsData = (timeSeriesMap, state) => {
     const data = timeSeriesMap[state];
 
@@ -59,7 +61,7 @@ const TimeSeriesGraph = (props) => {
                     singleSelect={true}
                     handleStateChange={(selectedState) => handleChange(selectedState)}></StateSelector>
                 <LineChart data={chartsData} theme={props.theme}></LineChart>
-            </React.Fragment> : null
+            </React.Fragment> : <LinearProgress color="secondary" />
     );
 }
 
