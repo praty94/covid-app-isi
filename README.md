@@ -4,6 +4,9 @@
 
 ## 📃 [Data repository](https://github.com/praty94/covid-data-isi)
 
+## :beginner: External API 
+This project uses [api.covid19india.org](https://api.covid19india.org/) 
+
 ## License
 
 This project is licensed under the terms of the
