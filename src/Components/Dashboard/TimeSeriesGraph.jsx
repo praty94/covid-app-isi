@@ -61,7 +61,7 @@ const TimeSeriesGraph = (props) => {
                     singleSelect={true}
                     handleStateChange={(selectedState) => handleChange(selectedState)}></StateSelector>
                 <LineChart data={chartsData} theme={props.theme}></LineChart>
-            </React.Fragment> : <LinearProgress color="secondary" />
+            </React.Fragment> : <LinearProgress style={{marginBottom:20}} color="secondary" />
     );
 }
 
