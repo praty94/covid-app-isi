@@ -89,7 +89,7 @@ This dashboard provides information about the underlying scenario from different
 Please refer to the ISI website for general disclaimers.</Typography>
                 </Paper>
             </div>
-            <Typography style={{ float: "right",marginTop:10 }} color="textSecondary" gutterBottom>Application Version : 1.0.0</Typography>
+            <Typography style={{ float: "right",marginTop:10 }} color="textSecondary" gutterBottom>Application Version : 1.0.1</Typography>
         </div>
     );
 }
