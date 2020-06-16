@@ -1,10 +1,10 @@
-<h1 align="center">Covid 19 Stat and analysis Application</h1>
+<h1 align="center"> :beginner: Covid 19 Stat and analysis Application</h1>
 
 ## ⚡ [Live Version](https://praty94.github.io/covid-app-isi/)
 
 ## 📃 [Data repository](https://github.com/praty94/covid-data-isi)
 
-## :beginner: External API 
+## External API 
 This project uses [api.covid19india.org](https://api.covid19india.org/) 
 
 ## License
