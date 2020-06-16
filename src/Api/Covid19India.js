@@ -18,3 +18,12 @@ export const fetchStateDistrictData = async () => {
         console.error("[fetchStateDistrictData] Failed");
     }    
 }
+
+export const fetchTimeSeriesData = async () => {
+    try{
+        const response = await axios.get(`${url}/v3/min/timeseries.min.json`);
+        return response;
+    }catch{
+        console.error("[fetchTimeSeriesData] Failed");
+    }    
+}

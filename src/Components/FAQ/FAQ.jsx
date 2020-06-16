@@ -39,7 +39,7 @@ const Faq = () => {
 
         })();
         return () => {
-            console.log("[Concentration] unmounted");
+            console.log("[FAQ] unmounted");
         };
     }, []);
     

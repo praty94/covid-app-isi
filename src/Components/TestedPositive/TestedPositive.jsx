@@ -65,7 +65,7 @@ export default function TestedPositive(props) {
 
         })();
         return () => {
-            console.log("[Concentration] unmounted");
+            console.log("[Tested Positive] unmounted");
         };
     }, []);
     return (

@@ -5,7 +5,7 @@ import { fetchSummary, fetchStateDistrictData } from '../../Api/Covid19India';
 import IndiaCovidMap from '../IndiaCovidMap/IndiaCovidMap';
 import { MenuItem, FormControl, Select, Grid, Typography, Divider, Button } from '@material-ui/core';
 import DashboardSection from './DashboardSection';
-import LineChart from '../Common Components/LineChart';
+import TimeSeriesGraph from './TimeSeriesGraph';
 import DashboardStatTable from './DashboardStatTable';
 import ExpandableTable from '../Common Components/ExpandableTable';
 import { fetchDashboardData, fetchDownloadableReports } from '../../Api/ISI_StatisticalData';
@@ -46,23 +46,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 20
     }
 }));
-const formatChartsData = (timeSeriesArray) => {
-    let totalConfirmedArray = [], totalDeceasedArray = [], totalRecoveredArray = [], totalActiveArray = [], dateArray = [];
-    if (timeSeriesArray && timeSeriesArray.length) {
-        timeSeriesArray.forEach((item) => {
-            const confirmed = +item.totalconfirmed;
-            const deceased = +item.totaldeceased;
-            const recovered = +item.totalrecovered;
-            const active = confirmed - (deceased + recovered);
-            totalConfirmedArray.push(confirmed);
-            totalDeceasedArray.push(deceased);
-            totalRecoveredArray.push(recovered);
-            totalActiveArray.push(active)
-            dateArray.push(item.date + " 2020");
-        });
-    }
-    return { init: true, totalConfirmedArray, totalDeceasedArray, totalRecoveredArray, totalActiveArray, dateArray };
-}
+
 const formatHeatMapData = (statewiseArray) => {
     let activeHeatMapData = [], confirmedHeatMapData = [], deathsHeatMapData = [];
     let maxActive = 0, maxConfirmed = 0, maxDeaths = 0;
@@ -86,7 +70,7 @@ export default function Dashboard(props) {
     const classes = useStyles();
     const heatMapOptions = ['confirmedData', 'activeData', 'deathsActive'];
     const [cardsData, setCardsData] = useState({});
-    const [chartsData, setChartsData] = useState({});
+
     const [dashboardData, setDashboardData] = useState({});
     const [heatMapData, setHeatMapData] = useState({});
     const [expanded, setExpanded] = useState(false);
@@ -109,7 +93,7 @@ export default function Dashboard(props) {
             const response = await fetchSummary();
             if (!response || !response.data)
                 return;
-            const { statewise, cases_time_series } = { ...response.data };
+            const { statewise } = { ...response.data };
 
             setCardsData({
                 confirmedProps: { cardType: "confirmed", pageId: 1, title: "Confirmed", value: statewise[0].confirmed, valueChange: statewise[0].deltaconfirmed },
@@ -117,7 +101,6 @@ export default function Dashboard(props) {
                 recoveredProps: { cardType: "recovered", pageId: 2, title: "Recovered", value: statewise[0].recovered, valueChange: statewise[0].deltarecovered },
                 deathProps: { cardType: "death", pageId: 6, title: "Deceased", value: statewise[0].deaths, valueChange: statewise[0].deltadeaths },
             });
-            setChartsData(formatChartsData(cases_time_series));
             setHeatMapData(formatHeatMapData(statewise));
             setStateTableData(statewise);
         })();
@@ -168,19 +151,17 @@ export default function Dashboard(props) {
                 </Grid>
             </Grid>
             <div className={classes.marginT20}>
-                {chartsData && chartsData.init ?
-                    <DashboardSection expanded={expanded === 'panel1'}
-                        panelName='panel1' heading='Covid-19 Time Series Graph'
-                        handleChangeExpanded={handleChangeExpanded}>
-                        <LineChart data={chartsData} theme={props.theme}></LineChart>
-                        <Typography>{messages.chartSubText}</Typography>
-                    </DashboardSection>
-                    : null}
+                <DashboardSection expanded={expanded === 'panel1'}
+                    panelName='panel1' heading={messages.timeSeriesGraph}
+                    handleChangeExpanded={handleChangeExpanded}>
+                    <TimeSeriesGraph theme={props.theme}></TimeSeriesGraph>
+                    <Typography>{messages.chartSubText}</Typography>
+                </DashboardSection>
             </div>
             <div className={classes.marginT20}>
                 {heatMapData.init ?
                     <DashboardSection expanded={expanded === 'panel2'}
-                        panelName='panel2' heading='Covid-19 Heat Map'
+                        panelName='panel2' heading={messages.heatMap}
                         handleChangeExpanded={handleChangeExpanded}>
                         <FormControl style={{ width: 250 }} variant="outlined">
                             <Select
@@ -200,17 +181,17 @@ export default function Dashboard(props) {
             <div className={classes.marginT20}>
                 {stateTableData && districtTableData ?
                     <DashboardSection expanded={expanded === 'panel3'}
-                        panelName='panel3' heading='State and District level Data'
+                        panelName='panel3' heading={messages.stateDistrictData}
                         handleChangeExpanded={handleChangeExpanded}>
                         <ExpandableTable stateData={stateTableData} districtData={districtTableData}></ExpandableTable>
                     </DashboardSection> : null}
             </div>
-            <Typography className={classes.marginT20} variant="h6" color="textPrimary">Analysis</Typography>
+            <Typography className={classes.marginT20} variant="h6" color="textPrimary">{messages.analysis}</Typography>
             <Divider></Divider>
             <div className={classes.marginT20}>
                 {dashboardData && dashboardData.data ?
                     <DashboardSection expanded={expanded === 'panel4'}
-                        panelName='panel4' heading='Risk Summary – India / States / UT'
+                        panelName='panel4' heading={messages.riskSummary}
                         handleChangeExpanded={handleChangeExpanded}>
                         <Typography className={classes.marginB20} color="textPrimary">{parse(dashboardData.heading)}</Typography>
                         <DashboardStatTable data={dashboardData.data}></DashboardStatTable>
@@ -219,15 +200,15 @@ export default function Dashboard(props) {
             <div className={classes.marginT20}>
                 {downloadableReportsData && downloadableReportsData.data ?
                     <DashboardSection expanded={expanded === 'panel5'}
-                        panelName='panel5' heading='Risk Summary Report'
+                        panelName='panel5' heading={messages.riskReport}
                         handleChangeExpanded={handleChangeExpanded}>
                         <Grid container spacing={2}>
                             {downloadableReportsData.data.map((item, index) => (
-                                <Grid item>
-                                <Button key={index} variant="outlined" size="large"
-                                    startIcon={<DescriptionIcon />} onClick={() => handleFileRedirect(item.fileURL)}>
-                                    {item.fileName}
-                                </Button>
+                                <Grid item key={index}>
+                                    <Button variant="outlined" size="large"
+                                        startIcon={<DescriptionIcon />} onClick={() => handleFileRedirect(item.fileURL)}>
+                                        {item.fileName}
+                                    </Button>
                                 </Grid>
                             ))}
                         </Grid>
