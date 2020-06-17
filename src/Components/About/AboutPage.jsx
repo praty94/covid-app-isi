@@ -24,9 +24,16 @@ const useStyles = makeStyles((theme) => ({
 const handleGithubRedirect = () => {
     window.open("https://github.com/praty94/covid-app-isi", "_blank");
 }
+const scrollToTop = () =>{
+    document.getElementById('root').scrollTop = 0;
+}
 const AboutPage = () => {
     const classes = useStyles();
     const { contributors } = { ...Contributors };
+    
+    //scrolling to top before rendering about page
+    scrollToTop();
+    
     return (
         <div className={classes.container}>
             <div style={{ marginTop: -10 }}>
