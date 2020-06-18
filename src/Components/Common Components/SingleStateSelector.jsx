@@ -18,6 +18,7 @@ export default function StateSelector(props) {
       <Autocomplete
         disableClearable
         id="single-state-selector"
+        blurOnSelect={true}
         options={props.states}
         getOptionLabel={(option) => option}
         onChange={(e, value) => props.handleStateChange(value)}
