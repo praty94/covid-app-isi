@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "39adbe1ccae7686c509f8fb21cb5156d",
+    "revision": "112696f92da937e08a87314a538e7835",
     "url": "/covid-app-isi/index.html"
   },
   {
