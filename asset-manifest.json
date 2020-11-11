@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/covid-app-isi/static/css/main.63e76035.chunk.css",
-    "main.js": "/covid-app-isi/static/js/main.af7b75ef.chunk.js",
-    "main.js.map": "/covid-app-isi/static/js/main.af7b75ef.chunk.js.map",
+    "main.js": "/covid-app-isi/static/js/main.02cb112b.chunk.js",
+    "main.js.map": "/covid-app-isi/static/js/main.02cb112b.chunk.js.map",
     "runtime-main.js": "/covid-app-isi/static/js/runtime-main.8e3bb9a8.js",
     "runtime-main.js.map": "/covid-app-isi/static/js/runtime-main.8e3bb9a8.js.map",
-    "static/js/2.7f725221.chunk.js": "/covid-app-isi/static/js/2.7f725221.chunk.js",
-    "static/js/2.7f725221.chunk.js.map": "/covid-app-isi/static/js/2.7f725221.chunk.js.map",
+    "static/js/2.f16ab353.chunk.js": "/covid-app-isi/static/js/2.f16ab353.chunk.js",
+    "static/js/2.f16ab353.chunk.js.map": "/covid-app-isi/static/js/2.f16ab353.chunk.js.map",
     "index.html": "/covid-app-isi/index.html",
-    "precache-manifest.e49d9923423be5830590bb391aa23ad6.js": "/covid-app-isi/precache-manifest.e49d9923423be5830590bb391aa23ad6.js",
+    "precache-manifest.6fada89556907118fa617d2e05361cb2.js": "/covid-app-isi/precache-manifest.6fada89556907118fa617d2e05361cb2.js",
     "service-worker.js": "/covid-app-isi/service-worker.js",
     "static/css/main.63e76035.chunk.css.map": "/covid-app-isi/static/css/main.63e76035.chunk.css.map",
-    "static/js/2.7f725221.chunk.js.LICENSE.txt": "/covid-app-isi/static/js/2.7f725221.chunk.js.LICENSE.txt",
+    "static/js/2.f16ab353.chunk.js.LICENSE.txt": "/covid-app-isi/static/js/2.f16ab353.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/covid-app-isi/static/media/logo.c0ff89b4.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.8e3bb9a8.js",
-    "static/js/2.7f725221.chunk.js",
+    "static/js/2.f16ab353.chunk.js",
     "static/css/main.63e76035.chunk.css",
-    "static/js/main.af7b75ef.chunk.js"
+    "static/js/main.02cb112b.chunk.js"
   ]
 }
